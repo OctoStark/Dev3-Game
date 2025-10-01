@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class pickUp : MonoBehaviour
 {
-    [SerializeField] gunStats gun;
+    //[SerializeField] gunStats gun;
     private void OnTriggerEnter(Collider other)
     {
 
@@ -10,8 +10,8 @@ public class pickUp : MonoBehaviour
 
         if(pickupable != null )
         {
-            gun.ammoCur = gun.ammoMax;
-            pickupable.getGunStats(gun);
+            //gun.ammoCur = gun.ammoMax;
+            //pickupable.getGunStats(gun);
             Destroy(gameObject);
 
         }

@@ -13,7 +13,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
 
-    [SerializeField] List<gunStats> gunList = new List<gunStats>();
+    //[SerializeField] List<gunStats> gunList = new List<gunStats>();
     [SerializeField] GameObject gunModel;
     [SerializeField] int HP;
     [SerializeField] int shootDamage;
@@ -85,7 +85,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         jump();
         controller.Move(playerVel * Time.deltaTime);
 
-        if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= shootRate)
+       // if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= shootRate)
             shoot();
         selectGun();
         reload();
@@ -116,14 +116,14 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     void shoot()
     {
         shootTimer = 0;
-        gunList[gunListPos].ammoCur--;
-        aud.PlayOneShot(gunList[gunListPos].shootSound[Random.Range(0, gunList[gunListPos].shootSound.Length)], gunList[gunListPos].shootSoundVol);
+   //     gunList[gunListPos].ammoCur--;
+   //     aud.PlayOneShot(gunList[gunListPos].shootSound[Random.Range(0, gunList[gunListPos].shootSound.Length)], gunList[gunListPos].shootSoundVol);
         updatePlayerUI();
 
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
-            Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
+   //         Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
             Debug.Log(hit.collider.name);
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
@@ -137,7 +137,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     void reload()
     {
         if (Input.GetButtonDown("Reload")) 
-            gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
+   //         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
         updatePlayerUI();
     }
 
@@ -157,11 +157,11 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
 
-        if (gunList.Count > 0)
-        {
-            gameManager.instance.ammoCur.text = gunList[gunListPos].ammoCur.ToString("F0");
-            gameManager.instance.ammoMax.text = gunList[gunListPos].ammoMax.ToString("F0");
-        }
+        //if (gunList.Count > 0)
+        //{
+        //    gameManager.instance.ammoCur.text = gunList[gunListPos].ammoCur.ToString("F0");
+        //    gameManager.instance.ammoMax.text = gunList[gunListPos].ammoMax.ToString("F0");
+        //}
 
     }
 
@@ -174,36 +174,36 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     void selectGun()
     {
-        if(Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
-        {
-            gunListPos++;
-            changeGun();
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
-        {
-            gunListPos--;
-            changeGun();
-        }
+        //if(Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
+        //{
+        //    gunListPos++;
+        //    changeGun();
+        //}
+        //else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
+        //{
+        //    gunListPos--;
+        //    changeGun();
+        //}
     }
 
-    public void getGunStats(gunStats gun)
-    {
-        gunList.Add(gun);
-        gunListPos = gunList.Count - 1;
-        changeGun();
-    }
+    //public void getGunStats(gunStats gun)
+    //{
+    //    gunList.Add(gun);
+    //    gunListPos = gunList.Count - 1;
+    //    changeGun();
+    //}
 
-    void changeGun()
-    {
-        shootDamage = gunList[gunListPos].shootDamage;
-        shootDist = gunList[gunListPos].shootDist;
-        shootRate = gunList[gunListPos].shootRate;
+    //void changeGun()
+    //{
+    //    shootDamage = gunList[gunListPos].shootDamage;
+    //    shootDist = gunList[gunListPos].shootDist;
+    //    shootRate = gunList[gunListPos].shootRate;
 
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial= gunList[gunListPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    //    gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].gunModel.GetComponent<MeshFilter>().sharedMesh;
+    //    gunModel.GetComponent<MeshRenderer>().sharedMaterial= gunList[gunListPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-        updatePlayerUI();
-    }
+    //    updatePlayerUI();
+    //}
 
     public void spawnPlayer()
     {
