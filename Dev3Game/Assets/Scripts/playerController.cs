@@ -14,13 +14,13 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] int gravity;
 
     //[SerializeField] List<gunStats> gunList = new List<gunStats>();
-    [SerializeField] GameObject gunModel;
+    //[SerializeField] GameObject gunModel;
     [SerializeField] int HP;
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
 
-    [SerializeField] AudioSource aud;
+    //[SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
     [Range(0, 1)][SerializeField] float audStepVol;
     [SerializeField] AudioClip[] audJump;
@@ -45,7 +45,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     void Start()
     {
         HPOrig = HP;
-        spawnPlayer();
+        //spawnPlayer();
     }
 
     // Update is called once per frame
@@ -95,7 +95,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     {
         if (Input.GetButtonDown("Jump") && jumpCount <  jumpMax)
         {
-            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+           // aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
             jumpCount++;
             playerVel.y = jumpSpeed;
         }
@@ -143,7 +143,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     public void takeDamage(int amount)
     {
-        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+       // aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         HP -= amount;
         updatePlayerUI();
         StartCoroutine(flashDamage());
@@ -205,17 +205,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     //    updatePlayerUI();
     //}
 
-    public void spawnPlayer()
-    {
-        controller.transform.position = gameManager.instance.playerSpawnPos.transform.position;
+   // public void spawnPlayer()
+   // {
+    //    controller.transform.position = gameManager.instance.playerSpawnPos.transform.position;
 
-        HP = HPOrig;
-        updatePlayerUI();
-    }
+    //    HP = HPOrig;
+      //  updatePlayerUI();
+   // }
     IEnumerator playStep()
     {
         isPlayingStep = true;
-        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
+        //aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
         if (isSprinting)
         {
             yield return new WaitForSeconds(.3f);
