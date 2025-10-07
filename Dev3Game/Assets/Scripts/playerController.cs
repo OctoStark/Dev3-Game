@@ -53,10 +53,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward *shootDist, Color.yellow);
 
-        if (!gameManager.instance.isPaused)
-        {
+       // if (!gameManager.instance.isPaused)
+       // {
         movement();
-        }
+       // }
         sprint();
         
     }
