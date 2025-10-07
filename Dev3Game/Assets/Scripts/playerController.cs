@@ -53,10 +53,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward *shootDist, Color.yellow);
 
-       // if (!gameManager.instance.isPaused)
-       // {
+        if (!gameManager.instance.isPaused)
+        {
         movement();
-       // }
+        }
         sprint();
         
     }
@@ -88,7 +88,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
        // if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= shootRate)
             shoot();
         selectGun();
-        reload();
+      //  reload();
     }
 
     void jump()
@@ -134,12 +134,12 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         }
     }
 
-    void reload()
-    {
-        if (Input.GetButtonDown("Reload")) 
+   // void reload()
+   // {
+    //    if (Input.GetButtonDown("Reload")) 
    //         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
-        updatePlayerUI();
-    }
+    //    updatePlayerUI();
+  //  }
 
     public void takeDamage(int amount)
     {
