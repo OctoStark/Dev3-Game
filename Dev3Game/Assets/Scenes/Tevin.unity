@@ -552,6 +552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1600495201}
   - component: {fileID: 1600495203}
+  - component: {fileID: 1600495202}
   m_Layer: 0
   m_Name: Cam_Holder
   m_TagString: Untagged
@@ -575,6 +576,27 @@ Transform:
   - {fileID: 222371228499540270}
   m_Father: {fileID: 7705562958460016057}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1600495202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600495200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e90a4adcc30254db5d16c559a20e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::headBobController
+  enableHeadBob: 1
+  bobAmount: 0.083
+  bobSpeed: 20.2
+  movementThreshold: 3
+  rotationAmount: 2
+  rotationSpeed: 14
+  cameraTransform: {fileID: 1600495201}
+  playerTransform: {fileID: 7705562958460016057}
+  bodyTransform: {fileID: 7934840387595318865}
 --- !u!143 &1600495203
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2885,28 +2907,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &3866624124607744669
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4641546942204373068}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 63e974d9ec82619419e69ae2287be94e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1ec31ee6b4e699b4c919f9ddd24f6f73, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 1
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &3905443524008516754
 Transform:
   m_ObjectHideFlags: 0
@@ -3386,8 +3386,6 @@ GameObject:
   - component: {fileID: 7705562958460016057}
   - component: {fileID: 8990022709668651745}
   - component: {fileID: 3207077626195821305}
-  - component: {fileID: 3866624124607744669}
-  - component: {fileID: 8990022709668651746}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5211,6 +5209,7 @@ GameObject:
   - component: {fileID: 8922355291784453526}
   - component: {fileID: 6752489819304215131}
   - component: {fileID: 8922355291784453527}
+  - component: {fileID: 8922355291784453529}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5518,6 +5517,31 @@ MonoBehaviour:
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0
+--- !u!143 &8922355291784453529
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8030867090667663871}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8970003387057041603
 GameObject:
   m_ObjectHideFlags: 0
@@ -5581,27 +5605,6 @@ MonoBehaviour:
   audJumpVol: 0
   audHurt: []
   audHurtVol: 0
---- !u!114 &8990022709668651746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4641546942204373068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0e90a4adcc30254db5d16c559a20e97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::headBobController
-  enableHeadBob: 1
-  bobAmount: 0.083
-  bobSpeed: 20.2
-  movementThreshold: 3
-  rotationAmount: 2
-  rotationSpeed: 14
-  cameraTransform: {fileID: 222371228499540270}
-  playerTransform: {fileID: 7705562958460016057}
-  bodyTransform: {fileID: 7934840387595318865}
 --- !u!4 &9067051228148824435
 Transform:
   m_ObjectHideFlags: 0
