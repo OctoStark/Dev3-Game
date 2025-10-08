@@ -3,7 +3,7 @@ using System.Collections;
 
 public class damage : MonoBehaviour
 {
-    enum damageType {moving, stationary, DOT, homing}
+    enum damageType {moving, stationary, DOT, homing, lobbed}
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
 
@@ -32,7 +32,7 @@ public class damage : MonoBehaviour
     {
         if (type == damageType.homing)
         {
-            rb.linearVelocity = (gameManager.instance.transform.position - transform.position).normalized * speed * Time.deltaTime;
+            rb.linearVelocity = (gameManager.instance.transform.position - gameManager.instance.player.transform.position).normalized * speed * Time.deltaTime;
         }
     }
     private void OnTriggerEnter(Collider other)
