@@ -141,7 +141,8 @@ public class enemyAI : MonoBehaviour, IDamage
     void shoot()
     {
         shootTimer = 0;
-        anim.SetTrigger("Shoot");
+        //anim.SetTrigger("Shoot");
+        createBullet();
     }
 
     void createBullet()
