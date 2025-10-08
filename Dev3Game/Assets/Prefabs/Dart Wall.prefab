@@ -169,11 +169,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Traps
   type: 1
-  holePos: []
+  holePos:
+  - {fileID: 4394030763601074784}
+  - {fileID: 5357721558065654083}
+  - {fileID: 136858405804854939}
+  - {fileID: 2775226224406309389}
+  - {fileID: 2603988286753664422}
   dmgObj: {fileID: 0}
-  shootRate: 0
-  trapTime: 0
-  trapDuration: 0
+  shootRate: 1
+  waitTime: 0
+  trapDuration: 5
 --- !u!33 &9167275001249277101
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -287,6 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3278185052329935865}
+  - component: {fileID: 1876485033770416067}
   - component: {fileID: 2837547719309887404}
   - component: {fileID: 4364112408368168381}
   - component: {fileID: 2602024657147154027}
@@ -318,6 +324,29 @@ Transform:
   - {fileID: 703200298250107386}
   m_Father: {fileID: 191683309258712837}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1876485033770416067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7129388539392239530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee124d35227f6346a6904877be77ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Traps
+  type: 1
+  holePos:
+  - {fileID: 2026042245382390068}
+  - {fileID: 6994036820838804736}
+  - {fileID: 5097527612918086010}
+  - {fileID: 4507392556860233401}
+  - {fileID: 703200298250107386}
+  dmgObj: {fileID: 0}
+  shootRate: 1
+  waitTime: 0
+  trapDuration: 5
 --- !u!33 &2837547719309887404
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -431,6 +460,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3230094887274658937}
+  - component: {fileID: 8797254880222830175}
   - component: {fileID: 6106981144151558233}
   - component: {fileID: 2565779592323278479}
   - component: {fileID: 2495422281494669850}
@@ -462,6 +492,29 @@ Transform:
   - {fileID: 3162121852395506820}
   m_Father: {fileID: 191683309258712837}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8797254880222830175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305791170533961305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee124d35227f6346a6904877be77ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Traps
+  type: 1
+  holePos:
+  - {fileID: 6047489787600969362}
+  - {fileID: 3341871270676485130}
+  - {fileID: 5240625241412035916}
+  - {fileID: 4172935866497952159}
+  - {fileID: 3162121852395506820}
+  dmgObj: {fileID: 0}
+  shootRate: 1
+  waitTime: 0
+  trapDuration: 5
 --- !u!33 &6106981144151558233
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -575,6 +628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3878119253601310502}
+  - component: {fileID: 1480238200022657874}
   - component: {fileID: 4571001997547331291}
   - component: {fileID: 19527119974892422}
   - component: {fileID: 3282137949376864895}
@@ -606,6 +660,29 @@ Transform:
   - {fileID: 5148747389000399293}
   m_Father: {fileID: 191683309258712837}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1480238200022657874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9085827361045455891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee124d35227f6346a6904877be77ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Traps
+  type: 1
+  holePos:
+  - {fileID: 7850796845561683792}
+  - {fileID: 826463795597021126}
+  - {fileID: 326474437650774329}
+  - {fileID: 4001090272470696397}
+  - {fileID: 5148747389000399293}
+  dmgObj: {fileID: 0}
+  shootRate: 1
+  waitTime: 0
+  trapDuration: 5
 --- !u!33 &4571001997547331291
 MeshFilter:
   m_ObjectHideFlags: 0
