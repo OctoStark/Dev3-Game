@@ -33,6 +33,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     int HPOrig;
     int gunListPos;
+    int RageOrig;
 
     float shootTimer;
 
@@ -40,6 +41,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     bool isSprinting;
     bool isPlayingStep;
+    bool TakingDamage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -152,10 +154,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             //Hey, I'm dead!!
             gameManager.instance.youLose();
         }
+
+        TakingDamage = true;
     }
     public void updatePlayerUI()
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+
+        if(TakingDamage == true)
+        {
+            gameManager.instance.playerRageBar.fillAmount++;
+        }
 
         //if (gunList.Count > 0)
         //{
