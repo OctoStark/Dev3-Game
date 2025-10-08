@@ -9294,7 +9294,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8db657f1d1e821841935678d761133a5, type: 2}
+  - {fileID: 2100000, guid: 5f73475cf0cad364b9800b85c2a229fc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15407,10 +15407,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Basic
       objectReference: {fileID: 0}
-    - target: {fileID: 5922788412760532796, guid: 62e656f7f6163814aaf7c8b38e4c0323, type: 3}
-      propertyPath: checkpointPopup
-      value: 
-      objectReference: {fileID: 1061656112773932347}
     - target: {fileID: 7462026063928762901, guid: 62e656f7f6163814aaf7c8b38e4c0323, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -15496,11 +15492,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62e656f7f6163814aaf7c8b38e4c0323, type: 3}
---- !u!1 &1061656112773932347 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7812213370138505438, guid: 62e656f7f6163814aaf7c8b38e4c0323, type: 3}
-  m_PrefabInstance: {fileID: 1061656112773932346}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5111979463322512446
 PrefabInstance:
   m_ObjectHideFlags: 0
