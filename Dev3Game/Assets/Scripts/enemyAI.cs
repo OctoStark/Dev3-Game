@@ -19,7 +19,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] int animTransSpeed;
 
-    Color colorOrig;
+    //Color colorOrig;
 
     float shootTimer;
     float roamTimer;
@@ -33,7 +33,7 @@ public class enemyAI : MonoBehaviour, IDamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        colorOrig = model.material.color;
+       // colorOrig = model.material.color;
         //gameManager.instance.updateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
@@ -96,8 +96,8 @@ public class enemyAI : MonoBehaviour, IDamage
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
         RaycastHit hit;
-        Debug.DrawRay(headPos.position, playerDir);
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        Debug.DrawRay(headPos.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        if (Physics.Raycast(headPos.position, new Vector3(playerDir.x, transform.position.y, playerDir.z), out hit))
         {
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
@@ -153,7 +153,7 @@ public class enemyAI : MonoBehaviour, IDamage
         if (HP > 0)
         {
             HP -= amount;
-            StartCoroutine(flashRed());
+            //StartCoroutine(flashRed());
             agent.SetDestination(gameManager.instance.player.transform.position);
         }
 
@@ -163,10 +163,10 @@ public class enemyAI : MonoBehaviour, IDamage
             Destroy(gameObject);
         }
     }
-    IEnumerator flashRed()
-    {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = colorOrig;
-    }
+    //IEnumerator flashRed()
+    //{
+    //    model.material.color = Color.red;
+    //    yield return new WaitForSeconds(0.1f);
+    //    model.material.color = colorOrig;
+    //}
 }
