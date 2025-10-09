@@ -11,8 +11,10 @@ public class PuzzleSwitch : MonoBehaviour
         {
             ActivateSwitch();
         }
+    }
 
-        void ActivateSwitch()
+
+    void ActivateSwitch()
         {
             isActivated = true;
             if (switchObject != null)
@@ -21,5 +23,4 @@ public class PuzzleSwitch : MonoBehaviour
             }
             Debug.Log("Switch activated!");
         }
-    }
 }
