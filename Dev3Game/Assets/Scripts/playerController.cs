@@ -138,9 +138,9 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     void reload()
     {
-        if (Input.GetButtonDown("Reload")) 
+       // if (Input.GetButtonDown("Reload")) 
    //         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
-        updatePlayerUI();
+       // updatePlayerUI();
     }
 
     public void takeDamage(int amount)
