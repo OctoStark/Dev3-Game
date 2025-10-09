@@ -136,11 +136,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3a0c019f21cca42bbb133c157fbfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::damage
-  type: 0
+  type: 4
   rb: {fileID: 7355819379750031068}
   damageAmount: 2
   damageRate: 0
-  speed: 40
+  speed: 20
   destroyTime: 5
 --- !u!136 &1466900762015329119
 CapsuleCollider:

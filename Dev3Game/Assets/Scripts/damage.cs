@@ -17,12 +17,16 @@ public class damage : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (type == damageType.moving || type == damageType.homing)
+        if (type == damageType.moving || type == damageType.homing || type == damageType.lobbed)
         {
             Destroy(gameObject, destroyTime);
             if (type == damageType.moving)
             {
                 rb.linearVelocity = transform.forward * speed;
+            }
+            if (type == damageType.lobbed)
+            {
+                rb.linearVelocity = transform.forward * speed + transform.up * (speed / 5);
             }
         }
     }
@@ -34,17 +38,21 @@ public class damage : MonoBehaviour
         {
             rb.linearVelocity = (gameManager.instance.transform.position - gameManager.instance.player.transform.position).normalized * speed * Time.deltaTime;
         }
+        if (type == damageType.lobbed)
+        {
+            transform.forward = GetComponent<Rigidbody>().linearVelocity.normalized;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger)
             return;
         IDamage dmg = other.GetComponent<IDamage>();
-        if (dmg != null && (type == damageType.moving || type == damageType.homing || type == damageType.stationary))
+        if (dmg != null && (type == damageType.moving || type == damageType.homing || type == damageType.stationary || type == damageType.lobbed))
         {
             dmg.takeDamage(damageAmount);
         }
-        if (type == damageType.homing || type == damageType.moving)
+        if (type == damageType.homing || type == damageType.moving || type == damageType.lobbed)
         {
             Destroy(gameObject);
         }
