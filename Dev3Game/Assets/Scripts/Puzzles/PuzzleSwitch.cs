@@ -3,11 +3,11 @@ using UnityEngine;
 public class PuzzleSwitch : MonoBehaviour
 {
     public GameObject switchObject;
-    public bool isActivated = false;
+    public bool active;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isActivated)
+        if (other.CompareTag("Player") && !active)
         {
             ActivateSwitch();
         }
@@ -16,8 +16,8 @@ public class PuzzleSwitch : MonoBehaviour
 
     void ActivateSwitch()
         {
-            isActivated = true;
-            if (switchObject != null)
+            active = true;
+            if (switchObject)
             {
                 switchObject.SetActive(true);
             }

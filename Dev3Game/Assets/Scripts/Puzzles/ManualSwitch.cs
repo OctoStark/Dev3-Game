@@ -3,13 +3,12 @@ using UnityEngine;
 public class ManualSwitch : MonoBehaviour
 {
     public GameObject switchObject;
-    public bool isActivated = false;
-
-    private bool isPlayerNearby = false;
+    public bool active;
+    private bool playerNearby;
 
     private void Update()
     {
-        if (isPlayerNearby && Input.GetButtonDown("Interact"))
+        if (playerNearby && Input.GetButtonDown("Interact"))
         {
             ToggleSwitch();
         }
@@ -19,7 +18,7 @@ public class ManualSwitch : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isPlayerNearby = true;
+            playerNearby = true;
         }
     }
 
@@ -27,24 +26,24 @@ public class ManualSwitch : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isPlayerNearby = false;
+            playerNearby = false;
         }
     }
 
     private void ToggleSwitch()
     {
-        isActivated = !isActivated;
+        active = !active;
 
-        if (switchObject != null)
+        if (switchObject)
         {
             Renderer rend = switchObject.GetComponent<Renderer>();
             if (rend != null)
             {
-                rend.material.color = isActivated ? Color.green : Color.red;
+                rend.material.color = active ? Color.green : Color.red;
             }
         }
 
-        Debug.Log("Switch " + (isActivated ? "activated!" : "deactivated!"));
+        Debug.Log("Switch " + (active ? "activated!" : "deactivated!"));
     }
 
 }
