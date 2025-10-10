@@ -2,26 +2,17 @@ using UnityEngine;
 
 public class pickUp : MonoBehaviour
 {
-    //[SerializeField] gunStats gun;
+    [SerializeField] WeaponStats weapon;
     private void OnTriggerEnter(Collider other)
     {
-
         iPickUp pickupable = other.GetComponent<iPickUp>();
 
         if(pickupable != null )
         {
             //gun.ammoCur = gun.ammoMax;
-            //pickupable.getGunStats(gun);
+            pickupable.getWeaponStats(weapon);
             Destroy(gameObject);
 
-        }
-    }
-
-    void pickupHealthPack()
-    {
-        if (Input.GetButtonDown("Interact"))
-        {
-            //Destory(ColliderHit.transform.)
         }
     }
 }
