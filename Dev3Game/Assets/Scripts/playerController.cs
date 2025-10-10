@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using static pickUp;
 
 public class playerController : MonoBehaviour, IDamage, iPickUp
 {
@@ -16,8 +17,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     //[SerializeField] List<gunStats> gunList = new List<gunStats>();
     //[SerializeField] GameObject gunModel;
     [SerializeField] int HP;
-    [SerializeField] int shootDamage;
-    [SerializeField] float shootRate;
+    [SerializeField] int AttackDamage;
+    [SerializeField] float AttackRate;
     [SerializeField] int shootDist;
     [SerializeField] int rageMax;
 
@@ -31,6 +32,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     Vector3 moveDir;
     Vector3 playerVel;
+    PickupType type;
 
     int HPOrig;
     int gunListPos;
@@ -133,7 +135,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             IDamage dmg = hit.collider.GetComponent<IDamage>();
             if (dmg != null)
             {
-                dmg.takeDamage(shootDamage);
+                dmg.takeDamage(AttackDamage);
             }
         }
     }
@@ -223,6 +225,19 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     //    HP = HPOrig;
       //  updatePlayerUI();
    // }
+
+    void BlessThee()
+    {
+        if(type == PickupType.Zeus)
+        {
+            AttackDamage *= 2;
+            AttackRate *= 2;
+        }
+        if(type == PickupType.Poseidon)
+        {
+            speed *= 2;
+        }
+    }
     IEnumerator playStep()
     {
         isPlayingStep = true;
