@@ -13,14 +13,16 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject groundSlam;
+    [SerializeField] Transform slamPos;
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
-    [SerializeField] int FOV;
+    //[SerializeField] int FOV;
     //[SerializeField] int roamDist;
     //[SerializeField] int roamPauseTimer;
     [SerializeField] float shootRate;
     [SerializeField] float slamRate;
+    //[SerializeField] float slamDur;
     [SerializeField] int animTransSpeed;
 
     //public enemyTrigger fleeTrigger;
@@ -28,6 +30,8 @@ public class bossAI : MonoBehaviour, IDamage
     //public enemyTrigger atkTrigger;
 
     //Color colorOrig;
+
+    GameObject slamObject;
 
     float shootTimer;
     float slamTimer;
@@ -95,6 +99,7 @@ public class bossAI : MonoBehaviour, IDamage
         gameManager.instance.updateGameGoal(1);
         startingPos = transform.position;
         //stoppingDistOrig = agent.stoppingDistance;
+        //groundSlam.SetActive(false);
     }
 
     // Update is called once per frame
@@ -113,7 +118,11 @@ public class bossAI : MonoBehaviour, IDamage
 
         if (playerInTrigger && slamTimer >= slamRate)
         {
-
+            slam();
+        }
+        else if (playerInTrigger)
+        {
+            //normal attack
         }
         else if (!playerInTrigger && shootTimer >= shootRate)
         {
@@ -122,6 +131,10 @@ public class bossAI : MonoBehaviour, IDamage
         else if (!playerInTrigger)
         {
             agent.SetDestination(gameManager.instance.player.transform.position);
+            if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    faceTarget();
+                }
         }
     }
 
@@ -203,12 +216,22 @@ public class bossAI : MonoBehaviour, IDamage
     }
     void slam()
     {
+        //slamTimer = 0;
+        //slamTimer += Time.deltaTime;
+        //groundSlam.SetActive(true);
+        //Debug.Log("slam");
+        //if (slamTimer >= .5f)
+        //{
+        //    Debug.Log("turning slam off");
+        //    groundSlam.SetActive(false);
+        //    Debug.Log("slamOff");
+        //    slamTimer = 0;
+        //}
         slamTimer = 0;
-        groundSlam.SetActive(true);
-        if (slamTimer >= .1f)
-        {
-            groundSlam.SetActive(false);
-        }
+        slamObject = Instantiate(groundSlam, slamPos);
+        Destroy(slamObject, 1);
+        
+        
     }
     void shoot()
     {
@@ -236,12 +259,12 @@ public class bossAI : MonoBehaviour, IDamage
             Destroy(gameObject);
         }
     }
-    //IEnumerator flashRed()
-    //{
-    //    model.material.color = Color.red;
-    //    yield return new WaitForSeconds(0.1f);
-    //    model.material.color = colorOrig;
-    //}
+    IEnumerator flashRed()
+    {
+        //model.material.color = Color.red;
+        yield return new WaitForSeconds(1);
+        //model.material.color = colorOrig;
+    }
 
- 
+
 }
