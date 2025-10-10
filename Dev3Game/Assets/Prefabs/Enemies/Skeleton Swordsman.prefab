@@ -1464,14 +1464,14 @@ MonoBehaviour:
   anim: {fileID: 4454940400489041657}
   model: {fileID: 2653313738546547266}
   headPos: {fileID: 3795100129399277150}
-  shootPos: {fileID: 0}
-  bullet: {fileID: 673038880001039695, guid: 6b73256e6dd6cf34d987647ca5d2c1dc, type: 3}
+  shootPos: {fileID: 1244169933402430970}
+  bullet: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
   HP: 5
   faceTargetSpeed: 10
   FOV: 70
   roamDist: 10
   roamPauseTimer: 2
-  shootRate: 1
+  shootRate: 100
   animTransSpeed: 1
   fleeTrigger: {fileID: 8044537331697836600}
   sightTrigger: {fileID: 2556426301846715306}
@@ -1508,8 +1508,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 8
-  m_Acceleration: 8
+  m_Speed: 4
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 500
   m_StoppingDistance: 4
