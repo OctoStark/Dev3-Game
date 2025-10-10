@@ -41,6 +41,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     bool isSprinting;
     bool isPlayingStep;
 
+    private float _pushPower = 2.0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -226,4 +228,25 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         }
         isPlayingStep = false;
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.tag == "Moving Object")
+        {
+            Rigidbody box = hit.collider.GetComponent<Rigidbody>();
+
+            if (box != null)
+            {
+                Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+                box.isKinematic = false;
+                box.linearVelocity = pushDirection * _pushPower;
+            }
+        }
+    }
+
+
+
+
+
+
 }
