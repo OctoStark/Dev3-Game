@@ -15,7 +15,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     //[SerializeField] List<gunStats> gunList = new List<gunStats>();
     //[SerializeField] GameObject gunModel;
-    [SerializeField] int HP;
+    [SerializeField] public int HP;
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
@@ -31,7 +31,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     Vector3 moveDir;
     Vector3 playerVel;
 
-    int HPOrig;
+    public int HPOrig;
     int gunListPos;
 
     float shootTimer;
@@ -174,6 +174,15 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         gameManager.instance.playerDamageFlash.SetActive(false);
     }
 
+    public void AddHealth(int healthAmount)
+    {
+        HP += healthAmount;
+        if (HP > HPOrig)
+        {
+            HP = HPOrig;
+        }
+        updatePlayerUI();
+    }
     void selectGun()
     {
         //if(Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
@@ -243,10 +252,5 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             }
         }
     }
-
-
-
-
-
 
 }

@@ -16,4 +16,12 @@ public class pickUp : MonoBehaviour
 
         }
     }
+
+    void pickupHealthPack()
+    {
+        if (Input.GetButtonDown("Interact"))
+        {
+            //Destory(ColliderHit.transform.)
+        }
+    }
 }
