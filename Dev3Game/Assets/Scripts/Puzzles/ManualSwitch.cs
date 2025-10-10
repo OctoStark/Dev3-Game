@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ManualSwitch : MonoBehaviour
 {
-    public GameObject switchObject;
-    public bool active;
+    public GameObject switchModel;
+    public bool hitSwitch;
     private bool playerNearby;
 
     private void Update()
@@ -32,18 +32,18 @@ public class ManualSwitch : MonoBehaviour
 
     private void ToggleSwitch()
     {
-        active = !active;
-
-        if (switchObject)
+        hitSwitch = !hitSwitch;
+        
+        if (switchModel != null)
         {
-            Renderer rend = switchObject.GetComponent<Renderer>();
+            Renderer rend = switchModel.GetComponent<Renderer>();
             if (rend != null)
             {
-                rend.material.color = active ? Color.green : Color.red;
+                rend.material.color = hitSwitch ? Color.green : Color.red;
             }
         }
 
-        Debug.Log("Switch " + (active ? "activated!" : "deactivated!"));
+        Debug.Log("Switch " + (hitSwitch ? "On!" : "Off!"));
     }
 
 }
