@@ -39,6 +39,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     public int HPOrig;
     private Vector3 originalScale;
+    public int origAttackDamage;
+    float origAttackRate;
+    int origSpeed;
+    int origSprintMod;
     int weaponListPos;
     int RageOrig;
     float targetRageFill;
@@ -73,6 +77,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     {
         HPOrig = HP;
         originalScale = transform.localScale;
+        origAttackDamage = AttackDamage;
+        origAttackRate = AttackRate;
+        origSpeed = speed;
+        origSprintMod = sprintMod;
         //spawnPlayer();
         StartCoroutine(flashTutScreen());
     }
@@ -232,6 +240,26 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         gameManager.instance.zuesBlessingScreen.SetActive(false);
     }
 
+    private IEnumerator ZuesBuffDuration()
+    {
+        yield return new WaitForSeconds(10f);
+
+        AttackDamage = origAttackDamage;
+        AttackRate = origAttackRate;
+
+        zuesBuffActive = false;
+    }
+
+    private IEnumerator PoseidonBuffDuration()
+    {
+        yield return new WaitForSeconds(10f);
+
+        speed = origSpeed;
+        sprintMod = origSprintMod;
+
+        poseidonBuffActive = false;
+    }
+
     void selectWeapon()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && weaponListPos < weaponList.Count - 1)
@@ -310,6 +338,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                     zuesBuffActive = true;
                     AttackDamage *= pickup.Amount;
                     AttackRate *= pickup.Amount;
+                    StartCoroutine(ZuesBuffDuration());
                     StartCoroutine(flashzuesBlessing());
                 }
                 else
@@ -323,6 +352,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     speed *= pickup.Amount;
                     sprintMod *= pickup.Amount;
+                    StartCoroutine(PoseidonBuffDuration());
                     StartCoroutine(flashPosBlessing());
                 }
                 else
