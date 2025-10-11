@@ -64,7 +64,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     }
     void movement()
     {
-        shootTimer += Time.deltaTime;
+       // shootTimer += Time.deltaTime;
         if (controller.isGrounded)
         {
             if (moveDir.normalized.magnitude > .3f && !isPlayingStep)
