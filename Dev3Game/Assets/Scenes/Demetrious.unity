@@ -640,6 +640,14 @@ MonoBehaviour:
   audJumpVol: 0
   audHurt: []
   audHurtVol: 0
+  rageDashSpeed: 25
+  rageDuration: 0.5
+  rageDamageMod: 3
+  rageKnockbackForce: 10
+  rageHitRadius: 1.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &1230212515
 Transform:
   m_ObjectHideFlags: 0

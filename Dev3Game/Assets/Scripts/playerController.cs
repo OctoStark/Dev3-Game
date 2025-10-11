@@ -50,6 +50,14 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     bool zuesBuffActive = false;
     bool poseidonBuffActive = false;
 
+    //Rage Dash
+    [SerializeField] float rageDashSpeed = 25f;
+    [SerializeField] float rageDuration = .5f;
+    [SerializeField] float rageDamageMod;
+    [SerializeField] float rageKnockbackForce;
+    [SerializeField] float rageHitRadius = 1.5f;
+    [SerializeField] LayerMask enemyLayer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -65,6 +73,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         if (!gameManager.instance.isPaused)
         {
         movement();
+            Rage();
         }
         sprint();
     }
@@ -166,8 +175,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         if (rageAdd >= rageMax)
         {
             rageAdd = rageMax;
-
-           // targetRageFill = (float)rageAdd / rageMax;
 
             updatePlayerUI();
         }
@@ -277,5 +284,59 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 }
                     break;
         }
+    }
+
+    private void Rage()
+    {
+
+        if (Input.GetButtonDown("Rage"))
+        {
+            Debug.Log("Rage button Pressed");
+        }
+        if(rageAdd == rageMax && Input.GetButtonDown("Rage"))
+        {
+            Debug.Log("Rage Dash Activated");
+            StartCoroutine(RageDash());
+  
+        }
+    }
+
+    IEnumerator RageDash()
+    {
+        float elapsed = 0f;
+        Vector3 dashDir = transform.forward;
+
+        rageAdd = 0;
+        gameManager.instance.playerRageBar.fillAmount = 0;
+
+        bool prevControlEnabled = controller.enabled;
+        controller.enabled = true;
+
+        while (elapsed < rageDuration)
+        {
+            elapsed += Time.deltaTime;
+
+            controller.Move(dashDir * rageDashSpeed * Time.deltaTime);
+
+            Collider[] hitEnemies = Physics.OverlapSphere(transform.position + dashDir * rageHitRadius, rageHitRadius, enemyLayer);
+
+            foreach(Collider enemy in hitEnemies)
+            {
+                IDamage dmg = enemy.GetComponent<IDamage>();
+                if (dmg != null)
+                {
+                    dmg.takeDamage(Mathf.RoundToInt(AttackDamage * rageDamageMod));
+
+                    Rigidbody rb = enemy.GetComponent<Rigidbody>();
+                    if(rb != null)
+                    {
+                        rb.AddForce(dashDir * rageKnockbackForce, ForceMode.Impulse);
+                    }
+                }
+            }
+
+            yield return null;
+        }
+        controller.enabled = prevControlEnabled;
     }
 }
