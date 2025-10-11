@@ -13,6 +13,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
+    [SerializeField] Animator anim;
 
     [SerializeField] List<WeaponStats> weaponList = new List<WeaponStats>();
     [SerializeField] GameObject weaponModel;
@@ -71,6 +72,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     // Update is called once per frame
     void Update()
     {
+        anim.SetFloat("Speed", controller.velocity.normalized.magnitude);
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * hitRange, Color.yellow);
 
         if (!gameManager.instance.isPaused)
