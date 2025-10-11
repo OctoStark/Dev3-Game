@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f965aa4a99bb1439448f29fda8d143, type: 3}
+  m_Name: Box
+  m_EditorClassIdentifier: Assembly-CSharp::KeyItem
+  keyID: Box
+  displayName: Box
+  itemVisual: {fileID: 6242977337996982232, guid: 0017af62135c4b24b8c33c0449851f79, type: 3}
+  icon: {fileID: 0}

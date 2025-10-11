@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d78dbd0c0216874da183a066aeadf64, type: 3}
   m_Name: Weapon-Axe
   m_EditorClassIdentifier: Assembly-CSharp::WeaponStats
-  weaponModel: {fileID: 3623681809257926769, guid: 53d136de2eba0e84a9cf37447bc06651, type: 3}
-  hitDamage: 10
-  hitRate: 0.25
+  weaponModel: {fileID: 888306422643368186, guid: 2df7084e81065e945a5334ea5c8dbac1, type: 3}
+  AttackDamage: 10
+  AttackRate: 0.2
   hitRange: 20
   hitEffect: {fileID: 0}
   hitSound: []
