@@ -5,6 +5,7 @@ public class bossSpawner : MonoBehaviour
     [SerializeField] GameObject objectToSpawn;
     //[SerializeField] int numToSpawn;
     [SerializeField] int spawnRate;
+    [SerializeField] int tankDur;
     [SerializeField] Transform[] spawnPos;
     [SerializeField] bool tankMode;
 
@@ -25,19 +26,21 @@ public class bossSpawner : MonoBehaviour
     {
         spawnTimer += Time.deltaTime;
 
-        if (spawnTimer == spawnRate && tankMode && !boss.defenseMode)
+        if (spawnTimer >= spawnRate && tankMode && !boss.defenseMode)
         {
             boss.defenseMode = true;
             spawn();
             enemyCount += 4;
-            if (enemyCount == 1)
-            {
-                boss.defenseMode = false;
-                spawnTimer = 0;
-            }
+            //gameManager.instance.updateGameGoal(enemyCount);
+        }
+        if (spawnTimer >= spawnRate + tankDur && tankMode)
+        {
+            boss.defenseMode = false;
+            spawnTimer = 0;
+            
         }
 
-        else if (spawnTimer >= spawnRate)
+        else if (spawnTimer >= spawnRate && !tankMode)
         {
             spawn();
             spawnTimer = 0;
