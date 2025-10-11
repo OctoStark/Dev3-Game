@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponStats
   weaponModel: {fileID: 4848725288170390294, guid: cdfac94ab3c9b844c93af150d3471ff6, type: 3}
   AttackDamage: 10
-  AttackRate: 0.2
-  hitRange: 20
+  AttackRate: 0.5
+  hitRange: 10
   hitEffect: {fileID: 0}
   hitSound: []
   hitSoundVol: 0.5

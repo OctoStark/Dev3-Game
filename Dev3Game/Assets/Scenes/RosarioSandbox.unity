@@ -1499,6 +1499,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Swordsman
       objectReference: {fileID: 0}
+    - target: {fileID: 9099225918397812279, guid: b2820b43cbca5be41a20def137849270, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
