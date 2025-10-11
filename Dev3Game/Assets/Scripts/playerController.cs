@@ -250,8 +250,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 if (!zuesBuffActive)
                 {
                     zuesBuffActive = true;
-                    AttackDamage *= 2;
-                    AttackRate *= 2f;
+                    AttackDamage *= pickup.Amount;
+                    AttackRate *= pickup.Amount;
                 }
                 else
                 {
@@ -262,8 +262,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             case pickUp.PickupType.Poseidon:
                 if (!poseidonBuffActive)
                 {
-                    speed *= 2;
-                    sprintMod *= 2;
+                    speed *= pickup.Amount;
+                    sprintMod *= pickup.Amount;
                 }
                 else
                 {
