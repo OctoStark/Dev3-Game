@@ -270,6 +270,8 @@ public class bossAI : MonoBehaviour, IDamage
             {
                 gameManager.instance.updateGameGoal(-1);
                 Destroy(gameObject);
+                Debug.Log("The King has been defeated!");
+                gameManager.instance.youWin();
             }
         }
    }

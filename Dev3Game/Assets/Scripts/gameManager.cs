@@ -39,15 +39,16 @@ public class gameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
-        //TutorialPopup.SetActive(true);
-      // yield return new WaitForSeconds(4f);
-        //TutorialPopup.SetActive(false);
+        
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        //TutorialPopup.SetActive(true);
+       // yield return new WaitForSeconds(4f);
+       // TutorialPopup.SetActive(false);
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)
@@ -85,16 +86,20 @@ public class gameManager : MonoBehaviour
         gameGoulCountText.text = gameGoalCount.ToString("F0");
         if (gameGoalCount <= 0)
         {
-            //You Win!!
-            statePause();
-            menuActive = menuWin;
-            menuActive.SetActive(true);
+            youWin();
         }
     }
     public void youLose()
     {
         statePause();
         menuActive = menuLose;
+        menuActive.SetActive(true);
+    }
+
+    public void youWin()
+    {
+        statePause();
+        menuActive = menuWin;
         menuActive.SetActive(true);
     }
 }

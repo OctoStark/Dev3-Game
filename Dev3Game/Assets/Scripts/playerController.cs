@@ -232,13 +232,13 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     //    updatePlayerUI();
     //}
 
-   // public void spawnPlayer()
-   // {
-    //    controller.transform.position = gameManager.instance.playerSpawnPos.transform.position;
+   public void spawnPlayer()
+    {
+        controller.transform.position = gameManager.instance.playerSpawnPos.transform.position;
 
-    //    HP = HPOrig;
-      //  updatePlayerUI();
-   // }
+       HP = HPOrig;
+        updatePlayerUI();
+   }
 
     IEnumerator playStep()
     {
@@ -338,5 +338,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             yield return null;
         }
         controller.enabled = prevControlEnabled;
+    }
+
+    public void getWeaponStats(WeaponStats weapon)
+    {
+        //throw new System.NotImplementedException();
     }
 }
