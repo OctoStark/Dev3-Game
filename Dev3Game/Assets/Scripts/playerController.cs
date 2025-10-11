@@ -167,8 +167,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         {
             rageAdd = rageMax;
 
-           // targetRageFill = (float)rageAdd / rageMax;
-
             updatePlayerUI();
         }
     }
