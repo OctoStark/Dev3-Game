@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class cameraController : MonoBehaviour
@@ -6,6 +7,8 @@ public class cameraController : MonoBehaviour
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
     float rotX;
+
+  
 
 
 
