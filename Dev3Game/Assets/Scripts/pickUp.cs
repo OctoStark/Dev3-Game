@@ -9,18 +9,24 @@ public class pickUp : MonoBehaviour
     public enum PickupType { Zeus, Poseidon }
 
     [SerializeField] PickupType type;
+    [SerializeField] int amount;
+
+    public PickupType Type => type;
+    public int Amount => amount;
+
+
 
     private void OnTriggerEnter(Collider other)
     {
 
         iPickUp pickupable = other.GetComponent<iPickUp>();
 
-        if(pickupable != null && type == PickupType.Zeus)
+        if(pickupable != null)
         {
             //gun.ammoCur = gun.ammoMax;
             //pickupable.getGunStats(gun);
-            
-            Destroy(gameObject);
+            pickupable.getPickUpStat(this);
+                Destroy(gameObject);
 
         }
     }

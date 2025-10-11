@@ -46,6 +46,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     bool isSprinting;
     bool isPlayingStep;
     bool TakingDamage;
+    bool zuesBuffActive = false;
+    bool poseidonBuffActive = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,7 +66,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         movement();
         }
         sprint();
-        
     }
     void movement()
     {
@@ -226,18 +227,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
       //  updatePlayerUI();
    // }
 
-    void BlessThee()
-    {
-        if(type == PickupType.Zeus)
-        {
-            AttackDamage *= 2;
-            AttackRate *= 2;
-        }
-        if(type == PickupType.Poseidon)
-        {
-            speed *= 2;
-        }
-    }
     IEnumerator playStep()
     {
         isPlayingStep = true;
@@ -251,5 +240,36 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             yield return new WaitForSeconds(.5f);
         }
         isPlayingStep = false;
+    }
+
+    public void getPickUpStat(pickUp pickup)
+    {
+        switch (pickup.Type)
+        {
+            case pickUp.PickupType.Zeus:
+                if (!zuesBuffActive)
+                {
+                    zuesBuffActive = true;
+                    AttackDamage *= 2;
+                    AttackRate *= 2f;
+                }
+                else
+                {
+                    return;
+                }
+                    break;
+
+            case pickUp.PickupType.Poseidon:
+                if (!poseidonBuffActive)
+                {
+                    speed *= 2;
+                    sprintMod *= 2;
+                }
+                else
+                {
+                    return;
+                }
+                    break;
+        }
     }
 }
