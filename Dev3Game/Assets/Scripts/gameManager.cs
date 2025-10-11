@@ -12,12 +12,14 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] GameObject TutorialPopup;
     [SerializeField] TMP_Text gameGoulCountText;
 
     public Image playerHPBar;
     public Image playerRageBar;
     public GameObject playerDamageFlash;
+    public GameObject poseidonsBlessingScreen;
+    public GameObject zuesBlessingScreen;
+    public GameObject TutorialPopupScreen;
     public TMP_Text ammoCur, ammoMax;
 
     public GameObject playerSpawnPos;

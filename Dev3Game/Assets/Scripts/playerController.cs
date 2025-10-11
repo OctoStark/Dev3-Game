@@ -74,6 +74,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         HPOrig = HP;
         originalScale = transform.localScale;
         //spawnPlayer();
+        StartCoroutine(flashTutScreen());
     }
 
     // Update is called once per frame
@@ -210,6 +211,27 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         gameManager.instance.playerDamageFlash.SetActive(false);
     }
 
+    IEnumerator flashTutScreen()
+    {
+        gameManager.instance.TutorialPopupScreen.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        gameManager.instance.TutorialPopupScreen.SetActive(false);
+    }
+
+    IEnumerator flashPosBlessing()
+    {
+        gameManager.instance.poseidonsBlessingScreen.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        gameManager.instance.poseidonsBlessingScreen.SetActive(false);
+    }
+
+    IEnumerator flashzuesBlessing()
+    {
+        gameManager.instance.zuesBlessingScreen.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        gameManager.instance.zuesBlessingScreen.SetActive(false);
+    }
+
     void selectWeapon()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && weaponListPos < weaponList.Count - 1)
@@ -288,6 +310,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                     zuesBuffActive = true;
                     AttackDamage *= pickup.Amount;
                     AttackRate *= pickup.Amount;
+                    StartCoroutine(flashzuesBlessing());
                 }
                 else
                 {
@@ -300,6 +323,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     speed *= pickup.Amount;
                     sprintMod *= pickup.Amount;
+                    StartCoroutine(flashPosBlessing());
                 }
                 else
                 {
