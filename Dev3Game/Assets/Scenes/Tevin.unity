@@ -459,6 +459,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1133884758477825758, guid: cb472d7e846bafb449d8db342b9bc44f, type: 3}
   m_PrefabInstance: {fileID: 1304601684}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!1001 &1350779787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -516,6 +517,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6c78e172cca3cd448309d663f032e2d, type: 3}
+=======
+>>>>>>> Stashed changes
 --- !u!1001 &1388358817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -784,6 +787,7 @@ Transform:
   - {fileID: 1304601685}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!1 &1935899387
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +820,8 @@ Transform:
   - {fileID: 6864278291135648139}
   m_Father: {fileID: 828548978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &2104621449
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +961,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 2629910977578957488, guid: 5c60642a477ff6944a7cf142096fc27d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -963,6 +970,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> Stashed changes
     - target: {fileID: 3106062385993293618, guid: 5c60642a477ff6944a7cf142096fc27d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5163386
@@ -1110,6 +1119,9 @@ SceneRoots:
   - {fileID: 1388358817}
   - {fileID: 1654682249}
   - {fileID: 4083873030558880067}
+<<<<<<< Updated upstream
   - {fileID: 980341271}
   - {fileID: 1599246950}
   - {fileID: 1350779787}
+=======
+>>>>>>> Stashed changes
