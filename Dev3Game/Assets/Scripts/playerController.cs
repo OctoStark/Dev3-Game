@@ -14,13 +14,16 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
 
-    //[SerializeField] List<gunStats> gunList = new List<gunStats>();
-    //[SerializeField] GameObject gunModel;
-    [SerializeField] int HP;
+    [SerializeField] List<WeaponStats> weaponList = new List<WeaponStats>();
+    [SerializeField] GameObject weaponModel;
+    [SerializeField] public int HP;
     [SerializeField] int AttackDamage;
     [SerializeField] float AttackRate;
-    [SerializeField] int shootDist;
+    [SerializeField] int hitRange;
     [SerializeField] private int rageMax;
+
+    [SerializeField] Vector3 shrinkScale;
+    [SerializeField] float shrinkDuration;
 
     //[SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -34,13 +37,14 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     Vector3 playerVel;
     PickupType type;
 
-    int HPOrig;
-    int gunListPos;
+    public int HPOrig;
+    private Vector3 originalScale;
+    int weaponListPos;
     int RageOrig;
     float targetRageFill;
     int rageAdd;
 
-    float shootTimer;
+    float hitTimer;
 
     int jumpCount;
 
@@ -49,6 +53,11 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     bool TakingDamage;
     bool zuesBuffActive = false;
     bool poseidonBuffActive = false;
+    bool athenaDebuffActive = false;
+    bool heraDebuffActive = false;
+    private bool isShrunk = false;
+
+    private float _pushPower = 2.0f;
 
     //Rage Dash
     [SerializeField] float rageDashSpeed = 25f;
@@ -58,17 +67,19 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] float rageHitRadius = 1.5f;
     [SerializeField] LayerMask enemyLayer;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         HPOrig = HP;
+        originalScale = transform.localScale;
         //spawnPlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward *shootDist, Color.yellow);
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * hitRange, Color.yellow);
 
         if (!gameManager.instance.isPaused)
         {
@@ -79,7 +90,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     }
     void movement()
     {
-        shootTimer += Time.deltaTime;
+        hitTimer += Time.deltaTime;
         if (controller.isGrounded)
         {
             if (moveDir.normalized.magnitude > .3f && !isPlayingStep)
@@ -102,10 +113,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         jump();
         controller.Move(playerVel * Time.deltaTime);
 
-       // if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= shootRate)
-            shoot();
-        selectGun();
-        reload();
+        if (Input.GetButtonDown("Fire1") && weaponList.Count > 0 && hitTimer >= AttackRate)
+        attack();
+        selectWeapon();
+        //reload();
     }
 
     void jump()
@@ -130,17 +141,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             isSprinting = false;
         }
     }
-    void shoot()
+    void attack()
     {
-        shootTimer = 0;
-   //     gunList[gunListPos].ammoCur--;
-   //     aud.PlayOneShot(gunList[gunListPos].shootSound[Random.Range(0, gunList[gunListPos].shootSound.Length)], gunList[gunListPos].shootSoundVol);
+        hitTimer = 0;
+        //     gunList[gunListPos].ammoCur--;
+        //     aud.PlayOneShot(weaponList[weaponListPos].hitSound[Random.Range(0, weaponList[weaponListPos].hitSound.Length)], weaponList[weaponListPos].hitSoundVol);
         updatePlayerUI();
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, hitRange, ~ignoreLayer))
         {
-   //         Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
+            //Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
             Debug.Log(hit.collider.name);
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
@@ -151,12 +162,12 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         }
     }
 
-    void reload()
-    {
-       // if (Input.GetButtonDown("Reload")) 
-   //         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
-       // updatePlayerUI();
-    }
+   // void reload()
+   // {
+   //    // if (Input.GetButtonDown("Reload")) 
+   ////         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
+   //    // updatePlayerUI();
+   // }
 
     public void takeDamage(int amount)
     {
@@ -199,46 +210,47 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         gameManager.instance.playerDamageFlash.SetActive(false);
     }
 
-    void selectGun()
+    void selectWeapon()
     {
-        //if(Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
-        //{
-        //    gunListPos++;
-        //    changeGun();
-        //}
-        //else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
-        //{
-        //    gunListPos--;
-        //    changeGun();
-        //}
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && weaponListPos < weaponList.Count - 1)
+        {
+            weaponListPos++;
+            changeWeapon();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && weaponListPos > 0)
+        {
+            weaponListPos--;
+            changeWeapon();
+        }
+
     }
 
-    //public void getGunStats(gunStats gun)
-    //{
-    //    gunList.Add(gun);
-    //    gunListPos = gunList.Count - 1;
-    //    changeGun();
-    //}
+    public void getWeaponStats(WeaponStats weapon)
+    {
+        weaponList.Add(weapon);
+        weaponListPos = weaponList.Count - 1;
+        changeWeapon();
+    }
 
-    //void changeGun()
-    //{
-    //    shootDamage = gunList[gunListPos].shootDamage;
-    //    shootDist = gunList[gunListPos].shootDist;
-    //    shootRate = gunList[gunListPos].shootRate;
+    void changeWeapon()
+    {
+        AttackDamage = weaponList[weaponListPos].AttackDamage;
+        hitRange = weaponList[weaponListPos].hitRange;
+        AttackRate = weaponList[weaponListPos].AttackRate;
 
-    //    gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].gunModel.GetComponent<MeshFilter>().sharedMesh;
-    //    gunModel.GetComponent<MeshRenderer>().sharedMaterial= gunList[gunListPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+        weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponList[weaponListPos].weaponModel.GetComponent<MeshFilter>().sharedMesh;
+        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponList[weaponListPos].weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-    //    updatePlayerUI();
-    //}
+        updatePlayerUI();
+    }
 
-   // public void spawnPlayer()
-   // {
+    // public void spawnPlayer()
+    // {
     //    controller.transform.position = gameManager.instance.playerSpawnPos.transform.position;
 
     //    HP = HPOrig;
-      //  updatePlayerUI();
-   // }
+    //  updatePlayerUI();
+    // }
 
     IEnumerator playStep()
     {
@@ -254,6 +266,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         }
         isPlayingStep = false;
     }
+
+    public void AddHealth(int healthAmount)
+    {
+        HP += healthAmount;
+        if (HP > HPOrig)
+        {
+            HP = HPOrig;
+        }
+        updatePlayerUI();
+    }
+
 
     public void getPickUpStat(pickUp pickup)
     {
@@ -283,6 +306,31 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                     return;
                 }
                     break;
+
+            case pickUp.PickupType.Athena:
+                if (!athenaDebuffActive)
+                {
+                    athenaDebuffActive = true;
+                    AttackDamage -= pickup.Amount;
+                }
+                else
+                {
+                    return;
+                }
+                break;
+
+            case pickUp.PickupType.Hera:
+                if (!heraDebuffActive)
+                {
+                    heraDebuffActive = true;
+                    ApplyShrinkCurse();
+                }
+                else
+                {
+                    return;
+                }
+                break;
+
         }
     }
 
@@ -339,4 +387,38 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         }
         controller.enabled = prevControlEnabled;
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.tag == "Moving Object")
+        {
+            Rigidbody box = hit.collider.GetComponent<Rigidbody>();
+
+            if (box != null)
+            {
+                Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+                box.isKinematic = false;
+                box.linearVelocity = pushDirection * _pushPower;
+            }
+        }
+    }
+
+    public void ApplyShrinkCurse()
+    {
+        if (!isShrunk)
+        {
+            transform.localScale = shrinkScale;
+            isShrunk = true;
+            StartCoroutine(RemoveShrinkCurseAfterDelay());
+        }
+    }
+
+    IEnumerator RemoveShrinkCurseAfterDelay()
+    {
+        yield return new WaitForSeconds(shrinkDuration);
+        transform.localScale = originalScale;
+        isShrunk = false;
+    }
+
+
 }
