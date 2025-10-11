@@ -2,5 +2,7 @@ using UnityEngine;
 
 public interface iPickUp
 {
-    public void getWeaponStats(WeaponStats weapon);
+    //public void getGunStats(gunStats gun);
+
+    public void getPickUpStat(pickUp type);
 }

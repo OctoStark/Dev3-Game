@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 3
   tags:
   - Player Spawn Pos
-  - Moving Object
   layers:
   - Default
   - TransparentFX
@@ -13,8 +12,8 @@ TagManager:
   - Player
   - Water
   - UI
-  - Hittable
-  - PlayerWeapons
+  - Enemy
+  - 
   - 
   - 
   - 
