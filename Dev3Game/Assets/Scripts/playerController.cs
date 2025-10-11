@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using static pickUp;
 
 public class playerController : MonoBehaviour, IDamage, iPickUp
 {
@@ -16,9 +17,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     //[SerializeField] List<gunStats> gunList = new List<gunStats>();
     //[SerializeField] GameObject gunModel;
     [SerializeField] int HP;
-    [SerializeField] int shootDamage;
-    [SerializeField] float shootRate;
+    [SerializeField] int AttackDamage;
+    [SerializeField] float AttackRate;
     [SerializeField] int shootDist;
+    [SerializeField] int rageMax;
 
     //[SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -30,9 +32,12 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     Vector3 moveDir;
     Vector3 playerVel;
+    PickupType type;
 
     int HPOrig;
     int gunListPos;
+    int RageOrig;
+    int rageAdd = 1;
 
     float shootTimer;
 
@@ -40,8 +45,9 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     bool isSprinting;
     bool isPlayingStep;
-
-    private float _pushPower = 2.0f;
+    bool TakingDamage;
+    bool zuesBuffActive = false;
+    bool poseidonBuffActive = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -60,11 +66,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         movement();
         }
         sprint();
-        
     }
     void movement()
     {
-       // shootTimer += Time.deltaTime;
+        shootTimer += Time.deltaTime;
         if (controller.isGrounded)
         {
             if (moveDir.normalized.magnitude > .3f && !isPlayingStep)
@@ -90,7 +95,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
        // if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= shootRate)
             shoot();
         selectGun();
-      //  reload();
+        reload();
     }
 
     void jump()
@@ -131,17 +136,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             IDamage dmg = hit.collider.GetComponent<IDamage>();
             if (dmg != null)
             {
-                dmg.takeDamage(shootDamage);
+                dmg.takeDamage(AttackDamage);
             }
         }
     }
 
-   // void reload()
-   // {
-    //    if (Input.GetButtonDown("Reload")) 
+    void reload()
+    {
+       // if (Input.GetButtonDown("Reload")) 
    //         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
-    //    updatePlayerUI();
-  //  }
+       // updatePlayerUI();
+    }
 
     public void takeDamage(int amount)
     {
@@ -154,10 +159,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             //Hey, I'm dead!!
             gameManager.instance.youLose();
         }
+
+        TakingDamage = true;
     }
     public void updatePlayerUI()
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+
+        if(TakingDamage == true)
+        {
+            gameManager.instance.playerRageBar.fillAmount = (float)rageAdd / rageMax;
+        }
 
         //if (gunList.Count > 0)
         //{
@@ -214,6 +226,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     //    HP = HPOrig;
       //  updatePlayerUI();
    // }
+
     IEnumerator playStep()
     {
         isPlayingStep = true;
@@ -229,24 +242,34 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         isPlayingStep = false;
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    public void getPickUpStat(pickUp pickup)
     {
-        if (hit.transform.tag == "Moving Object")
+        switch (pickup.Type)
         {
-            Rigidbody box = hit.collider.GetComponent<Rigidbody>();
+            case pickUp.PickupType.Zeus:
+                if (!zuesBuffActive)
+                {
+                    zuesBuffActive = true;
+                    AttackDamage *= pickup.Amount;
+                    AttackRate *= pickup.Amount;
+                }
+                else
+                {
+                    return;
+                }
+                    break;
 
-            if (box != null)
-            {
-                Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-                box.isKinematic = false;
-                box.linearVelocity = pushDirection * _pushPower;
-            }
+            case pickUp.PickupType.Poseidon:
+                if (!poseidonBuffActive)
+                {
+                    speed *= pickup.Amount;
+                    sprintMod *= pickup.Amount;
+                }
+                else
+                {
+                    return;
+                }
+                    break;
         }
     }
-
-
-
-
-
-
 }
