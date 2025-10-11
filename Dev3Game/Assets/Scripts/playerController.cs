@@ -14,13 +14,13 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
 
-    [SerializeField] List<WeaponStats> weaponList = new List<WeaponStats>();
-    [SerializeField] GameObject weaponModel;
-    [SerializeField] public int HP;
+    //[SerializeField] List<gunStats> gunList = new List<gunStats>();
+    //[SerializeField] GameObject gunModel;
+    [SerializeField] int HP;
     [SerializeField] int AttackDamage;
     [SerializeField] float AttackRate;
-    [SerializeField] int hitRange;
-    [SerializeField] int rageMax;
+    [SerializeField] int shootDist;
+    [SerializeField] private int rageMax;
 
     //[SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -34,12 +34,13 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     Vector3 playerVel;
     PickupType type;
 
-    public int HPOrig;
-    int weaponListPos;
+    int HPOrig;
+    int gunListPos;
     int RageOrig;
-    int rageAdd = 1;
+    float targetRageFill;
+    int rageAdd;
 
-    float hitTimer;
+    float shootTimer;
 
     int jumpCount;
 
@@ -48,8 +49,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     bool TakingDamage;
     bool zuesBuffActive = false;
     bool poseidonBuffActive = false;
-
-    private float _pushPower = 2.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -61,17 +60,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * hitRange, Color.yellow);
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward *shootDist, Color.yellow);
 
         if (!gameManager.instance.isPaused)
         {
-            movement();
+        movement();
         }
         sprint();
     }
     void movement()
     {
-        hitTimer += Time.deltaTime;
+        shootTimer += Time.deltaTime;
         if (controller.isGrounded)
         {
             if (moveDir.normalized.magnitude > .3f && !isPlayingStep)
@@ -86,25 +85,25 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         {
             playerVel.y -= gravity * Time.deltaTime;
         }
-        moveDir = (Input.GetAxis("Horizontal") * transform.right) +
-                  (Input.GetAxis("Vertical") * transform.forward);
+            moveDir = (Input.GetAxis("Horizontal") * transform.right) +
+                      (Input.GetAxis("Vertical") * transform.forward);
 
         controller.Move(moveDir * speed * Time.deltaTime);
 
         jump();
         controller.Move(playerVel * Time.deltaTime);
 
-        if (Input.GetButtonDown("Fire1") && weaponList.Count > 0 && hitTimer >= AttackRate)
-        attack();
-        selectWeapon();
-        //reload();
+       // if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= shootRate)
+            shoot();
+        selectGun();
+        reload();
     }
 
     void jump()
     {
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
+        if (Input.GetButtonDown("Jump") && jumpCount <  jumpMax)
         {
-            // aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+           // aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
             jumpCount++;
             playerVel.y = jumpSpeed;
         }
@@ -122,17 +121,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             isSprinting = false;
         }
     }
-    void attack()
+    void shoot()
     {
-        hitTimer = 0;
-        //     gunList[gunListPos].ammoCur--;
-        //     aud.PlayOneShot(weaponList[weaponListPos].hitSound[Random.Range(0, weaponList[weaponListPos].hitSound.Length)], weaponList[weaponListPos].hitSoundVol);
+        shootTimer = 0;
+   //     gunList[gunListPos].ammoCur--;
+   //     aud.PlayOneShot(gunList[gunListPos].shootSound[Random.Range(0, gunList[gunListPos].shootSound.Length)], gunList[gunListPos].shootSoundVol);
         updatePlayerUI();
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, hitRange, ~ignoreLayer))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
-            //         Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
+   //         Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
             Debug.Log(hit.collider.name);
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
@@ -145,14 +144,14 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     void reload()
     {
-        // if (Input.GetButtonDown("Reload")) 
-        //         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
-        // updatePlayerUI();
+       // if (Input.GetButtonDown("Reload")) 
+   //         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
+       // updatePlayerUI();
     }
 
     public void takeDamage(int amount)
     {
-        // aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+       // aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         HP -= amount;
         updatePlayerUI();
         StartCoroutine(flashDamage());
@@ -163,15 +162,18 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         }
 
         TakingDamage = true;
+        rageAdd += 1;
+        if (rageAdd >= rageMax)
+        {
+            rageAdd = rageMax;
+
+            updatePlayerUI();
+        }
     }
     public void updatePlayerUI()
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
-
-        if (TakingDamage == true)
-        {
-            gameManager.instance.playerRageBar.fillAmount = (float)rageAdd / rageMax;
-        }
+        gameManager.instance.playerRageBar.fillAmount = (float)rageAdd / rageMax;
 
         //if (gunList.Count > 0)
         //{
@@ -188,41 +190,46 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         gameManager.instance.playerDamageFlash.SetActive(false);
     }
 
-    void selectWeapon()
+    void selectGun()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && weaponListPos < weaponList.Count - 1)
-        {
-            weaponListPos++;
-            changeWeapon();
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && weaponListPos > 0)
-        {
-            weaponListPos--;
-            changeWeapon();
-        }
-
+        //if(Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
+        //{
+        //    gunListPos++;
+        //    changeGun();
+        //}
+        //else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
+        //{
+        //    gunListPos--;
+        //    changeGun();
+        //}
     }
 
-    public void getWeaponStats(WeaponStats weapon)
-    {
-        weaponList.Add(weapon);
-        weaponListPos = weaponList.Count - 1;
-        changeWeapon();
-    }
+    //public void getGunStats(gunStats gun)
+    //{
+    //    gunList.Add(gun);
+    //    gunListPos = gunList.Count - 1;
+    //    changeGun();
+    //}
 
+    //void changeGun()
+    //{
+    //    shootDamage = gunList[gunListPos].shootDamage;
+    //    shootDist = gunList[gunListPos].shootDist;
+    //    shootRate = gunList[gunListPos].shootRate;
 
-    void changeWeapon()
-    {
-        AttackDamage = weaponList[weaponListPos].AttackDamage;
-        hitRange = weaponList[weaponListPos].hitRange;
-        AttackRate = weaponList[weaponListPos].AttackRate;
+    //    gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].gunModel.GetComponent<MeshFilter>().sharedMesh;
+    //    gunModel.GetComponent<MeshRenderer>().sharedMaterial= gunList[gunListPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-        weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponList[weaponListPos].weaponModel.GetComponent<MeshFilter>().sharedMesh;
-        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponList[weaponListPos].weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
+    //    updatePlayerUI();
+    //}
 
-        updatePlayerUI();
-    }
+   // public void spawnPlayer()
+   // {
+    //    controller.transform.position = gameManager.instance.playerSpawnPos.transform.position;
 
+    //    HP = HPOrig;
+      //  updatePlayerUI();
+   // }
 
     IEnumerator playStep()
     {
@@ -239,32 +246,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         isPlayingStep = false;
     }
 
-    public void AddHealth(int healthAmount)
-    {
-        HP += healthAmount;
-        if (HP > HPOrig)
-        {
-            HP = HPOrig;
-        }
-        updatePlayerUI();
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.transform.tag == "Moving Object")
-        {
-            Rigidbody box = hit.collider.GetComponent<Rigidbody>();
-
-            if (box != null)
-            {
-                Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-                box.isKinematic = false;
-                box.linearVelocity = pushDirection * _pushPower;
-            }
-        }
-    }
-
-
     public void getPickUpStat(pickUp pickup)
     {
         switch (pickup.Type)
@@ -280,7 +261,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     return;
                 }
-                break;
+                    break;
 
             case pickUp.PickupType.Poseidon:
                 if (!poseidonBuffActive)
@@ -292,7 +273,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     return;
                 }
-                break;
+                    break;
         }
     }
 }

@@ -10,6 +10,7 @@ public class TutorialPopUp : MonoBehaviour
     [SerializeField] TextMeshProUGUI tutorialText;
     [SerializeField] float fadeDuration = 0.5f;
 
+    public GameObject tutorialPanel;
     private Coroutine fadeRoutine;
     void Awake()
     {
@@ -20,6 +21,11 @@ public class TutorialPopUp : MonoBehaviour
 
         canvasGroup.alpha = 0;
         gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        tutorialPanel.SetActive(true);
     }
 
     // Update is called once per frame
