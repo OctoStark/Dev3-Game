@@ -1,14 +1,17 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
+    //enum enemyType { melee, ranged}
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] Renderer model;
-    [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
+    
+    [SerializeField] Transform shootPos;
     [SerializeField] GameObject bullet;
 
     [SerializeField] int HP;
@@ -19,21 +22,75 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] int animTransSpeed;
 
-    Color colorOrig;
+    public enemyTrigger fleeTrigger;
+    public enemyTrigger sightTrigger;
+    public enemyTrigger atkTrigger;
+
+    //Color colorOrig;
 
     float shootTimer;
     float roamTimer;
     bool playerInTrigger;
     float angleToPlayer;
     float stoppingDistOrig;
+    int FOVOrig;
 
     Vector3 startingPos;
     Vector3 playerDir;
 
+    void Awake()
+    {
+        fleeTrigger.triggerEnter += fleeEnter;
+        fleeTrigger.triggerExit += fleeExit;
+        sightTrigger.triggerEnter += sightEnter;
+        sightTrigger.triggerExit += sightExit;
+        atkTrigger.triggerEnter += atkEnter;
+        atkTrigger.triggerExit += atkExit;
+    }
+
+    private void atkExit(Collider collider)
+    {
+        //stop attack animation
+    }
+
+    private void atkEnter(Collider collider)
+    {
+        //attack animation
+    }
+
+    private void fleeExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInTrigger = true;
+            FOV = FOVOrig;
+            faceTarget();
+            if (playerInTrigger)
+            {
+                agent.SetDestination(gameManager.instance.player.transform.position);
+            }
+        }
+    }
+
+    private void fleeEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        { 
+            playerInTrigger = false;
+            FOVOrig = FOV;
+            FOV = 180;
+            if (!playerInTrigger)
+            {
+                agent.SetDestination(-gameManager.instance.player.transform.position);
+            }
+        }
+           
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        colorOrig = model.material.color;
+       // colorOrig = model.material.color;
         //gameManager.instance.updateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
@@ -96,8 +153,8 @@ public class enemyAI : MonoBehaviour, IDamage
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
         RaycastHit hit;
-        Debug.DrawRay(headPos.position, playerDir);
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        Debug.DrawRay(headPos.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        if (Physics.Raycast(headPos.position, new Vector3(playerDir.x, transform.position.y, playerDir.z), out hit))
         {
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
@@ -124,13 +181,13 @@ public class enemyAI : MonoBehaviour, IDamage
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
-    public void OnTriggerEnter(Collider other)
+    public void sightEnter(Collider other)
     {
         if (other.CompareTag("Player"))
             playerInTrigger = true;
         
     }
-    public void OnTriggerExit(Collider other)
+    public void sightExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -141,7 +198,8 @@ public class enemyAI : MonoBehaviour, IDamage
     void shoot()
     {
         shootTimer = 0;
-        anim.SetTrigger("Shoot");
+        //anim.SetTrigger("Shoot");
+        createBullet();
     }
 
     void createBullet()
@@ -153,7 +211,7 @@ public class enemyAI : MonoBehaviour, IDamage
         if (HP > 0)
         {
             HP -= amount;
-            StartCoroutine(flashRed());
+            //StartCoroutine(flashRed());
             agent.SetDestination(gameManager.instance.player.transform.position);
         }
 
@@ -163,10 +221,12 @@ public class enemyAI : MonoBehaviour, IDamage
             Destroy(gameObject);
         }
     }
-    IEnumerator flashRed()
-    {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = colorOrig;
-    }
+    //IEnumerator flashRed()
+    //{
+    //    model.material.color = Color.red;
+    //    yield return new WaitForSeconds(0.1f);
+    //    model.material.color = colorOrig;
+    //}
+
+ 
 }
