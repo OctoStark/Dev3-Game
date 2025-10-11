@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::damage
   type: 2
   rb: {fileID: 0}
-  damageAmount: 5
+  damageAmount: 1
   damageRate: 0.5
   speed: 0
   destroyTime: 0
@@ -386,8 +386,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 853877423}
+  - component: {fileID: 853877427}
   - component: {fileID: 853877425}
   - component: {fileID: 853877424}
+  - component: {fileID: 853877426}
   m_Layer: 5
   m_Name: Tutorial Pop-Up
   m_TagString: Untagged
@@ -453,6 +455,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853877422}
   m_CullTransparentMesh: 1
+--- !u!225 &853877426
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853877422}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &853877427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853877422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58557f6d50eccf4db4d860d8f03fc7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialPopUp
+  canvasGroup: {fileID: 853877426}
+  tutorialText: {fileID: 416469270}
+  fadeDuration: 0.5
+  tutorialPanel: {fileID: 853877422}
 --- !u!1 &1230212509
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +629,7 @@ MonoBehaviour:
   jumpSpeed: 8
   jumpMax: 2
   gravity: 35
-  HP: 50
+  HP: 1000
   AttackDamage: 2
   AttackRate: 1
   shootDist: 0
@@ -15685,6 +15715,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Basic
       objectReference: {fileID: 0}
+    - target: {fileID: 5049821658552781734, guid: 62e656f7f6163814aaf7c8b38e4c0323, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5922788412760532796, guid: 62e656f7f6163814aaf7c8b38e4c0323, type: 3}
+      propertyPath: TutorialPopup
+      value: 
+      objectReference: {fileID: 853877422}
     - target: {fileID: 7462026063928762901, guid: 62e656f7f6163814aaf7c8b38e4c0323, type: 3}
       propertyPath: m_Pivot.x
       value: 0

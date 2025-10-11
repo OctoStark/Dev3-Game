@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
@@ -11,6 +12,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject TutorialPopup;
     [SerializeField] TMP_Text gameGoulCountText;
 
     public Image playerHPBar;
@@ -37,7 +39,11 @@ public class gameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+        TutorialPopup.SetActive(true);
+      // yield return new WaitForSeconds(4f);
+        TutorialPopup.SetActive(false);
     }
+
 
     // Update is called once per frame
     void Update()

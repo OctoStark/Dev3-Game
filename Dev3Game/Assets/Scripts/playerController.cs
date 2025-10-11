@@ -20,7 +20,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] int AttackDamage;
     [SerializeField] float AttackRate;
     [SerializeField] int shootDist;
-    [SerializeField] int rageMax;
+    [SerializeField] private int rageMax;
 
     //[SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -37,7 +37,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     int HPOrig;
     int gunListPos;
     int RageOrig;
-    int rageAdd = 1;
+    float targetRageFill;
+    int rageAdd;
 
     float shootTimer;
 
@@ -161,15 +162,20 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         }
 
         TakingDamage = true;
+        rageAdd += 1;
+        if (rageAdd >= rageMax)
+        {
+            rageAdd = rageMax;
+
+           // targetRageFill = (float)rageAdd / rageMax;
+
+            updatePlayerUI();
+        }
     }
     public void updatePlayerUI()
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
-
-        if(TakingDamage == true)
-        {
-            gameManager.instance.playerRageBar.fillAmount = (float)rageAdd / rageMax;
-        }
+        gameManager.instance.playerRageBar.fillAmount = (float)rageAdd / rageMax;
 
         //if (gunList.Count > 0)
         //{
