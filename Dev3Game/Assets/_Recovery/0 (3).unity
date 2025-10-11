@@ -559,8 +559,13 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 1813244226}
+    - target: {fileID: 4411172352843409514, guid: 5c60642a477ff6944a7cf142096fc27d, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1813244231}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3851308598452958098, guid: 5c60642a477ff6944a7cf142096fc27d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 116897592706310855, guid: 5c60642a477ff6944a7cf142096fc27d, type: 3}
@@ -832,6 +837,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!143 &1813244231 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 7887087160711350386, guid: 5c60642a477ff6944a7cf142096fc27d, type: 3}
+  m_PrefabInstance: {fileID: 982975923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1886408330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1133884758477825758, guid: cb472d7e846bafb449d8db342b9bc44f, type: 3}

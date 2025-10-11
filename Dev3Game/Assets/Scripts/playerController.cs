@@ -66,6 +66,9 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     {
         HPOrig = HP;
         originalScale = transform.localScale;
+       
+
+
         //spawnPlayer();
     }
 
