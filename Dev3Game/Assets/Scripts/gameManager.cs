@@ -39,9 +39,9 @@ public class gameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
-        TutorialPopup.SetActive(true);
+        //TutorialPopup.SetActive(true);
       // yield return new WaitForSeconds(4f);
-        TutorialPopup.SetActive(false);
+        //TutorialPopup.SetActive(false);
     }
 
 

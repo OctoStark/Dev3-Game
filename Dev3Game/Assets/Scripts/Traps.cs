@@ -46,7 +46,7 @@ public class Traps : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
+        if (other.CompareTag("Player"))
         {
             if (type == trapType.Dart)
             {
@@ -65,6 +65,9 @@ public class Traps : MonoBehaviour
     void shoot()
     {
         shootTimer = 0;
-        Instantiate(dmgObj, holePos[holePos.Length].position, transform.rotation);
+        for (int i = 0; i < holePos.Length; i++)
+        {
+            Instantiate(dmgObj, holePos[i].position, transform.rotation);
+        }
     }
 }

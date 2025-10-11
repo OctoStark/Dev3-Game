@@ -651,6 +651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 62899485390549812}
   - component: {fileID: 3880824272651247613}
+  - component: {fileID: 53570986971433366}
   - component: {fileID: 3748879652859935753}
   - component: {fileID: 6987901369221337104}
   - component: {fileID: 1472984117397632627}
@@ -669,7 +670,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2443198492112360129}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -36.3, y: -0, z: 27.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -695,14 +696,34 @@ MonoBehaviour:
   model: {fileID: 6198257706597025761}
   headPos: {fileID: 5173181793980335065}
   shootPos: {fileID: 7810289233335060988}
-  bullet: {fileID: 673038880001039695, guid: 6b73256e6dd6cf34d987647ca5d2c1dc, type: 3}
+  bullet: {fileID: 7787146553759830622, guid: 1ae8f9c6a1e0e34449b8d0ebe81cb28e, type: 3}
   groundSlam: {fileID: 889045235887407039, guid: 6bcb10f536ae1774b9ec7a425d4281b2, type: 3}
   slamPos: {fileID: 887083462626093486}
   HP: 2
   faceTargetSpeed: 2
-  shootRate: 5
-  slamRate: 5
+  shootRate: 10
+  slamRate: 10
   animTransSpeed: 1
+  defenseMode: 0
+--- !u!114 &53570986971433366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2443198492112360129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88814ff5ef21b334997872e058d27af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::spawner
+  objectToSpawn: {fileID: 5831231776540135506, guid: 656349aca63c9824ba0e6ec1ca15dee1, type: 3}
+  spawnRate: 15
+  tankDur: 0
+  spawnPos:
+  - {fileID: 2740589748910348743}
+  tankMode: 0
+  boss: {fileID: 0}
 --- !u!95 &3748879652859935753
 Animator:
   serializedVersion: 7
@@ -755,7 +776,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2443198492112360129}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
