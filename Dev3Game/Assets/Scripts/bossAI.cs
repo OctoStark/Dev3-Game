@@ -37,8 +37,11 @@ public class bossAI : MonoBehaviour, IDamage
     float slamTimer;
     bool playerInTrigger;
     float angleToPlayer;
+    public bool defenseMode;
     //float stoppingDistOrig;
     //int FOVOrig;
+
+    //bossSpawner grunts;
 
     Vector3 startingPos;
     Vector3 playerDir;
@@ -116,25 +119,29 @@ public class bossAI : MonoBehaviour, IDamage
         //    roamTimer += Time.deltaTime;
         //}
 
-        if (playerInTrigger && slamTimer >= slamRate)
+        if (playerInTrigger && slamTimer >= slamRate && !defenseMode)
         {
             slam();
         }
-        else if (playerInTrigger)
+        else if (playerInTrigger && !defenseMode)
         {
             //normal attack
         }
-        else if (!playerInTrigger && shootTimer >= shootRate)
+        else if (!playerInTrigger && shootTimer >= shootRate && !defenseMode)
         {
             shoot();
         }
-        else if (!playerInTrigger)
+        else if (!playerInTrigger && !defenseMode)
         {
             agent.SetDestination(gameManager.instance.player.transform.position);
             if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     faceTarget();
                 }
+        }
+        else if (defenseMode)
+        {
+            agent.SetDestination(transform.position);
         }
     }
 
@@ -246,19 +253,26 @@ public class bossAI : MonoBehaviour, IDamage
     }
     public void takeDamage(int amount)
     {
-        if (HP > 0)
+        if (defenseMode)
         {
-            HP -= amount;
-            //StartCoroutine(flashRed());
-            agent.SetDestination(gameManager.instance.player.transform.position);
-        }
 
-        if (HP <= 0)
-        {
-            gameManager.instance.updateGameGoal(-1);
-            Destroy(gameObject);
         }
-    }
+        else
+        {
+            if (HP > 0)
+            {
+                HP -= amount;
+                //StartCoroutine(flashRed());
+                agent.SetDestination(gameManager.instance.player.transform.position);
+            }
+
+            if (HP <= 0)
+            {
+                gameManager.instance.updateGameGoal(-1);
+                Destroy(gameObject);
+            }
+        }
+   }
     IEnumerator flashRed()
     {
         //model.material.color = Color.red;

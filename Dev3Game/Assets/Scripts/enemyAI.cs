@@ -35,6 +35,8 @@ public class enemyAI : MonoBehaviour, IDamage
     float stoppingDistOrig;
     int FOVOrig;
 
+    bool bossSpawn;
+
     Vector3 startingPos;
     Vector3 playerDir;
 
