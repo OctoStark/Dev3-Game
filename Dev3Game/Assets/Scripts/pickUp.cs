@@ -6,7 +6,7 @@ public class pickUp : MonoBehaviour
 {
     //[SerializeField] gunStats gun;
 
-    public enum PickupType { Zeus, Poseidon }
+    public enum PickupType { Zeus, Poseidon, Athena, Hera }
 
     [SerializeField] PickupType type;
     [SerializeField] int amount;
