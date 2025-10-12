@@ -5,6 +5,7 @@ public class ManualSwitch : MonoBehaviour
     public GameObject switchModel;
     public bool hitSwitch;
     private bool playerNearby;
+    public AudioManager audioManager;
 
     private void Update()
     {
@@ -44,6 +45,11 @@ public class ManualSwitch : MonoBehaviour
         }
 
         Debug.Log("Switch " + (hitSwitch ? "On!" : "Off!"));
+
+        if (audioManager != null && audioManager.buttonSwitch != null) {
+            audioManager.PlaySFX(audioManager.buttonSwitch);
+        }
+
     }
 
 }

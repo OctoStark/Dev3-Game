@@ -4,6 +4,9 @@ public class PressurePlate : MonoBehaviour
 {
     [SerializeField] Color origColor;
     private MeshRenderer pressRenderer;
+    public AudioManager audioManager;
+
+    private bool playSound = false;
 
     private void Start()
     {
@@ -34,6 +37,12 @@ public class PressurePlate : MonoBehaviour
                 pressRenderer.material.color = Color.blue;
             }
 
+            if (!playSound && audioManager != null && audioManager.pressureOn != null)
+            {
+                audioManager.PlaySFX(audioManager.pressureOn);
+                playSound = true;
+            }
+
         }
     }
 
@@ -45,6 +54,8 @@ public class PressurePlate : MonoBehaviour
             {
                 pressRenderer.material.color = origColor;
             }
+
+            playSound = false;
         }
     }
 }

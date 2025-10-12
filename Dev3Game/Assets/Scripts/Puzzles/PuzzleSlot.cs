@@ -5,6 +5,7 @@ public class PuzzleSlot : MonoBehaviour
     public KeyItem requiredItem;
     private bool playerNearby;
     public bool isIn = false;
+    public AudioManager audioManager;
 
     void Update()
     {
@@ -25,6 +26,7 @@ public class PuzzleSlot : MonoBehaviour
                 isIn = true;
                 SlotManager.instance.ClearHeldItem();
                 Debug.Log("Correct item placed!");
+                audioManager.PlaySFX(audioManager.correctItem);
             }
             else if (!isIn)
             {
