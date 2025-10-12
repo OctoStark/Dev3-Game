@@ -63,6 +63,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     bool athenaDebuffActive = false;
     bool heraDebuffActive = false;
     private bool isShrunk = false;
+    public bool isBlocking = false;
 
     private float _pushPower = 2.0f;
 
@@ -91,6 +92,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Block")) 
+        {
+            StartBlocking();
+        }
+
+        if (Input.GetButtonUp("Block"))
+        {
+            StopBlocking();
+        }
+
+
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * hitRange, Color.yellow);
 
         if (!gameManager.instance.isPaused)
@@ -155,8 +167,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     }
     void attack()
     {
-      
-    
+
+
         Debug.Log("Player attacked");
 
         Vector3 attackOrigin = transform.position + transform.forward;
@@ -172,18 +184,37 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             }
         }
     
-}
 
-   // void reload()
-   // {
-   //    // if (Input.GetButtonDown("Reload")) 
-   ////         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
-   //    // updatePlayerUI();
-   // }
+    }
+
+    void StartBlocking()
+    {
+        isBlocking = true;
+       
+    }
+
+    void StopBlocking()
+    {
+        isBlocking = false;
+        
+    }
+
+
+
+    // void reload()
+    // {
+    //    // if (Input.GetButtonDown("Reload")) 
+    ////         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
+    //    // updatePlayerUI();
+    // }
 
     public void takeDamage(int amount)
     {
        // aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+        if (isBlocking)
+        {
+            return;
+        }
         HP -= amount;
         updatePlayerUI();
         StartCoroutine(flashDamage());
