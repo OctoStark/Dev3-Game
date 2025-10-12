@@ -13,7 +13,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
-    [SerializeField] Animator anim;
 
     [SerializeField] List<WeaponStats> weaponList = new List<WeaponStats>();
     [SerializeField] GameObject weaponModel;
@@ -25,7 +24,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     [SerializeField] Vector3 shrinkScale;
     [SerializeField] float shrinkDuration;
-
 
     //[SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -41,6 +39,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     public int HPOrig;
     private Vector3 originalScale;
+    public int origAttackDamage;
+    float origAttackRate;
+    int origSpeed;
+    int origSprintMod;
     int weaponListPos;
     int RageOrig;
     float targetRageFill;
@@ -61,26 +63,37 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     private float _pushPower = 2.0f;
 
+    //Rage Dash
+    [SerializeField] float rageDashSpeed = 25f;
+    [SerializeField] float rageDuration = .5f;
+    [SerializeField] float rageDamageMod;
+    [SerializeField] float rageKnockbackForce;
+    [SerializeField] float rageHitRadius = 1.5f;
+    [SerializeField] LayerMask enemyLayer;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         HPOrig = HP;
         originalScale = transform.localScale;
-       
-
-
+        origAttackDamage = AttackDamage;
+        origAttackRate = AttackRate;
+        origSpeed = speed;
+        origSprintMod = sprintMod;
         //spawnPlayer();
+        //StartCoroutine(flashTutScreen());
     }
 
     // Update is called once per frame
     void Update()
     {
-        anim.SetFloat("Speed", controller.velocity.normalized.magnitude);
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * hitRange, Color.yellow);
 
         if (!gameManager.instance.isPaused)
         {
         movement();
+            Rage();
         }
         sprint();
     }
@@ -158,12 +171,12 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         }
     }
 
-    void reload()
-    {
-       // if (Input.GetButtonDown("Reload")) 
-   //         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
-       // updatePlayerUI();
-    }
+   // void reload()
+   // {
+   //    // if (Input.GetButtonDown("Reload")) 
+   ////         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
+   //    // updatePlayerUI();
+   // }
 
     public void takeDamage(int amount)
     {
@@ -206,6 +219,70 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         gameManager.instance.playerDamageFlash.SetActive(false);
     }
 
+    //IEnumerator flashTutScreen()
+    //{
+    //    gameManager.instance.TutorialPopupScreen.SetActive(true);
+    //    yield return new WaitForSeconds(10f);
+    //    gameManager.instance.TutorialPopupScreen.SetActive(false);
+    //}
+
+    IEnumerator flashPosBlessing()
+    {
+        gameManager.instance.poseidonsBlessingScreen.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        gameManager.instance.poseidonsBlessingScreen.SetActive(false);
+    }
+
+    IEnumerator flashzuesBlessing()
+    {
+        gameManager.instance.zuesBlessingScreen.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        gameManager.instance.zuesBlessingScreen.SetActive(false);
+    }
+
+    IEnumerator flashHeraCurse()
+    {
+        gameManager.instance.herasCurse.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        gameManager.instance.herasCurse.SetActive(false);
+    }
+
+    IEnumerator flashAthenaCurse()
+    {
+        gameManager.instance.athenasCurse.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        gameManager.instance.athenasCurse.SetActive(false);
+    }
+
+    private IEnumerator ZuesBuffDuration()
+    {
+        yield return new WaitForSeconds(10f);
+
+        AttackDamage = origAttackDamage;
+        AttackRate = origAttackRate;
+
+        zuesBuffActive = false;
+    }
+
+    private IEnumerator PoseidonBuffDuration()
+    {
+        yield return new WaitForSeconds(10f);
+
+        speed = origSpeed;
+        sprintMod = origSprintMod;
+
+        poseidonBuffActive = false;
+    }
+
+    private IEnumerator HerasDuration()
+    {
+        yield return new WaitForSeconds(10f);
+
+        AttackDamage = origAttackDamage;
+
+        athenaDebuffActive = false;
+    }
+
     void selectWeapon()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && weaponListPos < weaponList.Count - 1)
@@ -228,7 +305,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         changeWeapon();
     }
 
-
     void changeWeapon()
     {
         AttackDamage = weaponList[weaponListPos].AttackDamage;
@@ -241,6 +317,13 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         updatePlayerUI();
     }
 
+    // public void spawnPlayer()
+    // {
+    //    controller.transform.position = gameManager.instance.playerSpawnPos.transform.position;
+
+    //    HP = HPOrig;
+    //  updatePlayerUI();
+    // }
 
     IEnumerator playStep()
     {
@@ -278,6 +361,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                     zuesBuffActive = true;
                     AttackDamage *= pickup.Amount;
                     AttackRate *= pickup.Amount;
+                    StartCoroutine(ZuesBuffDuration());
+                    StartCoroutine(flashzuesBlessing());
                 }
                 else
                 {
@@ -290,6 +375,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     speed *= pickup.Amount;
                     sprintMod *= pickup.Amount;
+                    StartCoroutine(PoseidonBuffDuration());
+                    StartCoroutine(flashPosBlessing());
                 }
                 else
                 {
@@ -302,6 +389,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     athenaDebuffActive = true;
                     AttackDamage -= pickup.Amount;
+                    StartCoroutine(HerasDuration());
+                    StartCoroutine(flashAthenaCurse());
                 }
                 else
                 {
@@ -314,13 +403,70 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     heraDebuffActive = true;
                     ApplyShrinkCurse();
+                    StartCoroutine(flashHeraCurse());
+                    StartCoroutine(RemoveShrinkCurseAfterDelay());
                 }
                 else
                 {
                     return;
                 }
                 break;
+
         }
+    }
+
+    private void Rage()
+    {
+
+        if (Input.GetButtonDown("Rage"))
+        {
+            Debug.Log("Rage button Pressed");
+        }
+        if(rageAdd == rageMax && Input.GetButtonDown("Rage"))
+        {
+            Debug.Log("Rage Dash Activated");
+            StartCoroutine(RageDash());
+  
+        }
+    }
+
+    IEnumerator RageDash()
+    {
+        float elapsed = 0f;
+        Vector3 dashDir = transform.forward;
+
+        rageAdd = 0;
+        gameManager.instance.playerRageBar.fillAmount = 0;
+
+        bool prevControlEnabled = controller.enabled;
+        controller.enabled = true;
+
+        while (elapsed < rageDuration)
+        {
+            elapsed += Time.deltaTime;
+
+            controller.Move(dashDir * rageDashSpeed * Time.deltaTime);
+
+            Collider[] hitEnemies = Physics.OverlapSphere(transform.position + dashDir * rageHitRadius, rageHitRadius, enemyLayer);
+
+            foreach(Collider enemy in hitEnemies)
+            {
+                IDamage dmg = enemy.GetComponent<IDamage>();
+                if (dmg != null)
+                {
+                    dmg.takeDamage(Mathf.RoundToInt(AttackDamage * rageDamageMod));
+
+                    Rigidbody rb = enemy.GetComponent<Rigidbody>();
+                    if(rb != null)
+                    {
+                        rb.AddForce(dashDir * rageKnockbackForce, ForceMode.Impulse);
+                    }
+                }
+            }
+
+            yield return null;
+        }
+        controller.enabled = prevControlEnabled;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

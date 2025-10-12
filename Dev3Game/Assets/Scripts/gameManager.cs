@@ -12,12 +12,16 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] GameObject TutorialPopup;
     [SerializeField] TMP_Text gameGoulCountText;
 
     public Image playerHPBar;
     public Image playerRageBar;
     public GameObject playerDamageFlash;
+    public GameObject poseidonsBlessingScreen;
+    public GameObject zuesBlessingScreen;
+    public GameObject herasCurse;
+    public GameObject athenasCurse;
+    public GameObject TutorialPopupScreen;
     public TMP_Text ammoCur, ammoMax;
 
     public GameObject playerSpawnPos;
@@ -39,15 +43,16 @@ public class gameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
-        //TutorialPopup.SetActive(true);
-      // yield return new WaitForSeconds(4f);
-        //TutorialPopup.SetActive(false);
+        
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        //TutorialPopup.SetActive(true);
+       // yield return new WaitForSeconds(4f);
+       // TutorialPopup.SetActive(false);
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)
@@ -85,16 +90,20 @@ public class gameManager : MonoBehaviour
         gameGoulCountText.text = gameGoalCount.ToString("F0");
         if (gameGoalCount <= 0)
         {
-            //You Win!!
-            statePause();
-            menuActive = menuWin;
-            menuActive.SetActive(true);
+            youWin();
         }
     }
     public void youLose()
     {
         statePause();
         menuActive = menuLose;
+        menuActive.SetActive(true);
+    }
+
+    public void youWin()
+    {
+        statePause();
+        menuActive = menuWin;
         menuActive.SetActive(true);
     }
 }

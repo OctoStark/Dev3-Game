@@ -6,7 +6,6 @@ public class Traps : MonoBehaviour
     [SerializeField] trapType type;
     [SerializeField] Transform[] holePos;
     [SerializeField] GameObject dmgObj;
-    //[SerializeField] Rigidbody rb;
 
     [SerializeField] float shootRate;
     [SerializeField] int waitTime;
@@ -34,8 +33,6 @@ public class Traps : MonoBehaviour
         {
             if (spikeTimer >= waitTime)
             {
-                dmgObj.SetActive(true);
-                //spikeTimer = 0;
                 if (spikeTimer >= trapDuration)
                 {
                 dmgObj.SetActive(false);
@@ -46,7 +43,7 @@ public class Traps : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
+        if (other.CompareTag("Player"))
         {
             if (type == trapType.Dart)
             {
@@ -65,6 +62,9 @@ public class Traps : MonoBehaviour
     void shoot()
     {
         shootTimer = 0;
-        Instantiate(dmgObj, holePos[holePos.Length].position, transform.rotation);
+        for (int i = 0; i < holePos.Length; i++)
+        {
+            Instantiate(dmgObj, holePos[i].position, transform.rotation);
+        }
     }
 }

@@ -17,17 +17,11 @@ public class bossAI : MonoBehaviour, IDamage
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
-    //[SerializeField] int FOV;
-    //[SerializeField] int roamDist;
-    //[SerializeField] int roamPauseTimer;
     [SerializeField] float shootRate;
     [SerializeField] float slamRate;
-    //[SerializeField] float slamDur;
     [SerializeField] int animTransSpeed;
-
-    //public enemyTrigger fleeTrigger;
-    //public enemyTrigger sightTrigger;
-    //public enemyTrigger atkTrigger;
+    [SerializeField] GameObject itemDrop;
+    [SerializeField] bool isBoss;
 
     //Color colorOrig;
 
@@ -37,69 +31,16 @@ public class bossAI : MonoBehaviour, IDamage
     float slamTimer;
     bool playerInTrigger;
     float angleToPlayer;
-    //float stoppingDistOrig;
-    //int FOVOrig;
+    public bool defenseMode;
 
     Vector3 startingPos;
     Vector3 playerDir;
 
-    void Awake()
-    {
-        //fleeTrigger.triggerEnter += fleeEnter;
-        //fleeTrigger.triggerExit += fleeExit;
-        //sightTrigger.triggerEnter += sightEnter;
-        //sightTrigger.triggerExit += sightExit;
-        //atkTrigger.triggerEnter += atkEnter;
-        //atkTrigger.triggerExit += atkExit;
-    }
-
-    //private void atkExit(Collider collider)
-    //{
-    //    //stop attack animation
-    //}
-
-    //private void atkEnter(Collider collider)
-    //{
-    //    //attack animation
-    //}
-
-    //private void fleeExit(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        playerInTrigger = true;
-    //        FOV = FOVOrig;
-    //        faceTarget();
-    //        if (playerInTrigger)
-    //        {
-    //            agent.SetDestination(gameManager.instance.player.transform.position);
-    //        }
-    //    }
-    //}
-
-    //private void fleeEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    { 
-    //        playerInTrigger = false;
-    //        FOVOrig = FOV;
-    //        FOV = 180;
-    //        if (!playerInTrigger)
-    //        {
-    //            agent.SetDestination(-gameManager.instance.player.transform.position);
-    //        }
-    //    }
-           
-    //}
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       // colorOrig = model.material.color;
         gameManager.instance.updateGameGoal(1);
         startingPos = transform.position;
-        //stoppingDistOrig = agent.stoppingDistance;
-        //groundSlam.SetActive(false);
     }
 
     // Update is called once per frame
@@ -110,31 +51,33 @@ public class bossAI : MonoBehaviour, IDamage
 
         setanimLocomotion();
 
-
-        //if (agent.remainingDistance <.01f)
-        //{
-        //    roamTimer += Time.deltaTime;
-        //}
-
-        if (playerInTrigger && slamTimer >= slamRate)
+        if (playerInTrigger && slamTimer >= slamRate && !defenseMode)
         {
             slam();
         }
-        else if (playerInTrigger)
+        else if (playerInTrigger && !defenseMode)
         {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                faceTarget();
+            }
             //normal attack
         }
-        else if (!playerInTrigger && shootTimer >= shootRate)
+        else if (!playerInTrigger && shootTimer >= shootRate && !defenseMode)
         {
             shoot();
         }
-        else if (!playerInTrigger)
+        else if (!playerInTrigger && !defenseMode)
         {
             agent.SetDestination(gameManager.instance.player.transform.position);
             if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     faceTarget();
                 }
+        }
+        else if (defenseMode)
+        {
+            agent.SetDestination(transform.position);
         }
     }
 
@@ -216,17 +159,6 @@ public class bossAI : MonoBehaviour, IDamage
     }
     void slam()
     {
-        //slamTimer = 0;
-        //slamTimer += Time.deltaTime;
-        //groundSlam.SetActive(true);
-        //Debug.Log("slam");
-        //if (slamTimer >= .5f)
-        //{
-        //    Debug.Log("turning slam off");
-        //    groundSlam.SetActive(false);
-        //    Debug.Log("slamOff");
-        //    slamTimer = 0;
-        //}
         slamTimer = 0;
         slamObject = Instantiate(groundSlam, slamPos);
         Destroy(slamObject, 1);
@@ -246,19 +178,32 @@ public class bossAI : MonoBehaviour, IDamage
     }
     public void takeDamage(int amount)
     {
-        if (HP > 0)
+        if (defenseMode)
         {
-            HP -= amount;
-            //StartCoroutine(flashRed());
-            agent.SetDestination(gameManager.instance.player.transform.position);
-        }
 
-        if (HP <= 0)
-        {
-            gameManager.instance.updateGameGoal(-1);
-            Destroy(gameObject);
         }
-    }
+        else
+        {
+            if (HP > 0)
+            {
+                HP -= amount;
+                //StartCoroutine(flashRed());
+                agent.SetDestination(gameManager.instance.player.transform.position);
+            }
+
+            if (HP <= 0)
+            {
+                gameManager.instance.updateGameGoal(-1);
+                Destroy(gameObject);
+                Instantiate(itemDrop, transform.position, transform.rotation);
+                if (isBoss)
+                {
+                    Debug.Log("The King has been defeated!");
+                    gameManager.instance.youWin();
+                }
+            }
+        }
+   }
     IEnumerator flashRed()
     {
         //model.material.color = Color.red;

@@ -54,8 +54,6 @@ MonoBehaviour:
   damageRate: 0
   speed: 5
   destroyTime: 0
-  spikeDist: 0
-  retractVel: 0
 --- !u!33 &2717770561078092557
 MeshFilter:
   m_ObjectHideFlags: 0
