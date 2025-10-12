@@ -240,6 +240,20 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         gameManager.instance.zuesBlessingScreen.SetActive(false);
     }
 
+    IEnumerator flashHeraCurse()
+    {
+        gameManager.instance.herasCurse.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        gameManager.instance.herasCurse.SetActive(false);
+    }
+
+    IEnumerator flashAthenaCurse()
+    {
+        gameManager.instance.athenasCurse.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        gameManager.instance.athenasCurse.SetActive(false);
+    }
+
     private IEnumerator ZuesBuffDuration()
     {
         yield return new WaitForSeconds(10f);
@@ -258,6 +272,15 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         sprintMod = origSprintMod;
 
         poseidonBuffActive = false;
+    }
+
+    private IEnumerator HerasDuration()
+    {
+        yield return new WaitForSeconds(10f);
+
+        AttackDamage = origAttackDamage;
+
+        athenaDebuffActive = false;
     }
 
     void selectWeapon()
@@ -366,6 +389,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     athenaDebuffActive = true;
                     AttackDamage -= pickup.Amount;
+                    StartCoroutine(HerasDuration());
+                    StartCoroutine(flashAthenaCurse());
                 }
                 else
                 {
@@ -378,6 +403,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     heraDebuffActive = true;
                     ApplyShrinkCurse();
+                    StartCoroutine(flashHeraCurse());
+                    StartCoroutine(RemoveShrinkCurseAfterDelay());
                 }
                 else
                 {
