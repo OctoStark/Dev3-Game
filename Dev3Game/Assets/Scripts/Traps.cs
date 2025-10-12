@@ -6,7 +6,6 @@ public class Traps : MonoBehaviour
     [SerializeField] trapType type;
     [SerializeField] Transform[] holePos;
     [SerializeField] GameObject dmgObj;
-    //[SerializeField] Rigidbody rb;
 
     [SerializeField] float shootRate;
     [SerializeField] int waitTime;
@@ -34,8 +33,6 @@ public class Traps : MonoBehaviour
         {
             if (spikeTimer >= waitTime)
             {
-                dmgObj.SetActive(true);
-                //spikeTimer = 0;
                 if (spikeTimer >= trapDuration)
                 {
                 dmgObj.SetActive(false);

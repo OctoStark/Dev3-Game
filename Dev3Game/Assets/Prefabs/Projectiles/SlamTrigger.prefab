@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8950889516613883177}
   - component: {fileID: 2980902743208590991}
   - component: {fileID: 2130093289960649354}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SlamTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

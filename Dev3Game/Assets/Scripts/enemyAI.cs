@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
-    //enum enemyType { melee, ranged}
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] Renderer model;
@@ -63,13 +62,9 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            //playerInTrigger = true;
             FOV = FOVOrig;
             faceTarget();
-            //if (playerInTrigger)
-            //{
             agent.SetDestination(gameManager.instance.player.transform.position);
-            //}
         }
     }
 
@@ -77,13 +72,9 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         { 
-            //playerInTrigger = false;
             FOVOrig = FOV;
             FOV = 180;
-            //if (!playerInTrigger)
-            //{
             agent.SetDestination(-gameManager.instance.player.transform.position);
-            //}
         }
            
     }
@@ -92,7 +83,6 @@ public class enemyAI : MonoBehaviour, IDamage
     void Start()
     {
        // colorOrig = model.material.color;
-        //gameManager.instance.updateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
     }
@@ -218,7 +208,6 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            //gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
             Instantiate(itemDrop, transform.position, transform.rotation);
         }
@@ -230,5 +219,5 @@ public class enemyAI : MonoBehaviour, IDamage
     //    model.material.color = colorOrig;
     //}
 
- 
+
 }
