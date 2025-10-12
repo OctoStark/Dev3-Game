@@ -19,7 +19,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageFlash;
     public GameObject poseidonsBlessingScreen;
     public GameObject zuesBlessingScreen;
-    public GameObject TutorialPopupScreen;
+    //public GameObject TutorialPopupScreen;
     public TMP_Text ammoCur, ammoMax;
 
     public GameObject playerSpawnPos;
