@@ -13,6 +13,7 @@ public class enemyAI : MonoBehaviour, IDamage
     
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject itemDrop;
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
@@ -34,8 +35,6 @@ public class enemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     float stoppingDistOrig;
     int FOVOrig;
-
-    bool bossSpawn;
 
     Vector3 startingPos;
     Vector3 playerDir;
@@ -64,13 +63,13 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            playerInTrigger = true;
+            //playerInTrigger = true;
             FOV = FOVOrig;
             faceTarget();
-            if (playerInTrigger)
-            {
-                agent.SetDestination(gameManager.instance.player.transform.position);
-            }
+            //if (playerInTrigger)
+            //{
+            agent.SetDestination(gameManager.instance.player.transform.position);
+            //}
         }
     }
 
@@ -78,13 +77,13 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         { 
-            playerInTrigger = false;
+            //playerInTrigger = false;
             FOVOrig = FOV;
             FOV = 180;
-            if (!playerInTrigger)
-            {
-                agent.SetDestination(-gameManager.instance.player.transform.position);
-            }
+            //if (!playerInTrigger)
+            //{
+            agent.SetDestination(-gameManager.instance.player.transform.position);
+            //}
         }
            
     }
@@ -221,6 +220,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             //gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
+            Instantiate(itemDrop, transform.position, transform.rotation);
         }
     }
     //IEnumerator flashRed()

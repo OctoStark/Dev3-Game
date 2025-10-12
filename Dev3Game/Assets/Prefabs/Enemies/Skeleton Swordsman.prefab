@@ -1427,7 +1427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4011830886247219961
 Transform:
   m_ObjectHideFlags: 0
@@ -1466,6 +1466,7 @@ MonoBehaviour:
   headPos: {fileID: 3795100129399277150}
   shootPos: {fileID: 1244169933402430970}
   bullet: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
+  itemDrop: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
   HP: 5
   faceTargetSpeed: 10
   FOV: 70

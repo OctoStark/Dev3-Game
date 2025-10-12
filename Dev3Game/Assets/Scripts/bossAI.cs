@@ -24,6 +24,8 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] float slamRate;
     //[SerializeField] float slamDur;
     [SerializeField] int animTransSpeed;
+    [SerializeField] GameObject itemDrop;
+    [SerializeField] bool isBoss;
 
     //public enemyTrigger fleeTrigger;
     //public enemyTrigger sightTrigger;
@@ -138,6 +140,13 @@ public class bossAI : MonoBehaviour, IDamage
                 {
                     faceTarget();
                 }
+        }
+        else if (playerInTrigger && !defenseMode)
+        {
+            //if (agent.remainingDistance <= agent.stoppingDistance)
+            //{
+                faceTarget();
+            //}
         }
         else if (defenseMode)
         {
@@ -270,8 +279,12 @@ public class bossAI : MonoBehaviour, IDamage
             {
                 gameManager.instance.updateGameGoal(-1);
                 Destroy(gameObject);
-                Debug.Log("The King has been defeated!");
-                gameManager.instance.youWin();
+                Instantiate(itemDrop, transform.position, transform.rotation);
+                if (isBoss)
+                {
+                    Debug.Log("The King has been defeated!");
+                    gameManager.instance.youWin();
+                }
             }
         }
    }

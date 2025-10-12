@@ -2248,7 +2248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &292977260582498516
 Transform:
   m_ObjectHideFlags: 0
@@ -2328,13 +2328,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88814ff5ef21b334997872e058d27af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bossSpawner
-  objectToSpawn: {fileID: 5831231776540135506, guid: 656349aca63c9824ba0e6ec1ca15dee1, type: 3}
+  objectToSpawn: {fileID: 8108439221214088519, guid: 352273423d54d6e46a966c4d8e0e42d3, type: 3}
   spawnRate: 15
   tankDur: 0
   spawnPos:
   - {fileID: 1452484799566123272}
   tankMode: 0
-  boss: {fileID: 0}
+  boss: {fileID: 6671734778418087928}
 --- !u!136 &5839019958392345961
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2374,7 +2374,7 @@ NavMeshAgent:
   m_AngularSpeed: 50
   m_StoppingDistance: 4
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
