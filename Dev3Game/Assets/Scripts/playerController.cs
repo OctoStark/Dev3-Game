@@ -82,7 +82,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         origSpeed = speed;
         origSprintMod = sprintMod;
         //spawnPlayer();
-        StartCoroutine(flashTutScreen());
+        //StartCoroutine(flashTutScreen());
     }
 
     // Update is called once per frame
@@ -219,12 +219,12 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         gameManager.instance.playerDamageFlash.SetActive(false);
     }
 
-    IEnumerator flashTutScreen()
-    {
-        gameManager.instance.TutorialPopupScreen.SetActive(true);
-        yield return new WaitForSeconds(10f);
-        gameManager.instance.TutorialPopupScreen.SetActive(false);
-    }
+    //IEnumerator flashTutScreen()
+    //{
+    //    gameManager.instance.TutorialPopupScreen.SetActive(true);
+    //    yield return new WaitForSeconds(10f);
+    //    gameManager.instance.TutorialPopupScreen.SetActive(false);
+    //}
 
     IEnumerator flashPosBlessing()
     {
