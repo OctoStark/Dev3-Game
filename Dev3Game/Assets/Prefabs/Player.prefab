@@ -136,12 +136,27 @@ MonoBehaviour:
   rageMax: 2
   shrinkScale: {x: 0.5, y: 0.5, z: 0.5}
   shrinkDuration: 5
-  audStep: []
-  audStepVol: 0
-  audJump: []
-  audJumpVol: 0
-  audHurt: []
-  audHurtVol: 0
+  audStep:
+  - {fileID: 8300000, guid: 678fe1f9a3025cc419f2588e0bcb4431, type: 3}
+  - {fileID: 8300000, guid: 7b3251703f0088f4ab7cc5780e9ad041, type: 3}
+  - {fileID: 8300000, guid: 72f8016a3409cc840a3bc5ca8f93e798, type: 3}
+  - {fileID: 8300000, guid: c8f883936352b8140b5ca284df983fcc, type: 3}
+  - {fileID: 8300000, guid: f92d6a5d51f653d4682abc736e292de0, type: 3}
+  - {fileID: 8300000, guid: 2705fb96ae561a54099adef468c7b6a2, type: 3}
+  - {fileID: 8300000, guid: 291eb86864228194e8b05aad47e12e9e, type: 3}
+  audStepVol: 0.5
+  audJump:
+  - {fileID: 8300000, guid: 8b407d3607da36c439b902feea8ed7f8, type: 3}
+  - {fileID: 8300000, guid: cdcf75f4df9365246a7549d9c05f0426, type: 3}
+  - {fileID: 8300000, guid: e389c0cd40989bd40a2138bf1bb608ac, type: 3}
+  audJumpVol: 0.5
+  audHurt:
+  - {fileID: 8300000, guid: ca5baa4035862ba42a482e972267eb49, type: 3}
+  - {fileID: 8300000, guid: 34a03417bf92e2944b7973a740b4d191, type: 3}
+  - {fileID: 8300000, guid: 3b20b9220db563b4b9eb611af1234d87, type: 3}
+  - {fileID: 8300000, guid: a971cad787c2d7644abd9a1df61fd19e, type: 3}
+  - {fileID: 8300000, guid: 0190bd2b122c92c418509e7d6a385681, type: 3}
+  audHurtVol: 0.5
   HPOrig: 0
   origAttackDamage: 0
   rageDashSpeed: 25
