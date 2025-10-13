@@ -8,6 +8,7 @@ TagManager:
   - Moving Objects
   - Moving Object
   - King
+  - Audio
   layers:
   - Default
   - TransparentFX
