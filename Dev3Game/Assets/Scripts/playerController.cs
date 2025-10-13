@@ -13,6 +13,9 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
+    [SerializeField] float attackRange;
+    //[SerializeField] int attackDamage;
+
 
     [SerializeField] List<WeaponStats> weaponList = new List<WeaponStats>();
     [SerializeField] GameObject weaponModel;
@@ -60,6 +63,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     bool athenaDebuffActive = false;
     bool heraDebuffActive = false;
     private bool isShrunk = false;
+    public bool isBlocking = false;
 
     private float _pushPower = 2.0f;
 
@@ -88,6 +92,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Block")) 
+        {
+            StartBlocking();
+        }
+
+        if (Input.GetButtonUp("Block"))
+        {
+            StopBlocking();
+        }
+
+
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * hitRange, Color.yellow);
 
         if (!gameManager.instance.isPaused)
@@ -122,7 +137,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         jump();
         controller.Move(playerVel * Time.deltaTime);
 
-        if (Input.GetButtonDown("Fire1") && weaponList.Count > 0 && hitTimer >= AttackRate)
+        if (Input.GetButtonDown("Fire1") && weaponList.Count > 0 )
         attack();
         selectWeapon();
         //reload();
@@ -152,35 +167,54 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     }
     void attack()
     {
-        hitTimer = 0;
-        //     gunList[gunListPos].ammoCur--;
-        //     aud.PlayOneShot(weaponList[weaponListPos].hitSound[Random.Range(0, weaponList[weaponListPos].hitSound.Length)], weaponList[weaponListPos].hitSoundVol);
-        updatePlayerUI();
 
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, hitRange, ~ignoreLayer))
+
+        Debug.Log("Player attacked");
+
+        Vector3 attackOrigin = transform.position + transform.forward;
+        Collider[] hits = Physics.OverlapSphere(attackOrigin, attackRange, enemyLayer);
+
+        foreach (Collider hit in hits)
         {
-            //Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
-            Debug.Log(hit.collider.name);
-
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-            if (dmg != null)
+            IDamage Dmg = hit.GetComponent<IDamage>();
+            if (Dmg != null)
             {
-                dmg.takeDamage(AttackDamage);
+                Dmg.takeDamage(AttackDamage);
+                Debug.Log("Hit " + hit.name + "for " + AttackDamage + "damage.");
             }
         }
+    
+
     }
 
-   // void reload()
-   // {
-   //    // if (Input.GetButtonDown("Reload")) 
-   ////         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
-   //    // updatePlayerUI();
-   // }
+    void StartBlocking()
+    {
+        isBlocking = true;
+       
+    }
+
+    void StopBlocking()
+    {
+        isBlocking = false;
+        
+    }
+
+
+
+    // void reload()
+    // {
+    //    // if (Input.GetButtonDown("Reload")) 
+    ////         gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
+    //    // updatePlayerUI();
+    // }
 
     public void takeDamage(int amount)
     {
        // aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+        if (isBlocking)
+        {
+            return;
+        }
         HP -= amount;
         updatePlayerUI();
         StartCoroutine(flashDamage());
