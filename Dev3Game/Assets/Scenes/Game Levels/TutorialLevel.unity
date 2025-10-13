@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &32828503 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4880652147615043498, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
-  m_PrefabInstance: {fileID: 1557466547}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &498965830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -263,10 +258,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2086717788376099028, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
-      propertyPath: cameraHolder
-      value: 
-      objectReference: {fileID: 32828503}
     - target: {fileID: 5571872080550572540, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
       propertyPath: m_LocalPosition.x
       value: 27.79387
@@ -311,20 +302,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic Tutorial Area
       objectReference: {fileID: 0}
-    - target: {fileID: 9086954016213403043, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
-      propertyPath: cameraHolder
-      value: 
-      objectReference: {fileID: 1585355622}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
---- !u!4 &1585355622 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9017449618605855740, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
-  m_PrefabInstance: {fileID: 1557466547}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -5241,8 +5241,8 @@ MonoBehaviour:
   playerHPBar: {fileID: 4760026846345979437}
   playerRageBar: {fileID: 1669888394282460518}
   playerDamageFlash: {fileID: 8606859296112358917}
-  poseidonsBlessingScreen: {fileID: 0}
-  zuesBlessingScreen: {fileID: 0}
+  poseidonsBlessingScreen: {fileID: 7117584252860292894, guid: 5de77aeb04d53de408368f817d56e054, type: 3}
+  zuesBlessingScreen: {fileID: 7157172035290877865, guid: 2b9b84b8384b0f24e899be51823d2c73, type: 3}
   herasCurse: {fileID: 6411335959771211748}
   athenasCurse: {fileID: 4537957596759217974}
   TutorialPopupScreen: {fileID: 6416149260165995274}

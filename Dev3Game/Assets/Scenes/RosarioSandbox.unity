@@ -310,14 +310,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Basic
       objectReference: {fileID: 0}
-    - target: {fileID: 5922788412760532796, guid: 62e656f7f6163814aaf7c8b38e4c0323, type: 3}
-      propertyPath: zuesBlessingScreen
-      value: 
-      objectReference: {fileID: 7157172035290877865, guid: 2b9b84b8384b0f24e899be51823d2c73, type: 3}
-    - target: {fileID: 5922788412760532796, guid: 62e656f7f6163814aaf7c8b38e4c0323, type: 3}
-      propertyPath: poseidonsBlessingScreen
-      value: 
-      objectReference: {fileID: 7117584252860292894, guid: 5de77aeb04d53de408368f817d56e054, type: 3}
     - target: {fileID: 7462026063928762901, guid: 62e656f7f6163814aaf7c8b38e4c0323, type: 3}
       propertyPath: m_Pivot.x
       value: 0
