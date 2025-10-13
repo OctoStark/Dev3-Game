@@ -92,7 +92,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         shootTimer += Time.deltaTime;
 
-        setanimLocomotion();
+        //setanimLocomotion();
 
 
         if (agent.remainingDistance <.01f)
@@ -110,13 +110,13 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
-    void setanimLocomotion()
-    {
-        float agentSpeedCur = agent.velocity.normalized.magnitude;
-        float animSpeedCur = anim.GetFloat("Speed");
+    //void setanimLocomotion()
+    //{
+    //    float agentSpeedCur = agent.velocity.normalized.magnitude;
+    //    float animSpeedCur = anim.GetFloat("Speed");
 
-        anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
-    }
+    //    anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
+    //}
 
     void checkRoam()
     {

@@ -49,7 +49,7 @@ public class bossAI : MonoBehaviour, IDamage
         shootTimer += Time.deltaTime;
         slamTimer += Time.deltaTime;
 
-        setanimLocomotion();
+       // setanimLocomotion();
 
         if (playerInTrigger && slamTimer >= slamRate && !defenseMode)
         {
@@ -81,13 +81,13 @@ public class bossAI : MonoBehaviour, IDamage
         }
     }
 
-    void setanimLocomotion()
-    {
-        float agentSpeedCur = agent.velocity.normalized.magnitude;
-        float animSpeedCur = anim.GetFloat("Speed");
+    //void setanimLocomotion()
+    //{
+    //    float agentSpeedCur = agent.velocity.normalized.magnitude;
+    //    float animSpeedCur = anim.GetFloat("Speed");
 
-        anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
-    }
+    //    anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
+    //}
 
     //void checkRoam()
     //{
