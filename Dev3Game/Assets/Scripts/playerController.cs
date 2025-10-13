@@ -7,6 +7,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 {
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] CharacterController controller;
+    [SerializeField] Transform cameraHolder;
 
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
@@ -27,6 +28,12 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     [SerializeField] Vector3 shrinkScale;
     [SerializeField] float shrinkDuration;
+   
+    [SerializeField] float lookSpeed = 2f;
+    [SerializeField] bool isFreeLooking = false;
+
+    float pitch = 0f;
+
 
     //[SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -92,6 +99,31 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     // Update is called once per frame
     void Update()
     {
+        isFreeLooking = Input.GetButton("FreeLook"); 
+
+        float mouseX = Input.GetAxis("Mouse X") * lookSpeed;
+        float mouseY = Input.GetAxis("Mouse Y") * lookSpeed;
+
+        if (isFreeLooking)
+        {
+            // Rotate cameraHolder independently
+            cameraHolder.Rotate(Vector3.up, mouseX, Space.World);
+            pitch -= mouseY;
+            pitch = Mathf.Clamp(pitch, -60f, 60f);
+            cameraHolder.localRotation = Quaternion.Euler(pitch, cameraHolder.localEulerAngles.y, 0f);
+        }
+        else
+        {
+            // Rotate player body with mouseX
+            transform.Rotate(Vector3.up, mouseX);
+
+            // Rotate camera pitch only
+            pitch -= mouseY;
+            pitch = Mathf.Clamp(pitch, -60f, 60f);
+            cameraHolder.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+        }
+
+
         if (Input.GetButtonDown("Block")) 
         {
             StartBlocking();
