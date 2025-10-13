@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 
 public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        LoadNextLevel();
     }
 
     public void QuitGame()
@@ -17,4 +20,17 @@ public class MainMenu : MonoBehaviour
             Application.Quit();
 #endif
     }
+
+    public void LoadNextLevel()
+    {
+        StartCoroutine(Delay(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    IEnumerator Delay(int levelIndex)
+    {
+        yield return new WaitForSeconds(0.2f);
+        SceneManager.LoadScene(levelIndex);
+
+    }
+
 }
