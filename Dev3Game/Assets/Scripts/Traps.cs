@@ -33,6 +33,7 @@ public class Traps : MonoBehaviour
         {
             if (spikeTimer >= waitTime)
             {
+                dmgObj.SetActive(true);
                 if (spikeTimer >= trapDuration)
                 {
                 dmgObj.SetActive(false);
