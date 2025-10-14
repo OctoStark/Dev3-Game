@@ -258,6 +258,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1609144787041713760, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3123945592130064409, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825373614006682806, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037193052934248912, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667020085545029255, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5571872080550572540, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
       propertyPath: m_LocalPosition.x
       value: 27.79387
@@ -298,11 +318,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6132993730492171186, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135753288692272654, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280736282505871724, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6376135534243478578, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
       propertyPath: m_Name
       value: Basic Tutorial Area
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9061265983336460838, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177222576837760451, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3033361062571925127, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 5910849360479779798, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 5465949335226587622, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 7699098600241745149, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 875996555454244558, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 2912484422914818689, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 8368339881613357095, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 6625548290487779574, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 7586753299585053657, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 714147258828045294, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 907407262598854305, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 1116208465572507004, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 2005921959472534794, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 8012606123633257877, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 8511480493574361626, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 710203646179527919, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 2672367865792277688, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 3851328002268206587, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 5604026242337008233, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+    - {fileID: 4743007454351908161, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
