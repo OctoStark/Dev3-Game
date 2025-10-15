@@ -62,6 +62,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
+            playerInTrigger = true;
             FOV = FOVOrig;
             faceTarget();
             agent.SetDestination(gameManager.instance.player.transform.position);
@@ -71,8 +72,8 @@ public class enemyAI : MonoBehaviour, IDamage
     private void fleeEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        { 
-            FOVOrig = FOV;
+        {
+            playerInTrigger = false;
             FOV = 180;
             agent.SetDestination(-gameManager.instance.player.transform.position);
         }
@@ -85,6 +86,7 @@ public class enemyAI : MonoBehaviour, IDamage
        // colorOrig = model.material.color;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
+        FOVOrig = FOV;
     }
 
     // Update is called once per frame

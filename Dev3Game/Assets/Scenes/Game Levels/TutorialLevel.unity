@@ -302,6 +302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic Tutorial Area
       objectReference: {fileID: 0}
+    - target: {fileID: 9086954016213403043, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: attackRange
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

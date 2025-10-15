@@ -374,7 +374,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     void changeWeapon()
     {
         AttackDamage = weaponList[weaponListPos].AttackDamage;
-        hitRange = weaponList[weaponListPos].hitRange;
+        attackRange = weaponList[weaponListPos].hitRange;
         AttackRate = weaponList[weaponListPos].AttackRate;
 
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponList[weaponListPos].weaponModel.GetComponent<MeshFilter>().sharedMesh;
