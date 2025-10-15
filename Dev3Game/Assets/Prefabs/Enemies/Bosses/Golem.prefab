@@ -700,10 +700,10 @@ MonoBehaviour:
   bullet: {fileID: 7787146553759830622, guid: 1ae8f9c6a1e0e34449b8d0ebe81cb28e, type: 3}
   groundSlam: {fileID: 889045235887407039, guid: 6bcb10f536ae1774b9ec7a425d4281b2, type: 3}
   slamPos: {fileID: 887083462626093486}
-  HP: 200
+  HP: 1000
   faceTargetSpeed: 2
   shootRate: 10
-  slamRate: 10
+  slamRate: 2
   animTransSpeed: 1
   itemDrop: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
   isBoss: 1
@@ -735,7 +735,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2443198492112360129}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: cfbfb95b5f2b90949be0b5faab2775fb, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 1
