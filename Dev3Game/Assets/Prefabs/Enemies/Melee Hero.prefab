@@ -154,14 +154,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342488274398178895}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.6562901, y: 1.063, z: 0.06669998}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7076249, w: 0.70658827}
+  m_LocalPosition: {x: 0.027727857, y: -0.101297155, z: 0.068202555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6379916372924960715}
-  m_Father: {fileID: 6159691469243626603}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_Father: {fileID: 4205335937575202048}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.084}
 --- !u!33 &5763137158076536339
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -849,8 +849,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817004329211545228}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.0009104181, w: 0.9999996}
-  m_LocalPosition: {x: 0.19470675, y: -0.120550655, z: 0.123956494}
+  m_LocalRotation: {x: -0, y: -0, z: -0.00091041817, w: 0.99999964}
+  m_LocalPosition: {x: 0.19470698, y: -0.12055069, z: 0.123956144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -859,6 +859,7 @@ Transform:
   - {fileID: 2541891327616666938}
   - {fileID: 8122372883966821370}
   - {fileID: 7783593736247809530}
+  - {fileID: 4425591121214897855}
   m_Father: {fileID: 7333051543819639910}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1910776162432335049
@@ -1770,13 +1771,12 @@ Transform:
   m_GameObject: {fileID: 5420487875606077211}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.73, y: 0.089, z: -24.57}
+  m_LocalPosition: {x: 6.08, y: 0.08, z: -30.81}
   m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2985448159231461407}
   - {fileID: 8264252249085277932}
-  - {fileID: 4425591121214897855}
   - {fileID: 3716062102355751232}
   - {fileID: 5609576696593090920}
   - {fileID: 4569424746424757553}
@@ -1790,7 +1790,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5420487875606077211}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b2f105090024e5c42bfc63af230849c0, type: 3}
   m_Controller: {fileID: 9100000, guid: 4f2a4c358a0a94d4da2dd35798bed7cd, type: 2}
   m_CullingMode: 1
@@ -1847,7 +1847,7 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 500
-  m_StoppingDistance: 4
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
