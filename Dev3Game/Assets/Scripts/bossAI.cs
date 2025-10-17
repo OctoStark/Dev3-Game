@@ -48,8 +48,9 @@ public class bossAI : MonoBehaviour, IDamage
     {
         shootTimer += Time.deltaTime;
         slamTimer += Time.deltaTime;
+        playerDir = gameManager.instance.player.transform.position - headPos.position;
 
-       // setanimLocomotion();
+        // setanimLocomotion();
 
         if (playerInTrigger && slamTimer >= slamRate && !defenseMode)
         {
@@ -70,10 +71,6 @@ public class bossAI : MonoBehaviour, IDamage
         else if (!playerInTrigger && !defenseMode)
         {
             agent.SetDestination(gameManager.instance.player.transform.position);
-            if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    faceTarget();
-                }
         }
         else if (defenseMode)
         {
@@ -89,55 +86,6 @@ public class bossAI : MonoBehaviour, IDamage
     //    anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
     //}
 
-    //void checkRoam()
-    //{
-    //    if (roamTimer >= roamPauseTimer && agent.remainingDistance < .01f)
-    //    {
-    //        roam();
-    //    }
-    //}
-
-    //void roam()
-    //{
-    //    roamTimer = 0;
-    //    agent.stoppingDistance = 0;
-
-    //    Vector3 ranPos = Random.insideUnitSphere * roamDist;
-    //    ranPos += startingPos;
-
-    //    NavMeshHit hit;
-    //    NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
-    //    agent.SetDestination(hit.position);
-    //}
-
-    //bool canSeePlayer()
-    //{ 
-    //    playerDir = gameManager.instance.player.transform.position - headPos.position;
-    //    angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-    //    RaycastHit hit;
-    //    Debug.DrawRay(headPos.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
-    //    if (Physics.Raycast(headPos.position, new Vector3(playerDir.x, transform.position.y, playerDir.z), out hit))
-    //    {
-    //        if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
-    //        {
-    //            agent.SetDestination(gameManager.instance.player.transform.position);
-
-    //            if (agent.remainingDistance <= agent.stoppingDistance)
-    //            {
-    //                faceTarget();
-    //            }
-    //            if (shootTimer >= shootRate)
-    //            {
-    //                shoot();
-    //            }
-
-    //            agent.stoppingDistance = stoppingDistOrig;
-    //            return true;
-    //        }
-    //    }
-    //    agent.stoppingDistance = 0;
-    //    return false;
-    //}
     void faceTarget()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
@@ -189,21 +137,21 @@ public class bossAI : MonoBehaviour, IDamage
                 HP -= amount;
                 //StartCoroutine(flashRed());
                 agent.SetDestination(gameManager.instance.player.transform.position);
+                //faceTarget();
             }
 
             if (HP <= 0)
             {
-                gameManager.instance.updateGameGoal(-1);
+                //gameManager.instance.updateGameGoal(-1);
                 Destroy(gameObject);
                 Instantiate(itemDrop, transform.position, transform.rotation);
                 if (isBoss)
                 {
-                    Debug.Log("The King has been defeated!");
-                    gameManager.instance.youWin();
+                    //gameManager.instance.youWin();
                 }
             }
         }
-   }
+    }
     IEnumerator flashRed()
     {
         //model.material.color = Color.red;

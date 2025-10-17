@@ -104,7 +104,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         float mouseX = Input.GetAxis("Mouse X") * lookSpeed;
         float mouseY = Input.GetAxis("Mouse Y") * lookSpeed;
 
-        if (isFreeLooking)
+        if (isFreeLooking && !gameManager.instance.isPaused)
         {
             // Rotate cameraHolder independently
             cameraHolder.Rotate(Vector3.up, mouseX, Space.World);
@@ -112,7 +112,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             pitch = Mathf.Clamp(pitch, -60f, 60f);
             cameraHolder.localRotation = Quaternion.Euler(pitch, cameraHolder.localEulerAngles.y, 0f);
         }
-        else
+        else if (!isFreeLooking && !gameManager.instance.isPaused)
         {
             // Rotate player body with mouseX
             transform.Rotate(Vector3.up, mouseX);
@@ -374,7 +374,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     void changeWeapon()
     {
         AttackDamage = weaponList[weaponListPos].AttackDamage;
-        hitRange = weaponList[weaponListPos].hitRange;
+        attackRange = weaponList[weaponListPos].hitRange;
         AttackRate = weaponList[weaponListPos].AttackRate;
 
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponList[weaponListPos].weaponModel.GetComponent<MeshFilter>().sharedMesh;
