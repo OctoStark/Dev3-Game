@@ -5,7 +5,14 @@ public class ManualSwitch : MonoBehaviour
     public GameObject switchModel;
     public bool hitSwitch;
     private bool playerNearby;
+
     public AudioManager audioManager;
+    private Animator switchAnim;
+
+    private void Start()
+    {
+        switchAnim = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -37,10 +44,10 @@ public class ManualSwitch : MonoBehaviour
         
         if (switchModel != null)
         {
-            Renderer rend = switchModel.GetComponent<Renderer>();
-            if (rend != null)
+          
+            if (switchAnim != null)
             {
-                rend.material.color = hitSwitch ? Color.green : Color.red;
+                switchAnim.SetTrigger(hitSwitch ? "TurnOn" : "TurnOff");
             }
         }
 

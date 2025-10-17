@@ -9601,7 +9601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &423969802380255271
 Transform:
   m_ObjectHideFlags: 0
@@ -9643,9 +9643,9 @@ MonoBehaviour:
   bullet: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
   groundSlam: {fileID: 889045235887407039, guid: 6bcb10f536ae1774b9ec7a425d4281b2, type: 3}
   slamPos: {fileID: 4027231432663940595}
-  HP: 300
+  HP: 8000
   faceTargetSpeed: 8
-  shootRate: 15
+  shootRate: 100
   slamRate: 15
   animTransSpeed: 1
   itemDrop: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
@@ -9705,7 +9705,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -9723,10 +9723,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 3.5
+  m_Speed: 4
   m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 500
   m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -9745,7 +9745,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
