@@ -126,11 +126,6 @@ public class enemyAI : MonoBehaviour, IDamage
                 {
                     faceTarget();
                 }
-                if (shootTimer >= shootRate)
-                {
-                    shoot();
-                }
-
                 agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
@@ -164,14 +159,26 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
-    private void atkExit(Collider collider)
+    private void atkExit(Collider other)
     {
         //stop attack animation
+        if (other.CompareTag("Player"))
+        {
+            anim.SetBool("Attack", false);
+        }
     }
 
-    private void atkEnter(Collider collider)
+    private void atkEnter(Collider other)
     {
         //attack animation
+        if (other.CompareTag("Player"))
+        {
+            anim.SetBool("Attack", true);
+            if (shootTimer >= shootRate)
+            {
+                shoot();
+            }
+        }
     }
 
     private void fleeExit(Collider other)

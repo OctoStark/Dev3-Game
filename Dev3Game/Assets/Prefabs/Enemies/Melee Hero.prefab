@@ -1754,7 +1754,6 @@ GameObject:
   - component: {fileID: 8631078933983810672}
   - component: {fileID: 8756547744765978915}
   - component: {fileID: 5804085643760585361}
-  - component: {fileID: 1663359496714624086}
   m_Layer: 6
   m_Name: Melee Hero
   m_TagString: Untagged
@@ -1793,7 +1792,7 @@ Animator:
   m_GameObject: {fileID: 5420487875606077211}
   m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: b2f105090024e5c42bfc63af230849c0, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4f2a4c358a0a94d4da2dd35798bed7cd, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1823,7 +1822,7 @@ MonoBehaviour:
   headPos: {fileID: 6696616627535055303}
   shootPos: {fileID: 176885468101685767}
   bullet: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
-  itemDrop: {fileID: 3923213132402071363, guid: e1248805ceabee846a503446a0df6c1d, type: 3}
+  itemDrop: {fileID: 1775027029693330865, guid: ac916db4885e80147b004e0fb73f3172, type: 3}
   HP: 50
   faceTargetSpeed: 10
   FOV: 90
@@ -1844,7 +1843,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 6
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 500
@@ -1879,33 +1878,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!54 &1663359496714624086
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5420487875606077211}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &5852760697602892668
 GameObject:
   m_ObjectHideFlags: 0

@@ -248,6 +248,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3509971956885101682, guid: b2820b43cbca5be41a20def137849270, type: 3}
+      propertyPath: shootRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3509971956885101682, guid: b2820b43cbca5be41a20def137849270, type: 3}
+      propertyPath: animTransSpeed
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4011830886247219961, guid: b2820b43cbca5be41a20def137849270, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.48
@@ -296,13 +304,17 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: fadd2f70e06ee074a814bd708aa27df1, type: 2}
+    - target: {fileID: 9034929547074882783, guid: b2820b43cbca5be41a20def137849270, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9099225918397812279, guid: b2820b43cbca5be41a20def137849270, type: 3}
       propertyPath: m_Name
       value: Skeleton Swordsman
       objectReference: {fileID: 0}
     - target: {fileID: 9099225918397812279, guid: b2820b43cbca5be41a20def137849270, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3012511626109319920, guid: b2820b43cbca5be41a20def137849270, type: 3}
@@ -851,10 +863,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Melee Hero
       objectReference: {fileID: 0}
-    - target: {fileID: 5420487875606077211, guid: 15d9e9d8df931a149962c6f9e10f14ca, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6159691469243626603, guid: 15d9e9d8df931a149962c6f9e10f14ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.08
@@ -895,12 +903,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8756547744765978915, guid: 15d9e9d8df931a149962c6f9e10f14ca, type: 3}
-      propertyPath: m_Speed
-      value: 6
+    - target: {fileID: 9112184827565822976, guid: 15d9e9d8df931a149962c6f9e10f14ca, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1663359496714624086, guid: 15d9e9d8df931a149962c6f9e10f14ca, type: 3}
+    - target: {fileID: 9112184827565822976, guid: 15d9e9d8df931a149962c6f9e10f14ca, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
