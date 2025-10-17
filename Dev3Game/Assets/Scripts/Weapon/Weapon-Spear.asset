@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d78dbd0c0216874da183a066aeadf64, type: 3}
   m_Name: Weapon-Spear
   m_EditorClassIdentifier: Assembly-CSharp::WeaponStats
-  weaponModel: {fileID: 819413554756817986, guid: 484b1ef92f6fa9c4785830e4c93d0f95, type: 3}
+  weaponModel: {fileID: 7179593257216380429, guid: 385ba3e3624700e4b905a64622997952, type: 3}
   AttackDamage: 15
   AttackRate: 0.2
   hitRange: 20
