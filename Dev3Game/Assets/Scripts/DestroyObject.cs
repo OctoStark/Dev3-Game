@@ -1,16 +1,27 @@
 using UnityEngine;
 
-public class DestroyObject : MonoBehaviour
+public class DestroyObject : MonoBehaviour, IDamage
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] GameObject destObject;
+    [SerializeField] Animator anim;
+    public AudioManager audioManager;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] int HP;
+    [SerializeField] GameObject itemDrop;
+
+    public void takeDamage(int amount)
     {
-        
+        if (HP > 0)
+        {
+            HP -= amount;
+            //audioManager.PlaySFX(audioManager.buttonSwitch);
+
+        }
+
+        if (HP <= 0)
+        {
+            Destroy(gameObject);
+            Instantiate(itemDrop, transform.parent.position, transform.parent.rotation);
+        }
     }
 }

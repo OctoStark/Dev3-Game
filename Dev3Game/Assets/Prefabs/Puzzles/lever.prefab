@@ -240,6 +240,7 @@ MonoBehaviour:
   switchModel: {fileID: 3153638441501908473}
   hitSwitch: 0
   audioManager: {fileID: 0}
+  switchManager: {fileID: 0}
 --- !u!65 &3528422932843783588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -259,8 +260,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.9, z: 1}
-  m_Center: {x: 0.5, y: 0.4, z: 0}
+  m_Size: {x: 3, y: 2, z: 2}
+  m_Center: {x: 1.5, y: 0.4, z: 0}
 --- !u!95 &578407850673034627
 Animator:
   serializedVersion: 7
