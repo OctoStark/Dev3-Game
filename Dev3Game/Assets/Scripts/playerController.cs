@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] CharacterController controller;
     [SerializeField] Transform cameraHolder;
+    [SerializeField] Animator anim;
 
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
@@ -25,6 +26,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] float AttackRate;
     [SerializeField] int hitRange;
     [SerializeField] private int rageMax;
+    [SerializeField] float animTransSpeed;
 
     [SerializeField] Vector3 shrinkScale;
     [SerializeField] float shrinkDuration;
@@ -73,6 +75,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     public bool isBlocking = false;
 
     private float _pushPower = 2.0f;
+   
 
     //Rage Dash
     [SerializeField] float rageDashSpeed = 25f;
@@ -86,6 +89,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        anim = GetComponent<Animator>();
+
         HPOrig = HP;
         originalScale = transform.localScale;
         origAttackDamage = AttackDamage;
@@ -99,6 +104,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     // Update is called once per frame
     void Update()
     {
+       
         isFreeLooking = Input.GetButton("FreeLook"); 
 
         float mouseX = Input.GetAxis("Mouse X") * lookSpeed;
@@ -143,9 +149,11 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             Rage();
         }
         sprint();
+        
     }
     void movement()
     {
+    
         hitTimer += Time.deltaTime;
         if (controller.isGrounded)
         {
@@ -172,9 +180,23 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         if (Input.GetButtonDown("Fire1") && weaponList.Count > 0 )
         attack();
         selectWeapon();
+        setanimLocomotion();
         //reload();
+       
     }
+    void setanimLocomotion()
+    {
+        // Use input direction magnitude for smoother animation
+        float agentSpeedCur = moveDir.magnitude * (isSprinting ? 2f : 1f); // Scale to match blend tree thresholds
+        float animSpeedCur = anim.GetFloat("Speed");
 
+        float smoothedSpeed = Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed);
+        anim.SetFloat("Speed", smoothedSpeed);
+
+
+
+
+    }
     void jump()
     {
         if (Input.GetButtonDown("Jump") && jumpCount <  jumpMax)
