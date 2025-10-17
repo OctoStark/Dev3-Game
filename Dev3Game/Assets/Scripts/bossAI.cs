@@ -31,6 +31,7 @@ public class bossAI : MonoBehaviour, IDamage
     float slamTimer;
     bool playerInTrigger;
     float angleToPlayer;
+    float stoppingDistOrig;
     public bool defenseMode;
 
     Vector3 startingPos;
@@ -41,6 +42,7 @@ public class bossAI : MonoBehaviour, IDamage
     {
         gameManager.instance.updateGameGoal(1);
         startingPos = transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
     }
 
     // Update is called once per frame
@@ -95,6 +97,7 @@ public class bossAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
             playerInTrigger = true;
+            agent.stoppingDistance = stoppingDistOrig;
         
     }
     public void OnTriggerExit(Collider other)
