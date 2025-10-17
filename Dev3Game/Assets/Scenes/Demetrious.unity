@@ -3082,6 +3082,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1497009929329635706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4964226719037137825, guid: 7294b1d31474ba74fb8c88a00c71ec99, type: 3}
+  m_PrefabInstance: {fileID: 3552723546029192591}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3258159968970094990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3133,6 +3138,10 @@ PrefabInstance:
     - target: {fileID: 7434884337537831119, guid: f8dd7c24d84a9dd4b943ace9f8aab274, type: 3}
       propertyPath: m_Name
       value: Heras Curse Final
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434884337537831119, guid: f8dd7c24d84a9dd4b943ace9f8aab274, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3194,7 +3203,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4964226719037137825, guid: 7294b1d31474ba74fb8c88a00c71ec99, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9179720599809024518}
   m_SourcePrefab: {fileID: 100100000, guid: 7294b1d31474ba74fb8c88a00c71ec99, type: 3}
 --- !u!1001 &3643752223258494955
 PrefabInstance:
@@ -3508,6 +3520,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 5f73475cf0cad364b9800b85c2a229fc, type: 2}
+    - target: {fileID: 4382554153764657260, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9418a5fcbafe84543998bd7c831a9ee1, type: 2}
     - target: {fileID: 4436942204942765802, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -3637,6 +3653,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 5f73475cf0cad364b9800b85c2a229fc, type: 2}
     - target: {fileID: 6035102605624961431, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5f73475cf0cad364b9800b85c2a229fc, type: 2}
+    - target: {fileID: 6113993800125878676, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 5f73475cf0cad364b9800b85c2a229fc, type: 2}
@@ -3937,6 +3957,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poseidon Blessing Final
       objectReference: {fileID: 0}
+    - target: {fileID: 5180789131534751128, guid: aa7786c3dc8e2af4f90b9a8798f74864, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7595830753488947552, guid: aa7786c3dc8e2af4f90b9a8798f74864, type: 3}
       propertyPath: m_LocalPosition.x
       value: 359.03
@@ -4033,6 +4057,10 @@ PrefabInstance:
     - target: {fileID: 9200932669059990071, guid: 05beba0f26e4cb54990c550eed160f92, type: 3}
       propertyPath: m_Name
       value: Athenas Curse Final
+      objectReference: {fileID: 0}
+    - target: {fileID: 9200932669059990071, guid: 05beba0f26e4cb54990c550eed160f92, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4152,6 +4180,103 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4755308478360247201}
   m_Mesh: {fileID: -6492938550424421419, guid: efa7119d0bbbed849a1eada7b1968133, type: 3}
+--- !u!82 &9179720599809024518
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497009929329635706}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 985aff800d6ae874f9292e65c9a7fdda, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
