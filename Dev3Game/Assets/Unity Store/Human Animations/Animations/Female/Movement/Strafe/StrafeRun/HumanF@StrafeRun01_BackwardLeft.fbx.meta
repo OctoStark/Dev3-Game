@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d4ea2ec9518f92442a0c1c2ab0dc9780
+guid: fe7d08db393bd8541806926fd565d5d6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -968,8 +968,8 @@ ModelImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 165785
-  packageName: Human Melee Animations FREE
-  packageVersion: 2.0.2
-  assetPath: Assets/Kevin Iglesias/Human Animations/Animations/Female/Movement/Strafe/StrafeRun/HumanF@StrafeRun01_BackwardLeft.fbx
-  uploadId: 762275
+  productId: 335880
+  packageName: Human Archer Animations FREE
+  packageVersion: 1.0
+  assetPath: Assets/Unity Store/Human Animations/Animations/Female/Movement/Strafe/StrafeRun/HumanF@StrafeRun01_BackwardLeft.fbx
+  uploadId: 794774

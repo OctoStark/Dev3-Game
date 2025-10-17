@@ -851,13 +851,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5753340692918899, guid: b5ad5151910cfd04aaaca8b40df4a9ab, type: 3}
+      propertyPath: animTransSpeed
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2004045341601163156, guid: b5ad5151910cfd04aaaca8b40df4a9ab, type: 3}
       propertyPath: m_Name
       value: Skeleton Archer
       objectReference: {fileID: 0}
     - target: {fileID: 2004045341601163156, guid: b5ad5151910cfd04aaaca8b40df4a9ab, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3516512534405741232, guid: b5ad5151910cfd04aaaca8b40df4a9ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5435497699587389870, guid: b5ad5151910cfd04aaaca8b40df4a9ab, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5435497699587389870, guid: b5ad5151910cfd04aaaca8b40df4a9ab, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4de82390a1a6f8f498e4298434cd1b53, type: 2}
+    - target: {fileID: 6136815990069906740, guid: b5ad5151910cfd04aaaca8b40df4a9ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8500335882935139259, guid: b5ad5151910cfd04aaaca8b40df4a9ab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -899,8 +919,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8869509775321780766, guid: b5ad5151910cfd04aaaca8b40df4a9ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8869509775321780766, guid: b5ad5151910cfd04aaaca8b40df4a9ab, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ad5151910cfd04aaaca8b40df4a9ab, type: 3}
@@ -1163,6 +1188,10 @@ PrefabInstance:
     - target: {fileID: 5420487875606077211, guid: 15d9e9d8df931a149962c6f9e10f14ca, type: 3}
       propertyPath: m_Name
       value: Melee Hero
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420487875606077211, guid: 15d9e9d8df931a149962c6f9e10f14ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6159691469243626603, guid: 15d9e9d8df931a149962c6f9e10f14ca, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 06db7ead6cfa3054aaa7cf24fa1d249b
+guid: 15f20076430584b43a0711bcbab325a0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -968,9 +968,9 @@ ModelImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 165785
-  packageName: Human Melee Animations FREE
-  packageVersion: 2.0.2
-  assetPath: Assets/Kevin Iglesias/Human Animations/Animations/Female/Movement/Run/RootMotion/HumanF@Run01_BackwardLeft
+  productId: 335880
+  packageName: Human Archer Animations FREE
+  packageVersion: 1.0
+  assetPath: Assets/Unity Store/Human Animations/Animations/Female/Movement/Run/RootMotion/HumanF@Run01_BackwardLeft
     [RM].fbx
-  uploadId: 762275
+  uploadId: 794774

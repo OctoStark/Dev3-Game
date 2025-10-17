@@ -1829,7 +1829,7 @@ MonoBehaviour:
   roamDist: 15
   roamPauseTimer: 2
   shootRate: 100
-  animTransSpeed: 1
+  animTransSpeed: 8
   fleeTrigger: {fileID: 901724063133446003}
   sightTrigger: {fileID: 4242123962833831406}
   atkTrigger: {fileID: 803514827252708170}
