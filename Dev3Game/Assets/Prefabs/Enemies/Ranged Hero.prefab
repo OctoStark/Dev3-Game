@@ -1567,7 +1567,6 @@ GameObject:
   - component: {fileID: 767475627051862009}
   - component: {fileID: 8666098927483332821}
   - component: {fileID: 9180941126449417428}
-  - component: {fileID: 580851862514489189}
   m_Layer: 6
   m_Name: Ranged Hero
   m_TagString: Untagged
@@ -1657,7 +1656,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 7
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 500
@@ -1692,33 +1691,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!54 &580851862514489189
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4105657842430897208}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &4185860628137908428
 GameObject:
   m_ObjectHideFlags: 0
@@ -3287,8 +3259,8 @@ Transform:
   m_GameObject: {fileID: 7222269114147973105}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5000002, y: 0.49999985, z: 0.50000006, w: -0.49999994}
-  m_LocalPosition: {x: -0.65, y: 1.248, z: -0.1368}
-  m_LocalScale: {x: 0.7407407, y: 0.59259295, z: 0.4444445}
+  m_LocalPosition: {x: -0.651, y: 1.339, z: -0.292}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8676416836423212053}
