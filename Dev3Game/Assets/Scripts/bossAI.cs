@@ -17,6 +17,7 @@ public class bossAI : MonoBehaviour, IDamage
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
+    [SerializeField] float atkRate;
     [SerializeField] float shootRate;
     [SerializeField] float slamRate;
     [SerializeField] int animTransSpeed;
@@ -27,6 +28,7 @@ public class bossAI : MonoBehaviour, IDamage
 
     GameObject slamObject;
 
+    float atkTimer;
     float shootTimer;
     float slamTimer;
     bool playerInTrigger;
@@ -48,11 +50,12 @@ public class bossAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        atkTimer += Time.deltaTime;
         shootTimer += Time.deltaTime;
         slamTimer += Time.deltaTime;
         playerDir = gameManager.instance.player.transform.position - headPos.position;
 
-        // setanimLocomotion();
+        setanimLocomotion();
 
         if (playerInTrigger && slamTimer >= slamRate && !defenseMode)
         {
@@ -65,6 +68,10 @@ public class bossAI : MonoBehaviour, IDamage
                 faceTarget();
             }
             //normal attack
+            if (atkTimer >= atkRate)
+            {
+                attack();
+            }
         }
         else if (!playerInTrigger && shootTimer >= shootRate && !defenseMode)
         {
@@ -80,13 +87,13 @@ public class bossAI : MonoBehaviour, IDamage
         }
     }
 
-    //void setanimLocomotion()
-    //{
-    //    float agentSpeedCur = agent.velocity.normalized.magnitude;
-    //    float animSpeedCur = anim.GetFloat("Speed");
+    void setanimLocomotion()
+    {
+        float agentSpeedCur = agent.velocity.normalized.magnitude;
+        float animSpeedCur = anim.GetFloat("Speed");
 
-    //    anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
-    //}
+        anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
+    }
 
     void faceTarget()
     {
@@ -108,19 +115,27 @@ public class bossAI : MonoBehaviour, IDamage
             agent.stoppingDistance = 0;
         }
     }
+    void attack()
+    {
+        atkTimer = 0;
+        anim.SetTrigger("Attack");
+        //AtkWait();
+        //anim.SetBool("Attack", false);
+    }
     void slam()
     {
         slamTimer = 0;
+        anim.SetTrigger("Slam");
+    }
+    void createSlam()
+    {
         slamObject = Instantiate(groundSlam, slamPos);
         Destroy(slamObject, 1);
-        
-        
     }
     void shoot()
     {
         shootTimer = 0;
-        //anim.SetTrigger("Shoot");
-        createBullet();
+        anim.SetTrigger("Shoot");
     }
 
     void createBullet()
@@ -154,6 +169,10 @@ public class bossAI : MonoBehaviour, IDamage
                 }
             }
         }
+    }
+    IEnumerator AtkWait()
+    {
+        yield return new WaitForSeconds(1);
     }
     IEnumerator flashRed()
     {
