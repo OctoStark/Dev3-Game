@@ -6,6 +6,7 @@ public class PuzzleSlot : MonoBehaviour
     private bool playerNearby;
     public bool isIn = false;
     public AudioManager audioManager;
+    public Wall wallControl;
 
     void Update()
     {
@@ -17,6 +18,11 @@ public class PuzzleSlot : MonoBehaviour
                 SlotManager.instance.SetHeldItem(requiredItem);
                 isIn = false;
                 Debug.Log("Item taken back.");
+
+                if (wallControl != null)
+                {
+                    wallControl.CloseWall();
+                }
                 return;
             }
 
@@ -27,6 +33,11 @@ public class PuzzleSlot : MonoBehaviour
                 SlotManager.instance.ClearHeldItem();
                 Debug.Log("Correct item placed!");
                 audioManager.PlaySFX(audioManager.correctItem);
+
+                if (wallControl != null)
+                {
+                    wallControl.OpenWall();
+                }
             }
             else if (!isIn)
             {

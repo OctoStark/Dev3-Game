@@ -6,6 +6,7 @@ public class PressurePlate : MonoBehaviour
     private MeshRenderer pressRenderer;
     public AudioManager audioManager;
     private Animator pressureAnim;
+    public Wall wallControl;
 
     private bool playSound = false;
     private bool isDown = false;
@@ -19,7 +20,7 @@ public class PressurePlate : MonoBehaviour
             pressRenderer.material.color = origColor;
         }
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Moving Object") || other.CompareTag("Player"))
         {
@@ -29,16 +30,16 @@ public class PressurePlate : MonoBehaviour
             if (distance > 0.05f)
             {
                 Rigidbody box = other.GetComponent<Rigidbody>();
-                if(box != null)
-                {
-                    box.isKinematic = true;
-                }
             }
 
             if (!isDown)
             {
                 pressureAnim.SetTrigger("PressDown");
                 isDown = true;
+                if (wallControl != null)
+                {
+                    wallControl.OpenWall();
+                }
             }
 
             if (pressRenderer != null)
@@ -67,6 +68,11 @@ public class PressurePlate : MonoBehaviour
             if (pressureAnim != null)
             {
                 pressureAnim.SetTrigger("PressUp");
+            }
+
+            if (wallControl != null)
+            {
+                wallControl.CloseWall();
             }
 
             playSound = false;
