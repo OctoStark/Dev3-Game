@@ -173,14 +173,14 @@ public class enemyAI : MonoBehaviour, IDamage
         //attack animation
         if (other.CompareTag("Player"))
         {
-            if (FOV < 130) 
+            //if (FOV < 130) 
+            //{
+            anim.SetBool("Attack", true);
+            if (shootTimer >= shootRate)
             {
-                anim.SetBool("Attack", true);
-                if (shootTimer >= shootRate)
-                {
-                    shoot();
-                }
+                shoot();
             }
+            //}
         }
     }
 

@@ -5,6 +5,7 @@ public class SwitchManager : MonoBehaviour
 {
     public List<ManualSwitch> switchOrder;
     private int currIndex = 0;
+    public Wall wallControl;
 
     public void SequenceSwitch(ManualSwitch manualSwitch)
     {
@@ -16,6 +17,11 @@ public class SwitchManager : MonoBehaviour
             if (currIndex >= switchOrder.Count)
             {
                 Debug.Log("All switches activated in correct order!");
+                if (wallControl != null)
+                {
+                    wallControl.OpenWall();
+                }
+
             }
         }
         else
@@ -33,6 +39,11 @@ public class SwitchManager : MonoBehaviour
             sw.ResetSwitch(); // Reset visuals/state
         }
         currIndex = 0;
+
+        if (wallControl != null)
+        {
+            wallControl.CloseWall();
+        }
     }
 
 
