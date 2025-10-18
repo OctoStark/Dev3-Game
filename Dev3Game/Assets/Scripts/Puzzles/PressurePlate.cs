@@ -5,11 +5,14 @@ public class PressurePlate : MonoBehaviour
     [SerializeField] Color origColor;
     private MeshRenderer pressRenderer;
     public AudioManager audioManager;
+    private Animator pressureAnim;
 
     private bool playSound = false;
+    private bool isDown = false;
 
     private void Start()
     {
+        pressureAnim = GetComponentInChildren<Animator>();
         pressRenderer = GetComponentInChildren<MeshRenderer>();
         if (pressRenderer != null)
         {
@@ -30,6 +33,12 @@ public class PressurePlate : MonoBehaviour
                 {
                     box.isKinematic = true;
                 }
+            }
+
+            if (!isDown)
+            {
+                pressureAnim.SetTrigger("PressDown");
+                isDown = true;
             }
 
             if (pressRenderer != null)
@@ -55,7 +64,13 @@ public class PressurePlate : MonoBehaviour
                 pressRenderer.material.color = origColor;
             }
 
+            if (pressureAnim != null)
+            {
+                pressureAnim.SetTrigger("PressUp");
+            }
+
             playSound = false;
+            isDown = false;
         }
     }
 }
