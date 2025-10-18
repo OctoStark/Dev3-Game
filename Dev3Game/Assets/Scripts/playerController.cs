@@ -36,6 +36,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
 
     //[SerializeField] AudioSource aud;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pickupSFX;
     [SerializeField] AudioClip[] audStep;
     [Range(0, 1)][SerializeField] float audStepVol;
     [SerializeField] AudioClip[] audJump;
@@ -419,6 +421,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     public void getPickUpStat(pickUp pickup)
     {
+        if (pickup == null)
+        {
+            Debug.LogWarning("Pickup is null - cannot apply buff/debuff");
+            return;
+        }
+
+        if(pickup.Amount <= 0)
+        {
+            Debug.LogWarning("Invalid pickup amount: {pickup.Amount}");
+            return;
+        }
         switch (pickup.Type)
         {
             case pickUp.PickupType.Zeus:
@@ -427,6 +440,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                     zuesBuffActive = true;
                     AttackDamage *= pickup.Amount;
                     AttackRate *= pickup.Amount;
+                    PlayPickupSFX(pickupSFX);
                     StartCoroutine(ZuesBuffDuration());
                     StartCoroutine(flashzuesBlessing());
                 }
@@ -441,6 +455,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     speed *= pickup.Amount;
                     sprintMod *= pickup.Amount;
+                    PlayPickupSFX(pickupSFX);
                     StartCoroutine(PoseidonBuffDuration());
                     StartCoroutine(flashPosBlessing());
                 }
@@ -455,6 +470,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     athenaDebuffActive = true;
                     AttackDamage -= pickup.Amount;
+                    PlayPickupSFX(pickupSFX);
                     StartCoroutine(HerasDuration());
                     StartCoroutine(flashAthenaCurse());
                 }
@@ -469,6 +485,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     heraDebuffActive = true;
                     ApplyShrinkCurse();
+                    PlayPickupSFX(pickupSFX);
                     StartCoroutine(flashHeraCurse());
                     StartCoroutine(RemoveShrinkCurseAfterDelay());
                 }
@@ -565,6 +582,19 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         yield return new WaitForSeconds(shrinkDuration);
         transform.localScale = originalScale;
         isShrunk = false;
+    }
+
+    private void PlayPickupSFX(AudioClip clip)
+    {
+        if(audioSource != null && clip != null)
+        {
+            audioSource.pitch = Random.Range(.95f, 1.05f);
+            audioSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.LogWarning("Missing AudioSource or AudioClip for pickup SFX.");
+        }
     }
 
 
