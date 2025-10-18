@@ -154,14 +154,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342488274398178895}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.6562901, y: 1.063, z: 0.06669998}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7076249, w: 0.70658827}
+  m_LocalPosition: {x: 0.027727857, y: -0.101297155, z: 0.068202555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6379916372924960715}
-  m_Father: {fileID: 6159691469243626603}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_Father: {fileID: 4205335937575202048}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.084}
 --- !u!33 &5763137158076536339
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -849,8 +849,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817004329211545228}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.0009104181, w: 0.9999996}
-  m_LocalPosition: {x: 0.19470675, y: -0.120550655, z: 0.123956494}
+  m_LocalRotation: {x: -0, y: -0, z: -0.00091041817, w: 0.99999964}
+  m_LocalPosition: {x: 0.19470698, y: -0.12055069, z: 0.123956144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -859,6 +859,7 @@ Transform:
   - {fileID: 2541891327616666938}
   - {fileID: 8122372883966821370}
   - {fileID: 7783593736247809530}
+  - {fileID: 4425591121214897855}
   m_Father: {fileID: 7333051543819639910}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1910776162432335049
@@ -1754,7 +1755,6 @@ GameObject:
   - component: {fileID: 8631078933983810672}
   - component: {fileID: 8756547744765978915}
   - component: {fileID: 5804085643760585361}
-  - component: {fileID: 1663359496714624086}
   m_Layer: 6
   m_Name: Melee Hero
   m_TagString: Untagged
@@ -1771,13 +1771,12 @@ Transform:
   m_GameObject: {fileID: 5420487875606077211}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.73, y: 0.089, z: -24.57}
+  m_LocalPosition: {x: 6.08, y: 0.08, z: -30.81}
   m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2985448159231461407}
   - {fileID: 8264252249085277932}
-  - {fileID: 4425591121214897855}
   - {fileID: 3716062102355751232}
   - {fileID: 5609576696593090920}
   - {fileID: 4569424746424757553}
@@ -1791,9 +1790,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5420487875606077211}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b2f105090024e5c42bfc63af230849c0, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4f2a4c358a0a94d4da2dd35798bed7cd, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1823,14 +1822,14 @@ MonoBehaviour:
   headPos: {fileID: 6696616627535055303}
   shootPos: {fileID: 176885468101685767}
   bullet: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
-  itemDrop: {fileID: 3923213132402071363, guid: e1248805ceabee846a503446a0df6c1d, type: 3}
+  itemDrop: {fileID: 1775027029693330865, guid: ac916db4885e80147b004e0fb73f3172, type: 3}
   HP: 50
   faceTargetSpeed: 10
   FOV: 90
   roamDist: 15
   roamPauseTimer: 2
   shootRate: 100
-  animTransSpeed: 1
+  animTransSpeed: 8
   fleeTrigger: {fileID: 901724063133446003}
   sightTrigger: {fileID: 4242123962833831406}
   atkTrigger: {fileID: 803514827252708170}
@@ -1844,11 +1843,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 6
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 500
-  m_StoppingDistance: 4
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -1879,33 +1878,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!54 &1663359496714624086
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5420487875606077211}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &5852760697602892668
 GameObject:
   m_ObjectHideFlags: 0

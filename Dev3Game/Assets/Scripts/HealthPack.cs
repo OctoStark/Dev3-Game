@@ -9,9 +9,9 @@ public class HealthPack : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerController player = other.GetComponent<playerController>();
-         //   if (player && player.HP < player.HPOrig)
+             if (player && player.HP < player.HPOrig)
             {
-         //       player.AddHealth(healAmount);
+                 player.AddHealth(healAmount);
                 Destroy(gameObject);
             }
         }

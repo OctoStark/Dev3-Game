@@ -31,15 +31,18 @@ public class enemyAI : MonoBehaviour, IDamage
     float shootTimer;
     float roamTimer;
     bool playerInTrigger;
+    bool attack;
     float angleToPlayer;
     float stoppingDistOrig;
     int FOVOrig;
 
     Vector3 startingPos;
     Vector3 playerDir;
+    Vector3 flee;
 
     void Awake()
     {
+        stoppingDistOrig = agent.stoppingDistance;
         fleeTrigger.triggerEnter += fleeEnter;
         fleeTrigger.triggerExit += fleeExit;
         sightTrigger.triggerEnter += sightEnter;
@@ -48,44 +51,11 @@ public class enemyAI : MonoBehaviour, IDamage
         atkTrigger.triggerExit += atkExit;
     }
 
-    private void atkExit(Collider collider)
-    {
-        //stop attack animation
-    }
-
-    private void atkEnter(Collider collider)
-    {
-        //attack animation
-    }
-
-    private void fleeExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInTrigger = true;
-            FOV = FOVOrig;
-            faceTarget();
-            agent.SetDestination(gameManager.instance.player.transform.position);
-        }
-    }
-
-    private void fleeEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInTrigger = false;
-            FOV = 180;
-            agent.SetDestination(-gameManager.instance.player.transform.position);
-        }
-           
-    }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
        // colorOrig = model.material.color;
         startingPos = transform.position;
-        stoppingDistOrig = agent.stoppingDistance;
         FOVOrig = FOV;
     }
 
@@ -94,7 +64,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         shootTimer += Time.deltaTime;
 
-        //setanimLocomotion();
+        setanimLocomotion();
 
 
         if (agent.remainingDistance <.01f)
@@ -110,15 +80,16 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             checkRoam();
         }
+        
     }
 
-    //void setanimLocomotion()
-    //{
-    //    float agentSpeedCur = agent.velocity.normalized.magnitude;
-    //    float animSpeedCur = anim.GetFloat("Speed");
+    void setanimLocomotion()
+    {
+        float agentSpeedCur = agent.velocity.normalized.magnitude;
+        float animSpeedCur = anim.GetFloat("Speed");
 
-    //    anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
-    //}
+        anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
+    }
 
     void checkRoam()
     {
@@ -157,11 +128,18 @@ public class enemyAI : MonoBehaviour, IDamage
                 {
                     faceTarget();
                 }
-                if (shootTimer >= shootRate)
+                if (attack)
                 {
-                    shoot();
+                    anim.SetBool("Attack", true);
+                    if (shootTimer >= shootRate)
+                    {
+                        shoot();
+                    }
                 }
-
+                else if (!attack)
+                {
+                    anim.SetBool("Attack", false);
+                }
                 agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
@@ -174,12 +152,18 @@ public class enemyAI : MonoBehaviour, IDamage
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
+
     public void sightEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInTrigger = true;
+            agent.stoppingDistance = stoppingDistOrig;
+        }
+            
         
     }
+
     public void sightExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -188,11 +172,55 @@ public class enemyAI : MonoBehaviour, IDamage
             agent.stoppingDistance = 0;
         }
     }
+
+    private void atkExit(Collider other)
+    {
+        //stop attack animation
+        if (other.CompareTag("Player"))
+        {
+            attack = false;
+        }
+    }
+
+    private void atkEnter(Collider other)
+    {
+        //attack animation
+        if (other.CompareTag("Player") && playerInTrigger)
+        {
+            attack = true;
+        }
+    }
+
+    private void fleeExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInTrigger = true;
+            attack = true;
+            agent.stoppingDistance = stoppingDistOrig;
+            //faceTarget();
+            FOV = FOVOrig;
+            agent.SetDestination(gameManager.instance.player.transform.position);
+        }
+    }
+
+    private void fleeEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInTrigger = false;
+            attack = false;
+            FOV = 180;
+            flee = transform.position - gameManager.instance.player.transform.position;
+            agent.SetDestination(flee.normalized * 120);
+
+        }
+
+    }
     void shoot()
     {
         shootTimer = 0;
-        //anim.SetTrigger("Shoot");
-        createBullet();
+        //anim.SetTrigger("Attack");
     }
 
     void createBullet()
@@ -220,6 +248,4 @@ public class enemyAI : MonoBehaviour, IDamage
     //    yield return new WaitForSeconds(0.1f);
     //    model.material.color = colorOrig;
     //}
-
-
 }
