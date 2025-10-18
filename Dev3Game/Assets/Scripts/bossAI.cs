@@ -14,6 +14,8 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject groundSlam;
     [SerializeField] Transform slamPos;
+    [SerializeField] GameObject punch;
+    [SerializeField] Transform punchPos;
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
@@ -27,6 +29,7 @@ public class bossAI : MonoBehaviour, IDamage
     //Color colorOrig;
 
     GameObject slamObject;
+    GameObject punchObj;
 
     float atkTimer;
     float shootTimer;
@@ -119,8 +122,12 @@ public class bossAI : MonoBehaviour, IDamage
     {
         atkTimer = 0;
         anim.SetTrigger("Attack");
-        //AtkWait();
-        //anim.SetBool("Attack", false);
+    }
+    void createPunch()
+    {
+        punchObj = Instantiate(punch, punchPos);
+        Debug.Log("punch");
+        Destroy(punchObj, 10);
     }
     void slam()
     {
