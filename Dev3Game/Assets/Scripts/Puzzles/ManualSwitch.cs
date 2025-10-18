@@ -7,7 +7,6 @@ public class ManualSwitch : MonoBehaviour
     public bool hitSwitch;
     private bool playerNearby;
 
-
     public AudioManager audioManager;
     private Animator switchAnim;
     public SwitchManager switchManager;
