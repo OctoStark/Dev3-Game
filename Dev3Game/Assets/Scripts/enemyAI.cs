@@ -173,10 +173,13 @@ public class enemyAI : MonoBehaviour, IDamage
         //attack animation
         if (other.CompareTag("Player"))
         {
-            anim.SetBool("Attack", true);
-            if (shootTimer >= shootRate)
+            if (FOV < 130) 
             {
-                shoot();
+                anim.SetBool("Attack", true);
+                if (shootTimer >= shootRate)
+                {
+                    shoot();
+                }
             }
         }
     }
@@ -207,8 +210,7 @@ public class enemyAI : MonoBehaviour, IDamage
     void shoot()
     {
         shootTimer = 0;
-        anim.SetTrigger("Attack");
-        createBullet();
+        //anim.SetTrigger("Attack");
     }
 
     void createBullet()
