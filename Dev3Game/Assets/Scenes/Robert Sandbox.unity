@@ -5078,7 +5078,7 @@ Transform:
   m_GameObject: {fileID: 4105657843591098326}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0, z: -29.9}
+  m_LocalPosition: {x: 0.1, y: 0.083, z: -29.9}
   m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5363,7 +5363,7 @@ Transform:
   m_GameObject: {fileID: 2581870663793434378}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5000002, y: -0.49999994, z: -0.5, w: -0.49999988}
-  m_LocalPosition: {x: 0.146, y: 0.915, z: 0}
+  m_LocalPosition: {x: 0.18, y: 0.915, z: -0.518}
   m_LocalScale: {x: 1.6666662, y: 1, z: 1.2499996}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6144,7 +6144,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &8666098926574725947
 NavMeshAgent:
@@ -6433,6 +6433,7 @@ SceneRoots:
   - {fileID: 1960071280577302603}
   - {fileID: 372626152}
   - {fileID: 6839851488661219388}
+  - {fileID: 3508741809220336597}
   - {fileID: 3481519690013784169}
   - {fileID: 1568377807}
   - {fileID: 878591374}
@@ -6443,4 +6444,3 @@ SceneRoots:
   - {fileID: 8496943286920170321}
   - {fileID: 6448839285287132225}
   - {fileID: 6636722578134735591}
-  - {fileID: 3508741809220336597}
