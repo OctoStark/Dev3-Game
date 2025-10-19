@@ -10,6 +10,6 @@ public class WeaponStats : ScriptableObject
     [Range(1, 100)] public int hitRange;
 
     public ParticleSystem hitEffect;
-    public AudioClip[] hitSound;
-    [Range(0, 1)] public float hitSoundVol;
+    public AnimationClip attackAnimation;
+    public AnimationClip idleAnimation;
 }

@@ -228,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PressurePlate
   origColor: {r: 0.5176471, g: 0.5254902, b: 0.5372549, a: 0}
   audioManager: {fileID: 0}
+  wallControl: {fileID: 0}
 --- !u!65 &9126951847578613892
 BoxCollider:
   m_ObjectHideFlags: 0

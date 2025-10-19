@@ -44,4 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52bd1edfd878754cb966b47255c25db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwitchManager
-  switchOrder: []
+  switchOrder:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  wallControl: {fileID: 0}

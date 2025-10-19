@@ -10,16 +10,30 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource SFXSource;
     [SerializeField] AudioSource gameSFXSource;
 
+    [Header("Player Audio")]
+    public AudioClip pickupSFX;
+    [SerializeField] AudioClip[] audStep;
+    [SerializeField] AudioClip[] audJump;
+    [SerializeField] AudioClip[] audHurt;
+
     [Header("Audio Clip")]
-    public AudioClip backgroundMenu;
-    public AudioClip backgroundGame;
+    [SerializeField] AudioClip[] axeHit;
+    [SerializeField] AudioClip[] spearHit;
     public AudioClip buttonSwitch;
     public AudioClip WallMove;
-    public AudioClip DoorOpen;
+    public AudioClip hitWall;
+    public AudioClip breakWall;
     public AudioClip shrinkSound;
     public AudioClip HitSound;
+    public AudioClip switchWeapon;
     public AudioClip pressureOn;
     public AudioClip correctItem;
+    public AudioClip incorrectItem;
+    public AudioClip breakCrate;
+    public AudioClip healthDrink;
+    public AudioClip objectMove;
+    public AudioClip backgroundMenu;
+    public AudioClip backgroundGame;
 
     private void Start()
     {
