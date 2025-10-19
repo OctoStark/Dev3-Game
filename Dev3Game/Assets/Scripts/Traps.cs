@@ -11,6 +11,10 @@ public class Traps : MonoBehaviour
     [SerializeField] int waitTime;
     [SerializeField] int trapDuration;
 
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audAtk;
+    [Range(0, 1)][SerializeField] float audAtkVol;
+
     float dartTimer;
     float spikeTimer;
     float shootTimer;
