@@ -153,7 +153,7 @@ Transform:
   m_GameObject: {fileID: 407426286311094913}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 1.03, z: 0.6}
   m_LocalScale: {x: 0.66666675, y: 0.66666675, z: 0.66666675}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -962,7 +962,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5315548924113626356, guid: 36c6491c3860d6d4094dbe3b227b92d8, type: 3}
+  - {fileID: 2100000, guid: 07ead072ccdbff9459503ca03f248b16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1399,8 +1399,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3964630649076184026}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.4999998, y: -0.50000036, z: 0.49999937, w: 0.5000005}
-  m_LocalPosition: {x: 0.0077024, y: 0.079599485, z: 0.02820826}
+  m_LocalRotation: {x: 0, y: -0.7933534, z: 0, w: 0.6087614}
+  m_LocalPosition: {x: 0.0124, y: 0.107, z: 0.0102}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1408,7 +1408,7 @@ Transform:
   - {fileID: 8622756680839450564}
   - {fileID: 3953225215160432019}
   m_Father: {fileID: 7359082039010122372}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -105, z: 0}
 --- !u!1 &4059341323104835752
 GameObject:
   m_ObjectHideFlags: 0
@@ -2705,12 +2705,13 @@ MonoBehaviour:
   shootPos: {fileID: 1374120480869691166}
   bullet: {fileID: 2571088204562171300, guid: 08fccb916459a5c4b8dc537f2fdf5d0a, type: 3}
   groundSlam: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
-  slamPos: {fileID: 6355217303205065228}
-  HP: 4000
+  slamPos: {fileID: 5691058970187068005}
+  HP: 40
   faceTargetSpeed: 8
+  atkRate: 1
   shootRate: 15
   slamRate: 100
-  animTransSpeed: 1
+  animTransSpeed: 20
   itemDrop: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
   isBoss: 1
   defenseMode: 0
@@ -2727,7 +2728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bossSpawner
   objectToSpawn: {fileID: 8108439221214088519, guid: 352273423d54d6e46a966c4d8e0e42d3, type: 3}
-  spawnRate: 8
+  spawnRate: 40
   tankDur: 0
   spawnPos:
   - {fileID: 4117309106127110341}
@@ -2747,7 +2748,7 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 500
-  m_StoppingDistance: 5
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -2764,9 +2765,9 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7156196929992852995}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
+  m_Avatar: {fileID: 9000000, guid: 36c6491c3860d6d4094dbe3b227b92d8, type: 3}
+  m_Controller: {fileID: 9100000, guid: 54e29055bc03b664baf6e4fa1c212b83, type: 2}
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -3007,7 +3008,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4575084898755129488, guid: 36c6491c3860d6d4094dbe3b227b92d8, type: 3}
+  - {fileID: 2100000, guid: 800bafeba9787024294ade1bccdbf611, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

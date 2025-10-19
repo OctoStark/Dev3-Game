@@ -89,14 +89,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44703394565669799}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.039786387, y: -0.47925338, z: -0.07615072, w: 0.8734611}
-  m_LocalPosition: {x: 0.5310524, y: -0.10254133, z: 0.39291906}
+  m_LocalRotation: {x: -0.13466492, y: -0.62177044, z: 0.01261958, w: 0.7714322}
+  m_LocalPosition: {x: 0.16, y: 0.253, z: 1.288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3288043828251776978}
+  - {fileID: 1598987126389562156}
   m_Father: {fileID: 4754435015400008048}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -11.074, y: -78.805, z: 10.981}
 --- !u!1 &52970525252703608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2980,8 +2981,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 2.022434, z: 0}
   m_LocalScale: {x: 89.319, y: 89.319, z: 89.319}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1598987126389562156}
+  m_Children: []
   m_Father: {fileID: 6129154145375085797}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &4839987007310414449
@@ -4589,12 +4589,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4084595284061218347}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01128, y: 0.016, z: -0.00101}
-  m_LocalScale: {x: 0.011195826, y: 0.011195826, z: 0.011195826}
+  m_LocalRotation: {x: -0.007965491, y: 0.007932958, z: -0.70559883, w: 0.7085225}
+  m_LocalPosition: {x: 0.80042183, y: -0.009862315, z: 0.034356236}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5159401190009119441}
+  m_Father: {fileID: 738627682753862810}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1665642739879257289
 MonoBehaviour:
@@ -6662,6 +6662,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1490858456716300873}
   - component: {fileID: 3146551837915009784}
+  - component: {fileID: 7637056740822479314}
   - component: {fileID: 2763149175424861969}
   - component: {fileID: 8910944706095731808}
   - component: {fileID: 1777807446118031928}
@@ -6682,7 +6683,7 @@ Transform:
   m_GameObject: {fileID: 5183574275560540750}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 47.1, y: 0, z: -9}
+  m_LocalPosition: {x: 4.0485, y: 0, z: -3.26615}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6712,16 +6713,36 @@ MonoBehaviour:
   headPos: {fileID: 5734178531545779969}
   shootPos: {fileID: 4754435015400008048}
   bullet: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
-  groundSlam: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
-  slamPos: {fileID: 2688945372797663196}
+  groundSlam: {fileID: 889045235887407039, guid: 6bcb10f536ae1774b9ec7a425d4281b2, type: 3}
+  slamPos: {fileID: 4247375066656281483}
   HP: 60
   faceTargetSpeed: 8
-  shootRate: 100
-  slamRate: 100
-  animTransSpeed: 1
-  itemDrop: {fileID: 3923213132402071363, guid: e1248805ceabee846a503446a0df6c1d, type: 3}
-  isBoss: 0
+  atkRate: 0
+  shootRate: 5
+  slamRate: 15
+  animTransSpeed: 20
+  itemDrop: {fileID: 1775027029693330865, guid: ac916db4885e80147b004e0fb73f3172, type: 3}
+  isBoss: 1
   defenseMode: 0
+--- !u!114 &7637056740822479314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5183574275560540750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88814ff5ef21b334997872e058d27af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::bossSpawner
+  objectToSpawn: {fileID: 8108439221214088519, guid: 352273423d54d6e46a966c4d8e0e42d3, type: 3}
+  spawnRate: 40
+  tankDur: 8
+  spawnPos:
+  - {fileID: 3371771731578003307}
+  tankMode: 1
+  boss: {fileID: 3146551837915009784}
 --- !u!95 &2763149175424861969
 Animator:
   serializedVersion: 7
@@ -6730,7 +6751,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5183574275560540750}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 59d8c5f86dbd9704eade5d73d173f6e7, type: 3}
   m_Controller: {fileID: 9100000, guid: c5995fa7e30a30142afefddb74bbd953, type: 2}
   m_CullingMode: 1
@@ -6763,7 +6784,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 6
+  m_Radius: 3.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &1777807446118031928
 NavMeshAgent:
@@ -6775,13 +6796,13 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 3.5
+  m_Speed: 8
   m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 5
+  m_AngularSpeed: 500
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
