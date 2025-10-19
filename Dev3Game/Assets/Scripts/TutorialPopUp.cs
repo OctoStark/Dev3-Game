@@ -7,11 +7,15 @@ public class TutorialPopUp : MonoBehaviour
     public static TutorialPopUp instance;
 
     [SerializeField] CanvasGroup canvasGroup;
-    [SerializeField] TextMeshProUGUI tutorialText;
+    [SerializeField] TMP_Text tutorialText;
     [SerializeField] float fadeDuration = 0.5f;
+    [SerializeField] private buttonFunctions continueButton;
+    [SerializeField] private bool pauseGameOnPopup = true;
 
     public GameObject tutorialPanel;
     private Coroutine fadeRoutine;
+    private bool isShowing;
+
     void Awake()
     {
         if (instance == null)
@@ -20,45 +24,77 @@ public class TutorialPopUp : MonoBehaviour
             Destroy(gameObject);
 
         canvasGroup.alpha = 0;
-        gameObject.SetActive(false);
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+
+        if (continueButton != null)
+        {
+
+        }
     }
 
-    private void Start()
+    public void ShowPopup(string txt)
     {
-        tutorialPanel.SetActive(true);
-    }
+        if (isShowing) return;
+        isShowing = true;
 
-    // Update is called once per frame
-    public void ShowMessage(string message, float duration = 3f)
-    {
-        if(fadeRoutine != null)
-            StopCoroutine(fadeRoutine);
-
-        tutorialText.text = message;
+        tutorialText.text = txt;
         gameObject.SetActive(true);
-        fadeRoutine = StartCoroutine(ShowAndHide(duration));
+        StartCoroutine(FadeIn());
+
+        if (pauseGameOnPopup)
+        {
+            Time.timeScale = 0f;
+        }
     }
 
-    private IEnumerator ShowAndHide(float duration)
+    public void HidePopup()
     {
-        yield return FadeCanvas(1f);
-
-        yield return new WaitForSeconds(duration);
-
-        yield return FadeCanvas(0f);
-        gameObject.SetActive(false);
+        if (!isShowing)
+        {
+            return;
+        }
+        StartCoroutine(FadeIn());
     }
 
-    private IEnumerator FadeCanvas(float targetAlpha)
+    private IEnumerator FadeIn()
     {
-        float startAlpha = canvasGroup.alpha;
-        float time = 0f;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
 
-        while (time < fadeDuration) {
-            canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, time / fadeDuration);
-            time += Time.deltaTime;
+        float elapsed = 0f;
+        while (elapsed < fadeDuration)
+        {
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsed / fadeDuration);
+            elapsed += Time.deltaTime;
             yield return null;
         }
-        canvasGroup.alpha = targetAlpha;
+        canvasGroup.alpha = 1f;
+    }
+
+    private IEnumerator FadeOut()
+    {
+        float elapsed = 0f;
+        while (elapsed < fadeDuration)
+        {
+            canvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        canvasGroup.alpha = 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        isShowing = false;
+        gameObject.SetActive(false);
+
+        if (pauseGameOnPopup)
+        {
+            Time.timeScale = 1f;
+        }
     }
 }
+
+
+
+   
