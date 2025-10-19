@@ -1,15 +1,17 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ManualSwitch : MonoBehaviour
 {
     public GameObject switchModel;
+    public GameObject promptUI;
     public bool hitSwitch;
     private bool playerNearby;
 
     public AudioManager audioManager;
     private Animator switchAnim;
     public SwitchManager switchManager;
+
 
     private void Start()
     {
@@ -22,7 +24,6 @@ public class ManualSwitch : MonoBehaviour
         {
             if (!hitSwitch)
             {
-                //ToggleSwitch();
                 switchManager.SequenceSwitch(this);
             }
             else
@@ -30,6 +31,8 @@ public class ManualSwitch : MonoBehaviour
                 switchManager.ResetSequence();
             }
 
+            if (promptUI)
+                promptUI.SetActive(false);
 
         }
     }
@@ -57,7 +60,6 @@ public class ManualSwitch : MonoBehaviour
 
     public void ActivateSwitch()
     {
-        //if (hitSwitch) return; // Prevent double activation
 
         hitSwitch = true;
 
@@ -71,7 +73,6 @@ public class ManualSwitch : MonoBehaviour
             audioManager.PlaySFX(audioManager.buttonSwitch);
         }
 
-        Debug.Log($"{gameObject.name} activated.");
     }
 
     public void ResetSwitch()
@@ -82,8 +83,6 @@ public class ManualSwitch : MonoBehaviour
         {
             switchAnim.SetTrigger("TurnOff");
         }
-
-        Debug.Log($"{gameObject.name} reset.");
     }
 
 
@@ -92,6 +91,8 @@ public class ManualSwitch : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNearby = true;
+            if (promptUI)
+                promptUI.SetActive(true);
         }
     }
 
@@ -100,6 +101,9 @@ public class ManualSwitch : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNearby = false;
+            if (promptUI)
+                promptUI.SetActive(false);
+
         }
     }
 

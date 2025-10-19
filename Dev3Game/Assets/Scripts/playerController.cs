@@ -9,7 +9,9 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] CharacterController controller;
     [SerializeField] Transform cameraHolder;
     [SerializeField] Animator anim;
+    [SerializeField] Animator weaponAnim;
     public AudioManager audioManager;
+    [SerializeField] RuntimeAnimatorController baseController;
 
 
     [SerializeField] int speed;
@@ -95,6 +97,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     void Start()
     {
         anim = GetComponent<Animator>();
+        weaponAnim = transform.Find("Weapon Model").GetComponent<Animator>();
 
         HPOrig = HP;
         originalScale = transform.localScale;
@@ -191,16 +194,18 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     }
     void setanimLocomotion()
     {
+        if (anim == null || anim.runtimeAnimatorController == null)
+        {
+            Debug.LogWarning("Animator or AnimatorController is missing.");
+            return;
+        }
+
         float directionalSpeed = Vector3.Dot(transform.forward, moveDir.normalized) * moveDir.magnitude;
         float agentSpeedCur = directionalSpeed * (isSprinting ? 2f : 1f);
         float animSpeedCur = anim.GetFloat("Speed");
 
         float smoothedSpeed = Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed);
         anim.SetFloat("Speed", smoothedSpeed);
-
-
-
-
 
 
     }
@@ -231,6 +236,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
 
         Debug.Log("Player attacked");
+        weaponAnim.SetTrigger("Hit");
         string weaponName = weaponList[weaponListPos].weaponModel.name.ToLower();
 
         if (weaponName.Contains("doubleaxe") && audioManager.axeHit.Length > 0)
@@ -249,6 +255,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
         foreach (Collider hit in hits)
         {
+            Instantiate(weaponList[weaponListPos].hitEffect, hit.transform.position, Quaternion.identity);
             IDamage Dmg = hit.GetComponent<IDamage>();
             if (Dmg != null)
             {
@@ -421,6 +428,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponList[weaponListPos].weaponModel.GetComponent<MeshFilter>().sharedMesh;
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponList[weaponListPos].weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        if (weaponList[weaponListPos].animOverrideControl != null)
+        {
+            anim.runtimeAnimatorController = weaponList[weaponListPos].animOverrideControl;
+        }
+        else
+        {
+            anim.runtimeAnimatorController = baseController;
+            Debug.LogWarning($"Weapon '{weaponList[weaponListPos].weaponModel.name}' has no Animator Override Controller! Using base.");
+        }
+
 
         updatePlayerUI();
     }

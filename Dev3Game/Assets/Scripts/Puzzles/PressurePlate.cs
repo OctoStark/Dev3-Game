@@ -25,7 +25,6 @@ public class PressurePlate : MonoBehaviour
         if (other.CompareTag("Moving Object") || other.CompareTag("Player"))
         {
             float distance = Vector3.Distance(transform.position, other.transform.position);
-            Debug.Log("Distance: " + distance);
 
             if (distance > 0.05f)
             {

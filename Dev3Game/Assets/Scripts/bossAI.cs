@@ -26,6 +26,20 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] GameObject itemDrop;
     [SerializeField] bool isBoss;
 
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audStep;
+    [Range(0, 1)][SerializeField] float audStepVol;
+    [SerializeField] AudioClip[] audAtk;
+    [Range(0, 1)][SerializeField] float audAtkVol;
+    [SerializeField] AudioClip[] audSlam;
+    [Range(0, 1)][SerializeField] float audSlamVol;
+    [SerializeField] AudioClip[] audShoot;
+    [Range(0, 1)][SerializeField] float audShootVol;
+    [SerializeField] AudioClip[] audHurt;
+    [Range(0, 1)][SerializeField] float audHurtVol;
+    [SerializeField] AudioClip[] audDeath;
+    [Range(0, 1)][SerializeField] float audDeathVol;
+
     //Color colorOrig;
 
     GameObject slamObject;
@@ -38,6 +52,7 @@ public class bossAI : MonoBehaviour, IDamage
     float angleToPlayer;
     float stoppingDistOrig;
     public bool defenseMode;
+    bool isPlayingStep;
 
     Vector3 startingPos;
     Vector3 playerDir;
@@ -64,7 +79,7 @@ public class bossAI : MonoBehaviour, IDamage
         {
             slam();
         }
-        else if (playerInTrigger && !defenseMode)
+        if (playerInTrigger && !defenseMode)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
@@ -76,15 +91,19 @@ public class bossAI : MonoBehaviour, IDamage
                 attack();
             }
         }
-        else if (!playerInTrigger && shootTimer >= shootRate && !defenseMode)
+        if (!playerInTrigger && shootTimer >= shootRate && !defenseMode)
         {
             shoot();
         }
-        else if (!playerInTrigger && !defenseMode)
+        if (!playerInTrigger && !defenseMode)
         {
             agent.SetDestination(gameManager.instance.player.transform.position);
+            if (!isPlayingStep)
+            {
+                StartCoroutine(playStep());
+            }
         }
-        else if (defenseMode)
+        if (defenseMode)
         {
             agent.SetDestination(transform.position);
         }
@@ -121,6 +140,8 @@ public class bossAI : MonoBehaviour, IDamage
     void attack()
     {
         atkTimer = 0;
+        agent.SetDestination(transform.position);
+        aud.PlayOneShot(audAtk[Random.Range(0, audAtk.Length)], audAtkVol);
         anim.SetTrigger("Attack");
     }
     void createPunch()
@@ -132,6 +153,8 @@ public class bossAI : MonoBehaviour, IDamage
     void slam()
     {
         slamTimer = 0;
+        agent.SetDestination(transform.position);
+        aud.PlayOneShot(audSlam[Random.Range(0, audSlam.Length)], audSlamVol);
         anim.SetTrigger("Slam");
     }
     void createSlam()
@@ -142,6 +165,8 @@ public class bossAI : MonoBehaviour, IDamage
     void shoot()
     {
         shootTimer = 0;
+        agent.SetDestination(transform.position);
+        aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)], audShootVol);
         anim.SetTrigger("Shoot");
     }
 
@@ -161,32 +186,50 @@ public class bossAI : MonoBehaviour, IDamage
             {
                 HP -= amount;
                 //StartCoroutine(flashRed());
+                aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
                 agent.SetDestination(gameManager.instance.player.transform.position);
-                //faceTarget();
+                anim.SetBool("TakeDamage", true);
             }
 
             if (HP <= 0)
             {
-                //gameManager.instance.updateGameGoal(-1);
-                Destroy(gameObject);
-                Instantiate(itemDrop, transform.position, transform.rotation);
+                aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
+                agent.SetDestination(transform.position);
+                anim.SetBool("Death", true);                
                 if (isBoss)
                 {
-                    //gameManager.instance.youWin();
+                    //open a door to next level or win trigger
                 }
             }
         }
+    }
+    void hit()
+    {
+        anim.SetBool("TakeDamage", false);
+    }
+
+    void dead()
+    {
+        Destroy(gameObject);
+        Instantiate(itemDrop, transform.position, transform.rotation);
     }
     IEnumerator AtkWait()
     {
         yield return new WaitForSeconds(1);
     }
-    IEnumerator flashRed()
+    IEnumerator playStep()
     {
-        //model.material.color = Color.red;
-        yield return new WaitForSeconds(1);
-        //model.material.color = colorOrig;
+        isPlayingStep = true;
+        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
+        yield return new WaitForSeconds(.5f);
+        isPlayingStep = false;
     }
+    //IEnumerator flashRed()
+    //{
+    //    model.material.color = Color.red;
+    //    yield return new WaitForSeconds(1);
+    //    model.material.color = colorOrig;
+    //}
 
 
 }

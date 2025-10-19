@@ -22,6 +22,17 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] int animTransSpeed;
 
+
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audStep;
+    [Range(0, 1)][SerializeField] float audStepVol;
+    [SerializeField] AudioClip[] audAtk;
+    [Range(0, 1)][SerializeField] float audAtkVol;
+    [SerializeField] AudioClip[] audHurt;
+    [Range(0, 1)][SerializeField] float audHurtVol;
+    [SerializeField] AudioClip[] audDeath;
+    [Range(0, 1)][SerializeField] float audDeathVol;
+
     public enemyTrigger fleeTrigger;
     public enemyTrigger sightTrigger;
     public enemyTrigger atkTrigger;
@@ -35,6 +46,7 @@ public class enemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     float stoppingDistOrig;
     int FOVOrig;
+    bool isPlayingStep;
 
     Vector3 startingPos;
     Vector3 playerDir;
@@ -110,6 +122,10 @@ public class enemyAI : MonoBehaviour, IDamage
         NavMeshHit hit;
         NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
         agent.SetDestination(hit.position);
+        if (!isPlayingStep)
+        {
+            StartCoroutine(playStep());
+        }
     }
 
     bool canSeePlayer()
@@ -123,6 +139,10 @@ public class enemyAI : MonoBehaviour, IDamage
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
+                if (!isPlayingStep)
+                {
+                    StartCoroutine(playStep());
+                }
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
@@ -133,6 +153,7 @@ public class enemyAI : MonoBehaviour, IDamage
                     anim.SetBool("Attack", true);
                     if (shootTimer >= shootRate)
                     {
+                        aud.PlayOneShot(audAtk[Random.Range(0, audAtk.Length)], audAtkVol);
                         shoot();
                     }
                 }
@@ -201,6 +222,10 @@ public class enemyAI : MonoBehaviour, IDamage
             //faceTarget();
             FOV = FOVOrig;
             agent.SetDestination(gameManager.instance.player.transform.position);
+            if (!isPlayingStep)
+            {
+                StartCoroutine(playStep());
+            }
         }
     }
 
@@ -213,7 +238,10 @@ public class enemyAI : MonoBehaviour, IDamage
             FOV = 180;
             flee = transform.position - gameManager.instance.player.transform.position;
             agent.SetDestination(flee.normalized * 120);
-
+            if (!isPlayingStep)
+            {
+                StartCoroutine(playStep());
+            }
         }
 
     }
@@ -233,14 +261,38 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             HP -= amount;
             //StartCoroutine(flashRed());
+            aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+            anim.SetBool("TakeDamage", true);
             agent.SetDestination(gameManager.instance.player.transform.position);
+            if (!isPlayingStep)
+            {
+                StartCoroutine(playStep());
+            }
         }
 
         if (HP <= 0)
         {
+            aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
+            agent.SetDestination(transform.position);
+            anim.SetBool("Death", true);
+         }
+    }
+    void hit()
+    {
+        anim.SetBool("TakeDamage", false);
+    }
+    void dead()
+    {
             Destroy(gameObject);
             Instantiate(itemDrop, transform.position, transform.rotation);
-        }
+
+    }
+    IEnumerator playStep()
+    {
+        isPlayingStep = true;
+        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
+        yield return new WaitForSeconds(.5f);
+        isPlayingStep = false;
     }
     //IEnumerator flashRed()
     //{
