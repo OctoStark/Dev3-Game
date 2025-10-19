@@ -49,6 +49,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] AudioClip[] audHurt;
     [Range(0, 1)][SerializeField] float audHurtVol;
 
+    [SerializeField] private TutorialPopUp tutPop;
+
     Vector3 moveDir;
     Vector3 playerVel;
     PickupType type;
@@ -78,7 +80,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     private bool isShrunk = false;
     public bool isBlocking = false;
     private bool hasPlayedPush = false;
-
+    private bool shownSprintTip;
     private float _pushPower = 2.0f;
    
 
@@ -153,6 +155,11 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         movement();
             Rage();
         }
+        if(Input.GetButtonDown("Sprint") && !shownSprintTip)
+        {
+            shownSprintTip = true;
+            tutPop.ShowPopup("Hold Shift to Sprint");
+        }
         sprint();
         
     }
@@ -197,12 +204,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
         float smoothedSpeed = Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed);
         anim.SetFloat("Speed", smoothedSpeed);
-
-
-
-
-
-
     }
     void jump()
     {
