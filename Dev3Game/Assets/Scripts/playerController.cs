@@ -191,12 +191,14 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     }
     void setanimLocomotion()
     {
-        // Use input direction magnitude for smoother animation
-        float agentSpeedCur = moveDir.magnitude * (isSprinting ? 2f : 1f); // Scale to match blend tree thresholds
+        float directionalSpeed = Vector3.Dot(transform.forward, moveDir.normalized) * moveDir.magnitude;
+        float agentSpeedCur = directionalSpeed * (isSprinting ? 2f : 1f);
         float animSpeedCur = anim.GetFloat("Speed");
 
         float smoothedSpeed = Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed);
         anim.SetFloat("Speed", smoothedSpeed);
+
+
 
 
 
