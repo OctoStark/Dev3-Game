@@ -17,8 +17,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip[] audHurt;
 
     [Header("Audio Clip")]
-    [SerializeField] AudioClip[] axeHit;
-    [SerializeField] AudioClip[] spearHit;
+    public AudioClip[] axeHit;
+    public AudioClip[] spearHit;
     public AudioClip buttonSwitch;
     public AudioClip WallMove;
     public AudioClip hitWall;
