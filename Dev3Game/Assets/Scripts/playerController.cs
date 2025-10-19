@@ -9,6 +9,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] CharacterController controller;
     [SerializeField] Transform cameraHolder;
     [SerializeField] Animator anim;
+    public AudioManager audioManager;
+
 
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
@@ -75,6 +77,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     bool heraDebuffActive = false;
     private bool isShrunk = false;
     public bool isBlocking = false;
+    private bool hasPlayedPush = false;
 
     private float _pushPower = 2.0f;
    
@@ -188,12 +191,14 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     }
     void setanimLocomotion()
     {
-        // Use input direction magnitude for smoother animation
-        float agentSpeedCur = moveDir.magnitude * (isSprinting ? 2f : 1f); // Scale to match blend tree thresholds
+        float directionalSpeed = Vector3.Dot(transform.forward, moveDir.normalized) * moveDir.magnitude;
+        float agentSpeedCur = directionalSpeed * (isSprinting ? 2f : 1f);
         float animSpeedCur = anim.GetFloat("Speed");
 
         float smoothedSpeed = Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed);
         anim.SetFloat("Speed", smoothedSpeed);
+
+
 
 
 
@@ -226,8 +231,20 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
 
         Debug.Log("Player attacked");
+        string weaponName = weaponList[weaponListPos].weaponModel.name.ToLower();
 
-        Vector3 attackOrigin = transform.position + transform.forward;
+        if (weaponName.Contains("doubleaxe") && audioManager.axeHit.Length > 0)
+        {
+            AudioClip clip = audioManager.axeHit[Random.Range(0, audioManager.axeHit.Length)];
+            audioManager.PlaySFX(clip);
+        }
+        else if (weaponName.Contains("spear") && audioManager.spearHit.Length > 0)
+        {
+            AudioClip clip = audioManager.spearHit[Random.Range(0, audioManager.spearHit.Length)];
+            audioManager.PlaySFX(clip);
+        }
+
+            Vector3 attackOrigin = transform.position + transform.forward;
         Collider[] hits = Physics.OverlapSphere(attackOrigin, attackRange, enemyLayer);
 
         foreach (Collider hit in hits)
@@ -246,13 +263,14 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     void StartBlocking()
     {
         isBlocking = true;
-       
+        anim.SetBool("Block", true);
+
     }
 
     void StopBlocking()
     {
         isBlocking = false;
-        
+        anim.SetBool("Block", false);
     }
 
 
@@ -439,6 +457,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     public void AddHealth(int healthAmount)
     {
+        if (audioManager != null && audioManager.healthDrink != null)
+        {
+            audioManager.PlaySFX(audioManager.healthDrink);
+        }
         HP += healthAmount;
         if (HP > HPOrig)
         {
@@ -591,10 +613,21 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             if (box != null)
             {
                 Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-                box.isKinematic = false;
+                //box.isKinematic = false;
                 box.linearVelocity = pushDirection * _pushPower;
+                if (!hasPlayedPush && audioManager != null && audioManager.objectMove != null)
+                {
+                    audioManager.PlaySFX(audioManager.objectMove);
+                    hasPlayedPush = true;
+                    Invoke(nameof(ResetPushSound), 1f);
+                }
             }
         }
+    }
+
+    private void ResetPushSound()
+    {
+        hasPlayedPush = false;
     }
 
     public void ApplyShrinkCurse()
@@ -603,6 +636,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         {
             transform.localScale = shrinkScale;
             isShrunk = true;
+            if (audioManager != null && audioManager.shrinkSound != null)
+            {
+                audioManager.PlaySFX(audioManager.shrinkSound);
+            }
             StartCoroutine(RemoveShrinkCurseAfterDelay());
         }
     }

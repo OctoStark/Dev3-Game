@@ -6,6 +6,7 @@ public class DestroyObject : MonoBehaviour, IDamage
     [SerializeField] Animator anim;
     public AudioManager audioManager;
 
+    [SerializeField] private AudioClip destroySound;
     [SerializeField] int HP;
     [SerializeField] GameObject itemDrop;
 
@@ -14,12 +15,16 @@ public class DestroyObject : MonoBehaviour, IDamage
         if (HP > 0)
         {
             HP -= amount;
-            //audioManager.PlaySFX(audioManager.buttonSwitch);
 
         }
 
         if (HP <= 0)
         {
+            if (audioManager != null && destroySound != null)
+            {
+                audioManager.PlaySFX(destroySound);
+            }
+
             Destroy(transform.parent.gameObject);
             Instantiate(itemDrop, transform.parent.position, transform.parent.rotation);
         }
