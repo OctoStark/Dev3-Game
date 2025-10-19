@@ -12,4 +12,9 @@ public class WeaponStats : ScriptableObject
     public ParticleSystem hitEffect;
     public AnimationClip attackAnimation;
     public AnimationClip idleAnimation;
+
+    public AnimationClip GetAttackAnimation()
+    {
+        return attackAnimation;
+    }
 }
