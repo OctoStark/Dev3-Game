@@ -24,7 +24,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip hitWall;
     public AudioClip breakWall;
     public AudioClip shrinkSound;
-    public AudioClip HitSound;
     public AudioClip switchWeapon;
     public AudioClip pressureOn;
     public AudioClip correctItem;

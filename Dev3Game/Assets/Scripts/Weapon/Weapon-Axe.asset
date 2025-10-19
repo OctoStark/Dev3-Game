@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponModel: {fileID: 7662201677264800431, guid: 7c7914412c682494dab87f3b00b75fa4, type: 3}
   AttackDamage: 10
   AttackRate: 0.5
-  hitRange: 10
+  hitRange: 1
   hitEffect: {fileID: 0}
-  hitSound: []
-  hitSoundVol: 0.5
+  attackAnimation: {fileID: 0}
+  idleAnimation: {fileID: 0}

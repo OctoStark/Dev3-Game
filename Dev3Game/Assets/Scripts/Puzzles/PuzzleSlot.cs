@@ -20,6 +20,8 @@ public class PuzzleSlot : MonoBehaviour
                 SlotManager.instance.SetHeldItem(requiredItem);
                 isIn = false;
                 Debug.Log("Item taken back.");
+                audioManager.PlaySFX(audioManager.incorrectItem);
+                gemKey.SetActive(false);
 
                 if (wallControl != null)
                 {
@@ -44,6 +46,7 @@ public class PuzzleSlot : MonoBehaviour
             else if (!isIn)
             {
                 Debug.Log("Wrong item.");
+                audioManager.PlaySFX(audioManager.incorrectItem);
             }
         }
     }
