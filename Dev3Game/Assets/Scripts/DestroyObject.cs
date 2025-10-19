@@ -20,7 +20,7 @@ public class DestroyObject : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
             Instantiate(itemDrop, transform.parent.position, transform.parent.rotation);
         }
     }

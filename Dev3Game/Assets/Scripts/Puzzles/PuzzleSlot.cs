@@ -8,6 +8,8 @@ public class PuzzleSlot : MonoBehaviour
     public AudioManager audioManager;
     public Wall wallControl;
 
+    public GameObject gemKey;
+
     void Update()
     {
         if (playerNearby && Input.GetButtonDown("Interact"))
@@ -33,7 +35,7 @@ public class PuzzleSlot : MonoBehaviour
                 SlotManager.instance.ClearHeldItem();
                 Debug.Log("Correct item placed!");
                 audioManager.PlaySFX(audioManager.correctItem);
-
+                gemKey.SetActive(true);
                 if (wallControl != null)
                 {
                     wallControl.OpenWall();
