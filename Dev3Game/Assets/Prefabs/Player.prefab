@@ -125,12 +125,13 @@ MonoBehaviour:
   controller: {fileID: 7887087160711350386}
   cameraHolder: {fileID: 2009355802676035410}
   anim: {fileID: 978138829593784641}
+  audioManager: {fileID: 0}
   speed: 8
   sprintMod: 2
   jumpSpeed: 10
   jumpMax: 2
   gravity: 20
-  attackRange: 10
+  attackRange: 5
   weaponList: []
   weaponModel: {fileID: 2562590675014256876}
   HP: 30
@@ -144,7 +145,7 @@ MonoBehaviour:
   lookSpeed: 2
   isFreeLooking: 0
   audioSource: {fileID: 0}
-  pickupSFX: {fileID: 0}
+  pickupSFX: {fileID: 8300000, guid: 1f9d8ec2103a4c34095fe0a30569c44a, type: 3}
   audStep: []
   audStepVol: 0
   audJump: []
@@ -221,7 +222,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 63e974d9ec82619419e69ae2287be94e, type: 3}
   m_Controller: {fileID: 9100000, guid: 7a0943ace12fd08418d48d2b7adc70f2, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -3700,7 +3701,7 @@ Transform:
   m_GameObject: {fileID: 6924228347711557127}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3694375, y: -0.213483, z: 0.039959073, w: 0.9035177}
-  m_LocalPosition: {x: -0.704, y: 1.339, z: 0.039}
+  m_LocalPosition: {x: -0.734, y: 1.432, z: 0.123}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

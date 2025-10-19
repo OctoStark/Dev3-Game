@@ -105,6 +105,7 @@ MonoBehaviour:
   destObject: {fileID: 2649781959709590827}
   anim: {fileID: 1224790996958555891}
   audioManager: {fileID: 0}
+  destroySound: {fileID: 8300000, guid: a09bc5fe5fd8f4e48bbf3e87cc466dfb, type: 3}
   HP: 20
   itemDrop: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
 --- !u!65 &831412597043619638

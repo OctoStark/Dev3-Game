@@ -72,7 +72,7 @@ MonoBehaviour:
   pressureOn: {fileID: 8300000, guid: 7bcb61cb542f0894389746e19c9f677d, type: 3}
   correctItem: {fileID: 8300000, guid: 370d1ed98a65329458c022cfe09520f1, type: 3}
   incorrectItem: {fileID: 8300000, guid: d9dc6c99cc3579143981e364af0782c5, type: 3}
-  breakCrate: {fileID: 8300000, guid: 5f901a81df21a38418ca478c59391353, type: 3}
+  breakCrate: {fileID: 0}
   healthDrink: {fileID: 8300000, guid: a7babd9c11f8687429a77875034e92e3, type: 3}
   objectMove: {fileID: 8300000, guid: bceb6bf8ea4244c4c9e2f7410515680d, type: 3}
   backgroundMenu: {fileID: 0}
