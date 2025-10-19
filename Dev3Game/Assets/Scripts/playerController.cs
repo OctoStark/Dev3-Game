@@ -229,8 +229,20 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
 
         Debug.Log("Player attacked");
+        string weaponName = weaponList[weaponListPos].weaponModel.name.ToLower();
 
-        Vector3 attackOrigin = transform.position + transform.forward;
+        if (weaponName.Contains("doubleaxe") && audioManager.axeHit.Length > 0)
+        {
+            AudioClip clip = audioManager.axeHit[Random.Range(0, audioManager.axeHit.Length)];
+            audioManager.PlaySFX(clip);
+        }
+        else if (weaponName.Contains("spear") && audioManager.spearHit.Length > 0)
+        {
+            AudioClip clip = audioManager.spearHit[Random.Range(0, audioManager.spearHit.Length)];
+            audioManager.PlaySFX(clip);
+        }
+
+            Vector3 attackOrigin = transform.position + transform.forward;
         Collider[] hits = Physics.OverlapSphere(attackOrigin, attackRange, enemyLayer);
 
         foreach (Collider hit in hits)
