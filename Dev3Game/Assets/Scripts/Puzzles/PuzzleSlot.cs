@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PuzzleSlot : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PuzzleSlot : MonoBehaviour
     public Wall wallControl;
 
     public GameObject gemKey;
+    public GameObject promptUI;
 
     void Update()
     {
@@ -19,7 +21,6 @@ public class PuzzleSlot : MonoBehaviour
             {
                 SlotManager.instance.SetHeldItem(requiredItem);
                 isIn = false;
-                Debug.Log("Item taken back.");
                 audioManager.PlaySFX(audioManager.incorrectItem);
                 gemKey.SetActive(false);
 
@@ -27,6 +28,9 @@ public class PuzzleSlot : MonoBehaviour
                 {
                     wallControl.CloseWall();
                 }
+
+                if (promptUI)
+                    promptUI.SetActive(false);
                 return;
             }
 
@@ -35,17 +39,18 @@ public class PuzzleSlot : MonoBehaviour
             {
                 isIn = true;
                 SlotManager.instance.ClearHeldItem();
-                Debug.Log("Correct item placed!");
                 audioManager.PlaySFX(audioManager.correctItem);
                 gemKey.SetActive(true);
                 if (wallControl != null)
                 {
                     wallControl.OpenWall();
                 }
+
+                if (promptUI)
+                    promptUI.SetActive(false);
             }
             else if (!isIn)
             {
-                Debug.Log("Wrong item.");
                 audioManager.PlaySFX(audioManager.incorrectItem);
             }
         }
@@ -56,6 +61,8 @@ public class PuzzleSlot : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNearby = true;
+            if (promptUI)
+                promptUI.SetActive(true);
         }
     }
 
@@ -64,6 +71,8 @@ public class PuzzleSlot : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNearby = false;
+            if (promptUI)
+                promptUI.SetActive(false);
         }
     }
 
