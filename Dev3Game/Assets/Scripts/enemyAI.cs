@@ -31,12 +31,14 @@ public class enemyAI : MonoBehaviour, IDamage
     float shootTimer;
     float roamTimer;
     bool playerInTrigger;
+    bool attack;
     float angleToPlayer;
     float stoppingDistOrig;
     int FOVOrig;
 
     Vector3 startingPos;
     Vector3 playerDir;
+    Vector3 flee;
 
     void Awake()
     {
@@ -126,6 +128,18 @@ public class enemyAI : MonoBehaviour, IDamage
                 {
                     faceTarget();
                 }
+                if (attack)
+                {
+                    anim.SetBool("Attack", true);
+                    if (shootTimer >= shootRate)
+                    {
+                        shoot();
+                    }
+                }
+                else if (!attack)
+                {
+                    anim.SetBool("Attack", false);
+                }
                 agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
@@ -164,23 +178,16 @@ public class enemyAI : MonoBehaviour, IDamage
         //stop attack animation
         if (other.CompareTag("Player"))
         {
-            anim.SetBool("Attack", false);
+            attack = false;
         }
     }
 
     private void atkEnter(Collider other)
     {
         //attack animation
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && playerInTrigger)
         {
-            //if (FOV < 130) 
-            //{
-            anim.SetBool("Attack", true);
-            if (shootTimer >= shootRate)
-            {
-                shoot();
-            }
-            //}
+            attack = true;
         }
     }
 
@@ -189,6 +196,7 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInTrigger = true;
+            attack = true;
             agent.stoppingDistance = stoppingDistOrig;
             //faceTarget();
             FOV = FOVOrig;
@@ -201,8 +209,10 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInTrigger = false;
+            attack = false;
             FOV = 180;
-            agent.SetDestination(-gameManager.instance.player.transform.position);
+            flee = transform.position - gameManager.instance.player.transform.position;
+            agent.SetDestination(flee.normalized * 120);
 
         }
 
