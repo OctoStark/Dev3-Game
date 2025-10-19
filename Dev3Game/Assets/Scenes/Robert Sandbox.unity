@@ -792,63 +792,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52fd69545d5ce4b439b0208c7e71db69, type: 3}
---- !u!1001 &1767108506
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7179593257216380429, guid: 385ba3e3624700e4b905a64622997952, type: 3}
-      propertyPath: m_Name
-      value: Spear & Shield
-      objectReference: {fileID: 0}
-    - target: {fileID: 7803699024932200177, guid: 385ba3e3624700e4b905a64622997952, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 64.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7803699024932200177, guid: 385ba3e3624700e4b905a64622997952, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7803699024932200177, guid: 385ba3e3624700e4b905a64622997952, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -48.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7803699024932200177, guid: 385ba3e3624700e4b905a64622997952, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7803699024932200177, guid: 385ba3e3624700e4b905a64622997952, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7803699024932200177, guid: 385ba3e3624700e4b905a64622997952, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7803699024932200177, guid: 385ba3e3624700e4b905a64622997952, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7803699024932200177, guid: 385ba3e3624700e4b905a64622997952, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7803699024932200177, guid: 385ba3e3624700e4b905a64622997952, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7803699024932200177, guid: 385ba3e3624700e4b905a64622997952, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 385ba3e3624700e4b905a64622997952, type: 3}
 --- !u!1001 &1936413749910587245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1385,13 +1328,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3801883126203862794, guid: 7bcaa7a5797ea0b459661fbafb540757, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 54e29055bc03b664baf6e4fa1c212b83, type: 2}
     - target: {fileID: 7156196929992852995, guid: 7bcaa7a5797ea0b459661fbafb540757, type: 3}
       propertyPath: m_Name
       value: Theseus
       objectReference: {fileID: 0}
     - target: {fileID: 7156196929992852995, guid: 7bcaa7a5797ea0b459661fbafb540757, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1625,6 +1572,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golem
       objectReference: {fileID: 0}
+    - target: {fileID: 2443198492112360129, guid: 05417854451f71c4ca0f0b1ce570b6f5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3880824272651247613, guid: 05417854451f71c4ca0f0b1ce570b6f5, type: 3}
       propertyPath: punch
       value: 
@@ -1667,4 +1618,3 @@ SceneRoots:
   - {fileID: 7180196570840380703}
   - {fileID: 6448839285287132225}
   - {fileID: 6636722578134735591}
-  - {fileID: 1767108506}
