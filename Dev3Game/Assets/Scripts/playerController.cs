@@ -246,13 +246,14 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     void StartBlocking()
     {
         isBlocking = true;
-       
+        anim.SetBool("Block", true);
+
     }
 
     void StopBlocking()
     {
         isBlocking = false;
-        
+        anim.SetBool("Block", false);
     }
 
 
