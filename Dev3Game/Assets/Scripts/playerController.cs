@@ -9,6 +9,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] CharacterController controller;
     [SerializeField] Transform cameraHolder;
     [SerializeField] Animator anim;
+    public AudioManager audioManager;
+
 
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
@@ -75,6 +77,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     bool heraDebuffActive = false;
     private bool isShrunk = false;
     public bool isBlocking = false;
+    private bool hasPlayedPush = false;
 
     private float _pushPower = 2.0f;
    
@@ -433,6 +436,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     public void AddHealth(int healthAmount)
     {
+        if (audioManager != null && audioManager.healthDrink != null)
+        {
+            audioManager.PlaySFX(audioManager.healthDrink);
+        }
         HP += healthAmount;
         if (HP > HPOrig)
         {
@@ -584,10 +591,21 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             if (box != null)
             {
                 Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-                box.isKinematic = false;
+                //box.isKinematic = false;
                 box.linearVelocity = pushDirection * _pushPower;
+                if (!hasPlayedPush && audioManager != null && audioManager.objectMove != null)
+                {
+                    audioManager.PlaySFX(audioManager.objectMove);
+                    hasPlayedPush = true;
+                    Invoke(nameof(ResetPushSound), 1f);
+                }
             }
         }
+    }
+
+    private void ResetPushSound()
+    {
+        hasPlayedPush = false;
     }
 
     public void ApplyShrinkCurse()
@@ -596,6 +614,10 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         {
             transform.localScale = shrinkScale;
             isShrunk = true;
+            if (audioManager != null && audioManager.shrinkSound != null)
+            {
+                audioManager.PlaySFX(audioManager.shrinkSound);
+            }
             StartCoroutine(RemoveShrinkCurseAfterDelay());
         }
     }

@@ -52,15 +52,31 @@ MonoBehaviour:
   gameMusicSource: {fileID: 7035065849619107449}
   SFXSource: {fileID: 1697955171148421467}
   gameSFXSource: {fileID: 6305550916126565181}
-  backgroundMenu: {fileID: 0}
-  backgroundGame: {fileID: 0}
-  buttonSwitch: {fileID: 8300000, guid: d2a9a04b9c9de9a4f94ce4d595dff0b6, type: 3}
+  pickupSFX: {fileID: 0}
+  audStep: []
+  audJump: []
+  audHurt: []
+  axeHit:
+  - {fileID: 8300000, guid: 225e8621c5049414a82a23ff52874624, type: 3}
+  - {fileID: 8300000, guid: 61c89f759cb285c45b97dfa4b8efd44a, type: 3}
+  - {fileID: 8300000, guid: feaf78d979f3aa748877f0ba965a0ee6, type: 3}
+  spearHit:
+  - {fileID: 8300000, guid: 533617949f051954aba520071467bdfd, type: 3}
+  - {fileID: 8300000, guid: b4ded6f9ce500d84b89f599be6dc7662, type: 3}
+  buttonSwitch: {fileID: 8300000, guid: 8fcbb5afec0bff54eb248f9b121f8803, type: 3}
   WallMove: {fileID: 8300000, guid: b45b3f07ff587d74f9e1e784a9f169c6, type: 3}
-  DoorOpen: {fileID: 8300000, guid: 2ff5265dda10a3d479ea45294f0ea942, type: 3}
-  shrinkSound: {fileID: 8300000, guid: 8a68d6b2bb3a772448fb1ee10af1793a, type: 3}
-  HitSound: {fileID: 8300000, guid: 533617949f051954aba520071467bdfd, type: 3}
+  hitWall: {fileID: 0}
+  breakWall: {fileID: 0}
+  shrinkSound: {fileID: 8300000, guid: c82b4a5a5a7294e4993a49b9b3563ac3, type: 3}
+  switchWeapon: {fileID: 8300000, guid: 8a777690e08d5c542a03323cd6caab62, type: 3}
   pressureOn: {fileID: 8300000, guid: 7bcb61cb542f0894389746e19c9f677d, type: 3}
   correctItem: {fileID: 8300000, guid: 370d1ed98a65329458c022cfe09520f1, type: 3}
+  incorrectItem: {fileID: 8300000, guid: d9dc6c99cc3579143981e364af0782c5, type: 3}
+  breakCrate: {fileID: 8300000, guid: 5f901a81df21a38418ca478c59391353, type: 3}
+  healthDrink: {fileID: 8300000, guid: a7babd9c11f8687429a77875034e92e3, type: 3}
+  objectMove: {fileID: 8300000, guid: bceb6bf8ea4244c4c9e2f7410515680d, type: 3}
+  backgroundMenu: {fileID: 0}
+  backgroundGame: {fileID: 0}
 --- !u!1 &1749416576714226414
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +249,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3085864317168706371, guid: ff44cc7bf4de88b478fca7f8a32c03fa, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 1f9d8ec2103a4c34095fe0a30569c44a, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -363,7 +379,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -440814531296812940, guid: ff44cc7bf4de88b478fca7f8a32c03fa, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 86d552e23c3b2a44eb18ad5320a76020, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
