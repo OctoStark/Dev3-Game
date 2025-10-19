@@ -337,6 +337,13 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         gameManager.instance.herasCurse.SetActive(false);
     }
 
+    IEnumerator ENraged()
+    {
+        gameManager.instance.RageScreen.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        gameManager.instance.RageScreen.SetActive(false);
+    }
+
     IEnumerator flashAthenaCurse()
     {
         gameManager.instance.athenasCurse.SetActive(true);
@@ -530,6 +537,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         if(rageAdd == rageMax && Input.GetButtonDown("Rage"))
         {
             Debug.Log("Rage Dash Activated");
+            StartCoroutine(ENraged());
             StartCoroutine(RageDash());
   
         }
