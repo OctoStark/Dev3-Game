@@ -455,6 +455,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponPickup - BattleAxe
       objectReference: {fileID: 0}
+    - target: {fileID: 8149023255547380550, guid: cdfac94ab3c9b844c93af150d3471ff6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149023255547380550, guid: cdfac94ab3c9b844c93af150d3471ff6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149023255547380550, guid: cdfac94ab3c9b844c93af150d3471ff6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1455,14 +1467,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 978138829593784641, guid: 5c60642a477ff6944a7cf142096fc27d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 978138829593784641, guid: 5c60642a477ff6944a7cf142096fc27d, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: fadd2f70e06ee074a814bd708aa27df1, type: 2}
     - target: {fileID: 3106062385993293618, guid: 5c60642a477ff6944a7cf142096fc27d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 70.5

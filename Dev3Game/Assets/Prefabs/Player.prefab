@@ -142,6 +142,8 @@ MonoBehaviour:
   shrinkDuration: 5
   lookSpeed: 2
   isFreeLooking: 0
+  audioSource: {fileID: 0}
+  pickupSFX: {fileID: 0}
   audStep: []
   audStepVol: 0
   audJump: []
@@ -215,9 +217,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116897592706310855}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 63e974d9ec82619419e69ae2287be94e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 7a0943ace12fd08418d48d2b7adc70f2, type: 2}
+  m_Controller: {fileID: 9100000, guid: fadd2f70e06ee074a814bd708aa27df1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1149,7 +1151,7 @@ Transform:
   m_GameObject: {fileID: 1328238407437773485}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.36, z: 0.73}
+  m_LocalPosition: {x: -0, y: 1.971, z: -0.094}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1963,7 +1965,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.21669339, y: -0.74805886, z: -0.597432, w: 0.19112048}
   m_LocalPosition: {x: 0.529, y: 1.073, z: 0.187}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3106062385993293618}
