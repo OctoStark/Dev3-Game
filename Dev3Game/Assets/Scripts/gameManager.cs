@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 
 public class gameManager : MonoBehaviour
@@ -13,6 +14,12 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] TMP_Text gameGoulCountText;
+    public Image RagebarImage;
+    private Color flashColor = Color.white;
+    private float flashSpeed = 5f;
+
+    private Color originalColor;
+    private bool isFlashing;
 
     public Image playerHPBar;
     public Image playerRageBar;
@@ -22,6 +29,7 @@ public class gameManager : MonoBehaviour
     public GameObject herasCurse;
     public GameObject athenasCurse;
     public GameObject TutorialPopupScreen;
+    public GameObject RageScreen;
     public TMP_Text ammoCur, ammoMax;
 
     public GameObject playerSpawnPos;
@@ -43,7 +51,12 @@ public class gameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
-        
+
+        if (RagebarImage == null)
+        {
+            RagebarImage = GetComponent<Image>();
+        }
+        originalColor = RagebarImage.color;
     }
 
 
@@ -53,6 +66,17 @@ public class gameManager : MonoBehaviour
         //TutorialPopup.SetActive(true);
        // yield return new WaitForSeconds(4f);
        // TutorialPopup.SetActive(false);
+
+        if(RagebarImage.fillAmount >= 1f && !isFlashing)
+        {
+            StartCoroutine(FlashBar());
+        }
+        else if(RagebarImage.fillAmount < 1f && isFlashing)
+        {
+            StopAllCoroutines();
+            RagebarImage.color = originalColor;
+            isFlashing = false;
+        }
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)
@@ -66,6 +90,21 @@ public class gameManager : MonoBehaviour
                 stateUnpause();
             }
         }
+    }
+
+    private IEnumerator FlashBar()
+    {
+        isFlashing = true;
+
+        while(RagebarImage.fillAmount >= 1f)
+        {
+            float t = Mathf.PingPong(Time.time * flashSpeed, 1f);
+            RagebarImage.color = Color.Lerp(originalColor, flashColor, t);
+            yield return null;
+        }
+
+        RagebarImage.color = originalColor;
+        isFlashing = false;
     }
     public void statePause()
     {
