@@ -213,7 +213,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     {
         if (Input.GetButtonDown("Jump") && jumpCount <  jumpMax)
         {
-           // aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+            AudioClip clip = audioManager.audJump[Random.Range(0, audioManager.audJump.Length)];
+            audioManager.PlaySFX(clip);
             jumpCount++;
             playerVel.y = jumpSpeed;
         }
@@ -291,7 +292,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     public void takeDamage(int amount)
     {
-       // aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+        AudioClip clip = audioManager.audHurt[Random.Range(0, audioManager.audHurt.Length)];
+        audioManager.PlaySFX(clip);
         if (isBlocking)
         {
             return;
@@ -454,7 +456,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     IEnumerator playStep()
     {
         isPlayingStep = true;
-        //aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
+        AudioClip clip = audioManager.audStep[Random.Range(0, audioManager.audStep.Length)];
+        audioManager.PlaySFX(clip);
         if (isSprinting)
         {
             yield return new WaitForSeconds(.3f);

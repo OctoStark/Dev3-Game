@@ -12,9 +12,9 @@ public class AudioManager : MonoBehaviour
 
     [Header("Player Audio")]
     public AudioClip pickupSFX;
-    [SerializeField] AudioClip[] audStep;
-    [SerializeField] AudioClip[] audJump;
-    [SerializeField] AudioClip[] audHurt;
+    public AudioClip[] audStep;
+    public AudioClip[] audJump;
+    public AudioClip[] audHurt;
 
     [Header("Audio Clip")]
     public AudioClip[] axeHit;
