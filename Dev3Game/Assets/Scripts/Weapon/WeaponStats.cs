@@ -13,6 +13,9 @@ public class WeaponStats : ScriptableObject
     public AnimationClip attackAnimation;
     public AnimationClip idleAnimation;
 
+    [Header("Animations")]
+    public AnimatorOverrideController animOverrideControl;
+
     public AnimationClip GetAttackAnimation()
     {
         return attackAnimation;

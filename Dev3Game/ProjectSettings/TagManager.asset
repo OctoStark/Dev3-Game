@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Player Spawn Pos
-  - Moving Objects
   - Moving Object
   - King
   - Audio
+  - Interact
   layers:
   - Default
   - TransparentFX

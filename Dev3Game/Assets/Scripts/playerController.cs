@@ -9,7 +9,9 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [SerializeField] CharacterController controller;
     [SerializeField] Transform cameraHolder;
     [SerializeField] Animator anim;
+    [SerializeField] Animator weaponAnim;
     public AudioManager audioManager;
+    [SerializeField] RuntimeAnimatorController baseController;
 
 
     [SerializeField] int speed;
@@ -39,7 +41,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     float pitch = 0f;
 
 
-    //[SerializeField] AudioSource aud;
+    [SerializeField] AudioSource aud;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip pickupSFX;
     [SerializeField] AudioClip[] audStep;
@@ -48,8 +50,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [Range(0, 1)][SerializeField] float audJumpVol;
     [SerializeField] AudioClip[] audHurt;
     [Range(0, 1)][SerializeField] float audHurtVol;
-
-    [SerializeField] private TutorialPopUp tutPop;
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -80,7 +80,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     private bool isShrunk = false;
     public bool isBlocking = false;
     private bool hasPlayedPush = false;
-    private bool shownSprintTip;
+
     private float _pushPower = 2.0f;
    
 
@@ -97,6 +97,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     void Start()
     {
         anim = GetComponent<Animator>();
+        weaponAnim = transform.Find("Weapon Model").GetComponent<Animator>();
 
         HPOrig = HP;
         originalScale = transform.localScale;
@@ -155,11 +156,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         movement();
             Rage();
         }
-        if(Input.GetButtonDown("Sprint") && !shownSprintTip)
-        {
-            shownSprintTip = true;
-            tutPop.ShowPopup("Hold Shift to Sprint");
-        }
         sprint();
         
     }
@@ -198,18 +194,26 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     }
     void setanimLocomotion()
     {
+        if (anim == null || anim.runtimeAnimatorController == null)
+        {
+            Debug.LogWarning("Animator or AnimatorController is missing.");
+            return;
+        }
+
         float directionalSpeed = Vector3.Dot(transform.forward, moveDir.normalized) * moveDir.magnitude;
         float agentSpeedCur = directionalSpeed * (isSprinting ? 2f : 1f);
         float animSpeedCur = anim.GetFloat("Speed");
 
         float smoothedSpeed = Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed);
         anim.SetFloat("Speed", smoothedSpeed);
+
+
     }
     void jump()
     {
         if (Input.GetButtonDown("Jump") && jumpCount <  jumpMax)
         {
-           // aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
             jumpCount++;
             playerVel.y = jumpSpeed;
         }
@@ -232,6 +236,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
 
         Debug.Log("Player attacked");
+        weaponAnim.SetTrigger("Hit");
         string weaponName = weaponList[weaponListPos].weaponModel.name.ToLower();
 
         if (weaponName.Contains("doubleaxe") && audioManager.axeHit.Length > 0)
@@ -250,6 +255,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
         foreach (Collider hit in hits)
         {
+            Instantiate(weaponList[weaponListPos].hitEffect, hit.transform.position, Quaternion.identity);
             IDamage Dmg = hit.GetComponent<IDamage>();
             if (Dmg != null)
             {
@@ -285,7 +291,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     public void takeDamage(int amount)
     {
-       // aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         if (isBlocking)
         {
             return;
@@ -356,13 +362,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         gameManager.instance.herasCurse.SetActive(false);
     }
 
-    IEnumerator ENraged()
-    {
-        gameManager.instance.RageScreen.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        gameManager.instance.RageScreen.SetActive(false);
-    }
-
     IEnumerator flashAthenaCurse()
     {
         gameManager.instance.athenasCurse.SetActive(true);
@@ -430,6 +429,17 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponList[weaponListPos].weaponModel.GetComponent<MeshFilter>().sharedMesh;
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponList[weaponListPos].weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
 
+        if (weaponList[weaponListPos].animOverrideControl != null)
+        {
+            anim.runtimeAnimatorController = weaponList[weaponListPos].animOverrideControl;
+        }
+        else
+        {
+            anim.runtimeAnimatorController = baseController;
+            Debug.LogWarning($"Weapon '{weaponList[weaponListPos].weaponModel.name}' has no Animator Override Controller! Using base.");
+        }
+
+
         updatePlayerUI();
     }
 
@@ -444,7 +454,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     IEnumerator playStep()
     {
         isPlayingStep = true;
-        //aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
+        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
         if (isSprinting)
         {
             yield return new WaitForSeconds(.3f);
@@ -560,7 +570,6 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         if(rageAdd == rageMax && Input.GetButtonDown("Rage"))
         {
             Debug.Log("Rage Dash Activated");
-            StartCoroutine(ENraged());
             StartCoroutine(RageDash());
   
         }

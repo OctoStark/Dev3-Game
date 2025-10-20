@@ -17,7 +17,6 @@ public class SwitchManager : MonoBehaviour
 
             if (currIndex >= switchOrder.Count)
             {
-                Debug.Log("All switches activated in correct order!");
                 if (audioManager != null && audioManager.correctItem != null)
                 {
                     audioManager.PlaySFX(audioManager.correctItem);
@@ -32,7 +31,6 @@ public class SwitchManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Wrong switch! Resetting sequence.");
 
             ResetSequence();
         }
