@@ -72,7 +72,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     bool isSprinting;
     bool isPlayingStep;
-    bool TakingDamage;
+    bool TakingDamage = false;
     bool zuesBuffActive = false;
     bool poseidonBuffActive = false;
     bool athenaDebuffActive = false;
