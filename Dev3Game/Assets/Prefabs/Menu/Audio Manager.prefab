@@ -50,15 +50,26 @@ MonoBehaviour:
   gameMusicSource: {fileID: 0}
   SFXSource: {fileID: 4107602051025021410}
   gameSFXSource: {fileID: 0}
-  backgroundMenu: {fileID: 0}
-  backgroundGame: {fileID: 0}
+  pickupSFX: {fileID: 0}
+  audStep: []
+  audJump: []
+  audHurt: []
+  axeHit: []
+  spearHit: []
   buttonSwitch: {fileID: 0}
   WallMove: {fileID: 0}
-  DoorOpen: {fileID: 0}
+  hitWall: {fileID: 0}
+  breakWall: {fileID: 0}
   shrinkSound: {fileID: 0}
-  HitSound: {fileID: 0}
+  switchWeapon: {fileID: 0}
   pressureOn: {fileID: 0}
   correctItem: {fileID: 0}
+  incorrectItem: {fileID: 0}
+  breakCrate: {fileID: 0}
+  healthDrink: {fileID: 0}
+  objectMove: {fileID: 0}
+  backgroundMenu: {fileID: 0}
+  backgroundGame: {fileID: 0}
 --- !u!1 &6149796675473288535
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +265,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3085864317168706371, guid: ff44cc7bf4de88b478fca7f8a32c03fa, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 1f9d8ec2103a4c34095fe0a30569c44a, type: 3}
+  m_Resource: {fileID: 8300000, guid: 8734da77574b1c847b696519469a42fa, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
