@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Levels/MainMenu.unity
     guid: 2a1208eea9aa69742ad459b74b1f6379
   - enabled: 1
-    path: Assets/Scenes/Game Levels/TutorialLevel.unity
-    guid: 61ddab784a7639e45bc9594f5aca2945
+    path: Assets/Scenes/Demetrious.unity
+    guid: abc200b792f1fb84091683f9537d8eef
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
