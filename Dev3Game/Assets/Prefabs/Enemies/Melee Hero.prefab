@@ -1831,14 +1831,27 @@ MonoBehaviour:
   shootRate: 100
   animTransSpeed: 8
   aud: {fileID: 0}
-  audStep: []
-  audStepVol: 0
-  audAtk: []
-  audAtkVol: 0
-  audHurt: []
-  audHurtVol: 0
-  audDeath: []
-  audDeathVol: 0
+  audStep:
+  - {fileID: 8300000, guid: 678fe1f9a3025cc419f2588e0bcb4431, type: 3}
+  - {fileID: 8300000, guid: 7b3251703f0088f4ab7cc5780e9ad041, type: 3}
+  - {fileID: 8300000, guid: 72f8016a3409cc840a3bc5ca8f93e798, type: 3}
+  - {fileID: 8300000, guid: c8f883936352b8140b5ca284df983fcc, type: 3}
+  - {fileID: 8300000, guid: f92d6a5d51f653d4682abc736e292de0, type: 3}
+  - {fileID: 8300000, guid: 2705fb96ae561a54099adef468c7b6a2, type: 3}
+  - {fileID: 8300000, guid: 291eb86864228194e8b05aad47e12e9e, type: 3}
+  - {fileID: 8300000, guid: 7c3eb1f759e0a1348be172397bd02e42, type: 3}
+  - {fileID: 8300000, guid: 4eba966221bd0284d997e1e643335cbd, type: 3}
+  audStepVol: 0.1
+  audAtk:
+  - {fileID: 8300000, guid: 82720558b45f12942bc7fcbfb21e9a73, type: 3}
+  - {fileID: 8300000, guid: 90077c061482ab84b9b29ace0a8219ae, type: 3}
+  audAtkVol: 0.55
+  audHurt:
+  - {fileID: 8300000, guid: 87adb794411b8a248a38e2d6a23a544e, type: 3}
+  audHurtVol: 0.5
+  audDeath:
+  - {fileID: 8300000, guid: 3f573bcc32411aa499ab4a71bffe0ce4, type: 3}
+  audDeathVol: 0.47
   fleeTrigger: {fileID: 901724063133446003}
   sightTrigger: {fileID: 4242123962833831406}
   atkTrigger: {fileID: 803514827252708170}

@@ -3559,8 +3559,9 @@ MonoBehaviour:
   trapDuration: 3
   trapDelay: 0
   aud: {fileID: 0}
-  audAtk: []
-  audAtkVol: 0
+  audAtk:
+  - {fileID: 8300000, guid: 2da87b16bb4eb3e42b4cdbbcd7b83142, type: 3}
+  audAtkVol: 0.15
 --- !u!33 &7648646745186369115
 MeshFilter:
   m_ObjectHideFlags: 0
