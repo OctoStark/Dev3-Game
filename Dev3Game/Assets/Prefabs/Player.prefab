@@ -397,16 +397,16 @@ MonoBehaviour:
   isFreeLooking: 0
   aud: {fileID: 0}
   audioSource: {fileID: 0}
-  pickupSFX: {fileID: 0}
+  pickupSFX: {fileID: 8300000, guid: 1f9d8ec2103a4c34095fe0a30569c44a, type: 3}
   audStep:
   - {fileID: 8300000, guid: 3a009fedde3463c40a5a1bd199a212eb, type: 3}
-  audStepVol: 0
+  audStepVol: 0.5
   audJump:
   - {fileID: 8300000, guid: 8b407d3607da36c439b902feea8ed7f8, type: 3}
-  audJumpVol: 0
+  audJumpVol: 0.5
   audHurt:
   - {fileID: 8300000, guid: ca5baa4035862ba42a482e972267eb49, type: 3}
-  audHurtVol: 0
+  audHurtVol: 0.5
   HPOrig: 0
   origAttackDamage: 0
   isBlocking: 0
