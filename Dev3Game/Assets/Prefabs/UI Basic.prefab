@@ -5239,6 +5239,7 @@ MonoBehaviour:
   menuWin: {fileID: 2647803094654989297}
   menuLose: {fileID: 8932073155084391826}
   gameGoulCountText: {fileID: 9213971673254947310}
+  RagebarImage: {fileID: 1669888394282460518}
   playerHPBar: {fileID: 4760026846345979437}
   playerRageBar: {fileID: 1669888394282460518}
   playerDamageFlash: {fileID: 8606859296112358917}
@@ -5247,6 +5248,7 @@ MonoBehaviour:
   herasCurse: {fileID: 6411335959771211748}
   athenasCurse: {fileID: 4537957596759217974}
   TutorialPopupScreen: {fileID: 6416149260165995274}
+  RageScreen: {fileID: 0}
   ammoCur: {fileID: 0}
   ammoMax: {fileID: 0}
   playerSpawnPos: {fileID: 0}
@@ -12175,6 +12177,8 @@ MonoBehaviour:
   canvasGroup: {fileID: 1027955003420071285}
   tutorialText: {fileID: 3047559404110452124}
   fadeDuration: 0.5
+  continueButton: {fileID: 0}
+  pauseGameOnPopup: 1
   tutorialPanel: {fileID: 6416149260165995274}
 --- !u!222 &351512722503827058
 CanvasRenderer:

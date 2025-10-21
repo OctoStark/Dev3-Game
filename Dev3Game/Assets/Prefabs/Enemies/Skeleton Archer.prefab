@@ -631,10 +631,19 @@ MonoBehaviour:
   HP: 1
   faceTargetSpeed: 10
   FOV: 70
-  roamDist: 10
+  roamDist: 8
   roamPauseTimer: 2
   shootRate: 1
   animTransSpeed: 8
+  aud: {fileID: 0}
+  audStep: []
+  audStepVol: 0
+  audAtk: []
+  audAtkVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
   fleeTrigger: {fileID: 7607914530189185251}
   sightTrigger: {fileID: 3928439799941635214}
   atkTrigger: {fileID: 5308721652665995945}

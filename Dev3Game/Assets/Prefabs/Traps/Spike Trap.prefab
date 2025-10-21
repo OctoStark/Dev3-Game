@@ -1522,6 +1522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 942102403251830}
+  - component: {fileID: 5486399399136631833}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Untagged
@@ -1625,6 +1626,22 @@ Transform:
   - {fileID: 6098322887912810405}
   m_Father: {fileID: 5312091572332863033}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &5486399399136631833
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2453451729520777797}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2, y: 0.5, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.8, y: 0, z: -1.2}
+  m_TimeToStationary: 0.5
 --- !u!1 &2693865503140259937
 GameObject:
   m_ObjectHideFlags: 0
@@ -3540,6 +3557,10 @@ MonoBehaviour:
   shootRate: 1
   waitTime: 2
   trapDuration: 3
+  trapDelay: 0
+  aud: {fileID: 0}
+  audAtk: []
+  audAtkVol: 0
 --- !u!33 &7648646745186369115
 MeshFilter:
   m_ObjectHideFlags: 0

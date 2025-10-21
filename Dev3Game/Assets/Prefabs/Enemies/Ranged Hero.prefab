@@ -1790,7 +1790,7 @@ MonoBehaviour:
   headPos: {fileID: 5900041371148807726}
   shootPos: {fileID: 7504516975705238987}
   bullet: {fileID: 673038880001039695, guid: 6b73256e6dd6cf34d987647ca5d2c1dc, type: 3}
-  itemDrop: {fileID: 1775027029693330865, guid: ac916db4885e80147b004e0fb73f3172, type: 3}
+  itemDrop: {fileID: 5306554555602805882, guid: ac916db4885e80147b004e0fb73f3172, type: 3}
   HP: 40
   faceTargetSpeed: 10
   FOV: 90
@@ -1798,6 +1798,15 @@ MonoBehaviour:
   roamPauseTimer: 2
   shootRate: 1
   animTransSpeed: 8
+  aud: {fileID: 0}
+  audStep: []
+  audStepVol: 0
+  audAtk: []
+  audAtkVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
   fleeTrigger: {fileID: 7930648886394021191}
   sightTrigger: {fileID: 2709411758354466019}
   atkTrigger: {fileID: 8367927438692441086}
