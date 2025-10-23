@@ -1472,23 +1472,9 @@ MonoBehaviour:
   roamPauseTimer: 2
   shootRate: 1
   animTransSpeed: 8
+  isHuman: 0
+  isMelee: 1
   aud: {fileID: 0}
-  audStep:
-  - {fileID: 8300000, guid: 1de7f81f05e3bb048b2cb77914ec2be4, type: 3}
-  - {fileID: 8300000, guid: f0675cc7a6b8d164ab8a4abb992a81b0, type: 3}
-  - {fileID: 8300000, guid: 77ef021606a293c47bebfac0f537beca, type: 3}
-  - {fileID: 8300000, guid: 132c79ba282d56c4f99f00b13758ac1d, type: 3}
-  audStepVol: 0.1
-  audAtk:
-  - {fileID: 8300000, guid: 82720558b45f12942bc7fcbfb21e9a73, type: 3}
-  - {fileID: 8300000, guid: 90077c061482ab84b9b29ace0a8219ae, type: 3}
-  audAtkVol: 1
-  audHurt:
-  - {fileID: 8300000, guid: 77ef021606a293c47bebfac0f537beca, type: 3}
-  audHurtVol: 1
-  audDeath:
-  - {fileID: 8300000, guid: f0675cc7a6b8d164ab8a4abb992a81b0, type: 3}
-  audDeathVol: 1
   fleeTrigger: {fileID: 8044537331697836600}
   sightTrigger: {fileID: 2556426301846715306}
   atkTrigger: {fileID: 2931654471106039402}

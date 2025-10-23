@@ -51,6 +51,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::platform
   model: {fileID: 1534424402213687303}
   duration: 2
+  audioManager: {fileID: 0}
+  aud: {fileID: 0}
+  audBreak:
+  - {fileID: 8300000, guid: f4a4a14ac15f8a74d83071e7c1eda524, type: 3}
+  audBreakVol: 0.12
+  audGone:
+  - {fileID: 8300000, guid: 77ef021606a293c47bebfac0f537beca, type: 3}
+  audGoneVol: 0.13
 --- !u!33 &6773570355184627342
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -84,7 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8ea9c8701d418c240b8d4da9ead40b21, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
