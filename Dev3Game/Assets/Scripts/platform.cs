@@ -7,13 +7,6 @@ public class platform : MonoBehaviour
     [SerializeField] Renderer model;
     [SerializeField] float duration;
 
-    public AudioManager audioManager;
-    [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] audBreak;
-    [Range(0, 1)][SerializeField] float audBreakVol;
-    [SerializeField] AudioClip[] audGone;
-    [Range(0, 1)][SerializeField] float audGoneVol;
-
     bool isBreaking;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,7 +26,7 @@ public class platform : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            aud.PlayOneShot(audBreak[Random.Range(0, audBreak.Length)], audBreakVol);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.audBreak[Random.Range(0, AudioManager.Instance.audBreak.Length)]);
             isBreaking = true;
         }
     }
@@ -42,7 +35,7 @@ public class platform : MonoBehaviour
 
         model.material.color = Color.red;
         yield return new WaitForSeconds(duration);
-        aud.PlayOneShot(audGone[Random.Range(0, audGone.Length)], audGoneVol);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.audGone[Random.Range(0, AudioManager.Instance.audGone.Length)]);
         Destroy(gameObject);
     }
 }
