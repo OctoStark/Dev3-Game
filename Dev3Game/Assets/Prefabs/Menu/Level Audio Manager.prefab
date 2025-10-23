@@ -58,8 +58,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 30cf60eaa4f34ec4e8025ca0be1dac68, type: 3}
   - {fileID: 8300000, guid: de4562a5cb2255b49af71cc7e68be206, type: 3}
   - {fileID: 8300000, guid: a85e154e06763ab4cbf5d3cb4ab89f80, type: 3}
-  audJump: []
-  audHurt: []
+  audJump:
+  - {fileID: 8300000, guid: 8b407d3607da36c439b902feea8ed7f8, type: 3}
+  - {fileID: 8300000, guid: cdcf75f4df9365246a7549d9c05f0426, type: 3}
+  - {fileID: 8300000, guid: e389c0cd40989bd40a2138bf1bb608ac, type: 3}
+  audHurt:
+  - {fileID: 8300000, guid: 34a03417bf92e2944b7973a740b4d191, type: 3}
+  - {fileID: 8300000, guid: 3b20b9220db563b4b9eb611af1234d87, type: 3}
+  - {fileID: 8300000, guid: a971cad787c2d7644abd9a1df61fd19e, type: 3}
   axeHit:
   - {fileID: 8300000, guid: 225e8621c5049414a82a23ff52874624, type: 3}
   - {fileID: 8300000, guid: 61c89f759cb285c45b97dfa4b8efd44a, type: 3}
@@ -97,6 +103,10 @@ MonoBehaviour:
   stompAtk: []
   theseusHurt: []
   waveAtk: []
+  audBreak: []
+  audGone: []
+  audSpike: []
+  audDart: []
 --- !u!1 &1749416576714226414
 GameObject:
   m_ObjectHideFlags: 0

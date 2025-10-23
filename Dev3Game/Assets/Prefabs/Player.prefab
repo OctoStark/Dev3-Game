@@ -3107,10 +3107,10 @@ MonoBehaviour:
   audStep: []
   audStepVol: 0.1
   audJump:
-  - {fileID: 8300000, guid: 8b407d3607da36c439b902feea8ed7f8, type: 3}
+  - {fileID: 0}
   audJumpVol: 0.5
   audHurt:
-  - {fileID: 8300000, guid: ca5baa4035862ba42a482e972267eb49, type: 3}
+  - {fileID: 0}
   audHurtVol: 0.5
   HPOrig: 0
   origAttackDamage: 0
