@@ -53,7 +53,11 @@ MonoBehaviour:
   SFXSource: {fileID: 1697955171148421467}
   gameSFXSource: {fileID: 6305550916126565181}
   pickupSFX: {fileID: 0}
-  audStep: []
+  audStep:
+  - {fileID: 8300000, guid: 90b31b71603bcd542b627cd500fd0f72, type: 3}
+  - {fileID: 8300000, guid: 30cf60eaa4f34ec4e8025ca0be1dac68, type: 3}
+  - {fileID: 8300000, guid: de4562a5cb2255b49af71cc7e68be206, type: 3}
+  - {fileID: 8300000, guid: a85e154e06763ab4cbf5d3cb4ab89f80, type: 3}
   audJump: []
   audHurt: []
   axeHit:
@@ -77,6 +81,22 @@ MonoBehaviour:
   objectMove: {fileID: 8300000, guid: bceb6bf8ea4244c4c9e2f7410515680d, type: 3}
   backgroundMenu: {fileID: 0}
   backgroundGame: {fileID: 0}
+  humanStep: []
+  meleeAtk: []
+  bowAtk: []
+  humanHurt: []
+  humanDeath: []
+  skeleStep: []
+  skeleHurt: []
+  skeleDeath: []
+  golemStep: []
+  golemAtk: []
+  golemThrow: []
+  golemHurt: []
+  golemDeath: []
+  stompAtk: []
+  theseusHurt: []
+  waveAtk: []
 --- !u!1 &1749416576714226414
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +269,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3085864317168706371, guid: ff44cc7bf4de88b478fca7f8a32c03fa, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: d082eea6a2cf65c4ca02ca230afdf44b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
