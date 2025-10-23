@@ -6662,7 +6662,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1490858456716300873}
   - component: {fileID: 3146551837915009784}
-  - component: {fileID: 7637056740822479314}
   - component: {fileID: 2763149175424861969}
   - component: {fileID: 8910944706095731808}
   - component: {fileID: 1777807446118031928}
@@ -6722,27 +6721,21 @@ MonoBehaviour:
   slamRate: 15
   animTransSpeed: 20
   itemDrop: {fileID: 1775027029693330865, guid: ac916db4885e80147b004e0fb73f3172, type: 3}
-  isBoss: 1
+  isBoss: 0
+  aud: {fileID: 0}
+  audStep: []
+  audStepVol: 0
+  audAtk: []
+  audAtkVol: 0
+  audSlam: []
+  audSlamVol: 0
+  audShoot: []
+  audShootVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
   defenseMode: 0
---- !u!114 &7637056740822479314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5183574275560540750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88814ff5ef21b334997872e058d27af9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::bossSpawner
-  objectToSpawn: {fileID: 8108439221214088519, guid: 352273423d54d6e46a966c4d8e0e42d3, type: 3}
-  spawnRate: 40
-  tankDur: 8
-  spawnPos:
-  - {fileID: 3371771731578003307}
-  tankMode: 1
-  boss: {fileID: 3146551837915009784}
 --- !u!95 &2763149175424861969
 Animator:
   serializedVersion: 7

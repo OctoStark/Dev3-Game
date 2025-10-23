@@ -702,7 +702,7 @@ MonoBehaviour:
   bullet: {fileID: 7787146553759830622, guid: 1ae8f9c6a1e0e34449b8d0ebe81cb28e, type: 3}
   groundSlam: {fileID: 889045235887407039, guid: 6bcb10f536ae1774b9ec7a425d4281b2, type: 3}
   slamPos: {fileID: 887083462626093486}
-  HP: 1000
+  HP: 500
   faceTargetSpeed: 2
   atkRate: 0.3
   shootRate: 10
@@ -710,6 +710,25 @@ MonoBehaviour:
   animTransSpeed: 20
   itemDrop: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
   isBoss: 1
+  aud: {fileID: 0}
+  audStep:
+  - {fileID: 8300000, guid: 2dc0f69982534e44db06b8f23873a560, type: 3}
+  audStepVol: 0.05
+  audAtk:
+  - {fileID: 8300000, guid: a662360501e91fe4986467c858a5d004, type: 3}
+  audAtkVol: 0.38
+  audSlam:
+  - {fileID: 8300000, guid: 77ab7b4d78c1e9443bfd42910a970e0a, type: 3}
+  audSlamVol: 0.2
+  audShoot:
+  - {fileID: 8300000, guid: 990d075a8a17a34489f5d5706191cbf4, type: 3}
+  audShootVol: 0.33
+  audHurt:
+  - {fileID: 8300000, guid: 132c79ba282d56c4f99f00b13758ac1d, type: 3}
+  audHurtVol: 0.06
+  audDeath:
+  - {fileID: 8300000, guid: f5fdc076e55a3d94492499bea54ef2bb, type: 3}
+  audDeathVol: 0.6
   defenseMode: 0
 --- !u!114 &53570986971433366
 MonoBehaviour:

@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Demetrious.unity
     guid: abc200b792f1fb84091683f9537d8eef
+  - enabled: 1
+    path: Assets/Scenes/TevinS.unity
+    guid: 6f7674c71f244094e93398a7ec3fe939
+  - enabled: 1
+    path: Assets/Scenes/Robert Sandbox.unity
+    guid: 83f69b463d8233d499b3c5bf3508d8b8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

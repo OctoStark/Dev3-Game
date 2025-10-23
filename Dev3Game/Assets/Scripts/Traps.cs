@@ -8,16 +8,18 @@ public class Traps : MonoBehaviour
     [SerializeField] GameObject dmgObj;
 
     [SerializeField] float shootRate;
-    [SerializeField] int waitTime;
-    [SerializeField] int trapDuration;
+    [SerializeField] float waitTime;
+    [SerializeField] float trapDuration;
+    [SerializeField] float trapDelay;
 
-    [SerializeField] AudioSource aud;
+    //[SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audAtk;
     [Range(0, 1)][SerializeField] float audAtkVol;
 
     float dartTimer;
     float spikeTimer;
     float shootTimer;
+    float delayTimer;
     bool playerInTrigger;
 
 
@@ -30,14 +32,20 @@ public class Traps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spikeTimer += Time.deltaTime;
+        delayTimer += Time.deltaTime;
         shootTimer += Time.deltaTime;
+        if (delayTimer >= trapDelay)
+        {
+            spikeTimer += Time.deltaTime;
+        }
 
         if (type == trapType.Spike)
         {
+
             if (spikeTimer >= waitTime)
             {
                 dmgObj.SetActive(true);
+                //aud.PlayOneShot(audAtk[Random.Range(0, audAtk.Length)], audAtkVol);
                 if (spikeTimer >= trapDuration)
                 {
                 dmgObj.SetActive(false);
@@ -59,6 +67,7 @@ public class Traps : MonoBehaviour
                     if (shootTimer >= shootRate)
                     {
                         shoot();
+                        //aud.PlayOneShot(audAtk[Random.Range(0, audAtk.Length)], audAtkVol);
                     }
                 }
             }

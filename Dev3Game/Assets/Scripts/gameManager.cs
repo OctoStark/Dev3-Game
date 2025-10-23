@@ -1,8 +1,10 @@
+using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
-using System.Collections;
+using static System.TimeZoneInfo;
 
 
 public class gameManager : MonoBehaviour
@@ -35,7 +37,14 @@ public class gameManager : MonoBehaviour
     public GameObject playerSpawnPos;
     public GameObject checkpointPopup;
     public GameObject player;
+    public GameObject loadLevel;
     public playerController playerScript;
+
+
+
+    public Animator transition;
+
+
 
     public bool isPaused;
 
@@ -123,15 +132,15 @@ public class gameManager : MonoBehaviour
         menuActive = null;
     }
 
-    public void updateGameGoal(int amount)
-    {
-        gameGoalCount += amount;
-        gameGoulCountText.text = gameGoalCount.ToString("F0");
-        if (gameGoalCount <= 0)
-        {
-            youWin();
-        }
-    }
+    //public void updateGameGoal(int amount)
+    //{
+    //    gameGoalCount += amount;
+    //    gameGoulCountText.text = gameGoalCount.ToString("F0");
+    //    if (gameGoalCount <= 0)
+    //    {
+    //        youWin();
+    //    }
+    //}
     public void youLose()
     {
         statePause();
@@ -139,10 +148,25 @@ public class gameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
-    public void youWin()
+    public void youWin(bool win)
     {
         statePause();
         menuActive = menuWin;
         menuActive.SetActive(true);
     }
+
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //StartCoroutine(LoadLevel());
+    }
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(1);
+        
+
+    }
+
 }
