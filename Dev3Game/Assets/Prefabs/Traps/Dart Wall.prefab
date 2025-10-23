@@ -1631,9 +1631,12 @@ MonoBehaviour:
   shootRate: 1
   waitTime: 0
   trapDuration: 5
+  trapDelay: 0
+  audioManager: {fileID: 0}
   aud: {fileID: 0}
-  audAtk: []
-  audAtkVol: 0
+  audAtk:
+  - {fileID: 8300000, guid: d9766583ce06adb4ab954fd41a6cdddd, type: 3}
+  audAtkVol: 0.28
 --- !u!33 &9167275001249277101
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1709,8 +1712,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1, y: 5, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!54 &191375164445476313
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2345,9 +2348,12 @@ MonoBehaviour:
   shootRate: 1
   waitTime: 0
   trapDuration: 5
+  trapDelay: 0
+  audioManager: {fileID: 0}
   aud: {fileID: 0}
-  audAtk: []
-  audAtkVol: 0
+  audAtk:
+  - {fileID: 8300000, guid: d9766583ce06adb4ab954fd41a6cdddd, type: 3}
+  audAtkVol: 0.28
 --- !u!33 &2837547719309887404
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2423,8 +2429,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1, y: 5, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!54 &412036129621264627
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2547,9 +2553,12 @@ MonoBehaviour:
   shootRate: 1
   waitTime: 0
   trapDuration: 5
+  trapDelay: 0
+  audioManager: {fileID: 0}
   aud: {fileID: 0}
-  audAtk: []
-  audAtkVol: 0
+  audAtk:
+  - {fileID: 8300000, guid: d9766583ce06adb4ab954fd41a6cdddd, type: 3}
+  audAtkVol: 0.28
 --- !u!33 &6106981144151558233
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2625,8 +2634,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1, y: 5, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!54 &405618343253377502
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3112,9 +3121,12 @@ MonoBehaviour:
   shootRate: 1
   waitTime: 0
   trapDuration: 5
+  trapDelay: 0
+  audioManager: {fileID: 0}
   aud: {fileID: 0}
-  audAtk: []
-  audAtkVol: 0
+  audAtk:
+  - {fileID: 8300000, guid: d9766583ce06adb4ab954fd41a6cdddd, type: 3}
+  audAtkVol: 0.28
 --- !u!33 &4571001997547331291
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3190,8 +3202,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1, y: 5, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!54 &8862649322209330032
 Rigidbody:
   m_ObjectHideFlags: 0

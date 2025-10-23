@@ -1830,15 +1830,9 @@ MonoBehaviour:
   roamPauseTimer: 2
   shootRate: 100
   animTransSpeed: 8
+  isHuman: 1
+  isMelee: 1
   aud: {fileID: 0}
-  audStep: []
-  audStepVol: 0
-  audAtk: []
-  audAtkVol: 0
-  audHurt: []
-  audHurtVol: 0
-  audDeath: []
-  audDeathVol: 0
   fleeTrigger: {fileID: 901724063133446003}
   sightTrigger: {fileID: 4242123962833831406}
   atkTrigger: {fileID: 803514827252708170}

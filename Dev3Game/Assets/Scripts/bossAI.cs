@@ -24,21 +24,12 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] float slamRate;
     [SerializeField] int animTransSpeed;
     [SerializeField] GameObject itemDrop;
-    [SerializeField] bool isBoss;
+    [SerializeField] bool golem;
+    [SerializeField] bool theseus;
+    [SerializeField] bool guard;
 
-    [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] audStep;
-    [Range(0, 1)][SerializeField] float audStepVol;
-    [SerializeField] AudioClip[] audAtk;
-    [Range(0, 1)][SerializeField] float audAtkVol;
-    [SerializeField] AudioClip[] audSlam;
-    [Range(0, 1)][SerializeField] float audSlamVol;
-    [SerializeField] AudioClip[] audShoot;
-    [Range(0, 1)][SerializeField] float audShootVol;
-    [SerializeField] AudioClip[] audHurt;
-    [Range(0, 1)][SerializeField] float audHurtVol;
-    [SerializeField] AudioClip[] audDeath;
-    [Range(0, 1)][SerializeField] float audDeathVol;
+    public AudioManager aud;
+
 
     //Color colorOrig;
 
@@ -60,7 +51,7 @@ public class bossAI : MonoBehaviour, IDamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameManager.instance.updateGameGoal(1);
+        //gameManager.instance.updateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
     }
@@ -139,10 +130,20 @@ public class bossAI : MonoBehaviour, IDamage
     }
     void attack()
     {
-        atkTimer = 0;
-        agent.SetDestination(transform.position);
-        aud.PlayOneShot(audAtk[Random.Range(0, audAtk.Length)], audAtkVol);
-        anim.SetTrigger("Attack");
+        if (golem) 
+        {
+            atkTimer = 0;
+            agent.SetDestination(transform.position);
+            aud.PlaySFX(aud.golemAtk[Random.Range(0, aud.golemAtk.Length)]);
+            anim.SetTrigger("Attack");
+        }
+        else
+        {
+            atkTimer = 0;
+            agent.SetDestination(transform.position);
+            aud.PlaySFX(aud.meleeAtk[Random.Range(0, aud.meleeAtk.Length)]);
+            anim.SetTrigger("Attack");
+        }
     }
     void createPunch()
     {
@@ -154,7 +155,7 @@ public class bossAI : MonoBehaviour, IDamage
     {
         slamTimer = 0;
         agent.SetDestination(transform.position);
-        aud.PlayOneShot(audSlam[Random.Range(0, audSlam.Length)], audSlamVol);
+        aud.PlaySFX(aud.stompAtk[Random.Range(0, aud.stompAtk.Length)]);
         anim.SetTrigger("Slam");
     }
     void createSlam()
@@ -164,10 +165,28 @@ public class bossAI : MonoBehaviour, IDamage
     }
     void shoot()
     {
-        shootTimer = 0;
-        agent.SetDestination(transform.position);
-        aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)], audShootVol);
-        anim.SetTrigger("Shoot");
+        if (golem)
+        {
+            shootTimer = 0;
+            agent.SetDestination(transform.position);
+            aud.PlaySFX(aud.golemThrow[Random.Range(0, aud.golemThrow.Length)]);
+            anim.SetTrigger("Shoot");
+        }
+        if (theseus)
+        {
+            shootTimer = 0;
+            agent.SetDestination(transform.position);
+            aud.PlaySFX(aud.waveAtk[Random.Range(0, aud.waveAtk.Length)]);
+            anim.SetTrigger("Shoot");
+        }
+        else
+        {
+            shootTimer = 0;
+            agent.SetDestination(transform.position);
+            aud.PlaySFX(aud.meleeAtk[Random.Range(0, aud.meleeAtk.Length)]);
+            anim.SetTrigger("Shoot");
+        }
+
     }
 
     void createBullet()
@@ -182,24 +201,50 @@ public class bossAI : MonoBehaviour, IDamage
         }
         else
         {
-            if (HP > 0)
+            if (HP > 0 && golem)
             {
                 HP -= amount;
                 //StartCoroutine(flashRed());
-                aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+                aud.PlaySFX(aud.golemHurt[Random.Range(0, aud.golemHurt.Length)]);
+                agent.SetDestination(gameManager.instance.player.transform.position);
+                anim.SetBool("TakeDamage", true);
+            }
+            if (HP > 0 && theseus)
+            {
+                HP -= amount;
+                //StartCoroutine(flashRed());
+                aud.PlaySFX(aud.theseusHurt[Random.Range(0, aud.theseusHurt.Length)]);
+                agent.SetDestination(gameManager.instance.player.transform.position);
+                anim.SetBool("TakeDamage", true);
+            }
+            if (HP > 0 && guard)
+            {
+                HP -= amount;
+                //StartCoroutine(flashRed());
+                aud.PlaySFX(aud.humanHurt[Random.Range(0, aud.humanHurt.Length)]);
                 agent.SetDestination(gameManager.instance.player.transform.position);
                 anim.SetBool("TakeDamage", true);
             }
 
-            if (HP <= 0)
+            if (HP <= 0 && golem)
             {
-                aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
+                aud.PlaySFX(aud.golemDeath[Random.Range(0, aud.golemDeath.Length)]);
                 agent.SetDestination(transform.position);
                 anim.SetBool("Death", true);                
-                if (isBoss)
-                {
-                    //open a door to next level or win trigger
-                }
+                //if (isBoss)
+                //{
+                //    //open a door to next level or win trigger
+                //}
+            }
+            if (HP <= 0 && (theseus || guard))
+            {
+                aud.PlaySFX(aud.humanDeath[Random.Range(0, aud.humanDeath.Length)]);
+                agent.SetDestination(transform.position);
+                anim.SetBool("Death", true);
+                //if (isBoss)
+                //{
+                //    //open a door to next level or win trigger
+                //}
             }
         }
     }
@@ -219,10 +264,20 @@ public class bossAI : MonoBehaviour, IDamage
     }
     IEnumerator playStep()
     {
-        isPlayingStep = true;
-        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
-        yield return new WaitForSeconds(.5f);
-        isPlayingStep = false;
+        if (golem)
+        {
+            isPlayingStep = true;
+            aud.PlaySFX(aud.golemStep[Random.Range(0, aud.golemStep.Length)]);
+            yield return new WaitForSeconds(.5f);
+            isPlayingStep = false;
+        }
+        else
+        {
+            isPlayingStep = true;
+            aud.PlaySFX(aud.humanStep[Random.Range(0, aud.humanStep.Length)]);
+            yield return new WaitForSeconds(.5f);
+            isPlayingStep = false;
+        }
     }
     //IEnumerator flashRed()
     //{

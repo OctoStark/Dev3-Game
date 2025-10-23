@@ -702,14 +702,17 @@ MonoBehaviour:
   bullet: {fileID: 7787146553759830622, guid: 1ae8f9c6a1e0e34449b8d0ebe81cb28e, type: 3}
   groundSlam: {fileID: 889045235887407039, guid: 6bcb10f536ae1774b9ec7a425d4281b2, type: 3}
   slamPos: {fileID: 887083462626093486}
-  HP: 1000
+  HP: 500
   faceTargetSpeed: 2
   atkRate: 0.3
   shootRate: 10
   slamRate: 20
   animTransSpeed: 20
-  itemDrop: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
-  isBoss: 1
+  itemDrop: {fileID: 3278523489543503854, guid: bfd15d984ec1af446b53b897326fc37f, type: 3}
+  golem: 1
+  theseus: 0
+  guard: 0
+  aud: {fileID: 0}
   defenseMode: 0
 --- !u!114 &53570986971433366
 MonoBehaviour:
