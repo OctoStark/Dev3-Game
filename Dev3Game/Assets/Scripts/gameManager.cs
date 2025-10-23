@@ -15,7 +15,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] TMP_Text gameGoulCountText;
+  //  [SerializeField] TMP_Text gameGoulCountText;
     public Image RagebarImage;
     private Color flashColor = Color.white;
     private float flashSpeed = 5f;
