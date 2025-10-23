@@ -12,7 +12,9 @@ public class Traps : MonoBehaviour
     [SerializeField] float trapDuration;
     [SerializeField] float trapDelay;
 
-    //[SerializeField] AudioSource aud;
+
+    public AudioManager audioManager;
+    [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audAtk;
     [Range(0, 1)][SerializeField] float audAtkVol;
 
@@ -45,7 +47,7 @@ public class Traps : MonoBehaviour
             if (spikeTimer >= waitTime)
             {
                 dmgObj.SetActive(true);
-                //aud.PlayOneShot(audAtk[Random.Range(0, audAtk.Length)], audAtkVol);
+                aud.PlayOneShot(audAtk[Random.Range(0, audAtk.Length)], audAtkVol);
                 if (spikeTimer >= trapDuration)
                 {
                 dmgObj.SetActive(false);
@@ -67,7 +69,7 @@ public class Traps : MonoBehaviour
                     if (shootTimer >= shootRate)
                     {
                         shoot();
-                        //aud.PlayOneShot(audAtk[Random.Range(0, audAtk.Length)], audAtkVol);
+                        aud.PlayOneShot(audAtk[Random.Range(0, audAtk.Length)], audAtkVol);
                     }
                 }
             }

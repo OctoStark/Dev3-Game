@@ -34,6 +34,27 @@ public class AudioManager : MonoBehaviour
     public AudioClip backgroundMenu;
     public AudioClip backgroundGame;
 
+    [Header("Enemy Audio")]
+    public AudioClip[] humanStep;
+    public AudioClip[] meleeAtk;
+    public AudioClip[] bowAtk;
+    public AudioClip[] humanHurt;
+    public AudioClip[] humanDeath;
+    public AudioClip[] skeleStep;
+    public AudioClip[] skeleHurt;
+    public AudioClip[] skeleDeath;
+    public AudioClip[] golemStep;
+    public AudioClip[] golemAtk;
+    public AudioClip[] golemThrow;
+    public AudioClip[] golemHurt;
+    public AudioClip[] golemDeath;
+    public AudioClip[] stompAtk;
+    public AudioClip[] theseusHurt;
+    public AudioClip[] waveAtk;
+
+
+
+
     private void Start()
     {
         musicSource.clip = backgroundMenu;

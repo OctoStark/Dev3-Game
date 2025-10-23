@@ -2706,48 +2706,17 @@ MonoBehaviour:
   bullet: {fileID: 2571088204562171300, guid: 08fccb916459a5c4b8dc537f2fdf5d0a, type: 3}
   groundSlam: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
   slamPos: {fileID: 5691058970187068005}
-  HP: 500
+  HP: 100
   faceTargetSpeed: 8
   atkRate: 1
   shootRate: 15
   slamRate: 100
   animTransSpeed: 20
-  itemDrop: {fileID: 398169160065513301, guid: e96180813d981244e9303c44cc10bfb6, type: 3}
-  isBoss: 1
+  itemDrop: {fileID: 3278523489543503854, guid: bfd15d984ec1af446b53b897326fc37f, type: 3}
+  golem: 0
+  theseus: 1
+  guard: 0
   aud: {fileID: 0}
-  audStep:
-  - {fileID: 8300000, guid: 678fe1f9a3025cc419f2588e0bcb4431, type: 3}
-  - {fileID: 8300000, guid: 7b3251703f0088f4ab7cc5780e9ad041, type: 3}
-  - {fileID: 8300000, guid: 72f8016a3409cc840a3bc5ca8f93e798, type: 3}
-  - {fileID: 8300000, guid: c8f883936352b8140b5ca284df983fcc, type: 3}
-  - {fileID: 8300000, guid: f92d6a5d51f653d4682abc736e292de0, type: 3}
-  - {fileID: 8300000, guid: 2705fb96ae561a54099adef468c7b6a2, type: 3}
-  - {fileID: 8300000, guid: 291eb86864228194e8b05aad47e12e9e, type: 3}
-  - {fileID: 8300000, guid: 7c3eb1f759e0a1348be172397bd02e42, type: 3}
-  - {fileID: 8300000, guid: 4eba966221bd0284d997e1e643335cbd, type: 3}
-  audStepVol: 0.1
-  audAtk:
-  - {fileID: 8300000, guid: 82720558b45f12942bc7fcbfb21e9a73, type: 3}
-  - {fileID: 8300000, guid: d727828599ab1e74dbf7e3e778c1ffd4, type: 3}
-  - {fileID: 8300000, guid: 90077c061482ab84b9b29ace0a8219ae, type: 3}
-  audAtkVol: 0.53
-  audSlam:
-  - {fileID: 8300000, guid: 77ab7b4d78c1e9443bfd42910a970e0a, type: 3}
-  audSlamVol: 0.13
-  audShoot:
-  - {fileID: 8300000, guid: 2565b194b08361e40badfb6d4365d430, type: 3}
-  - {fileID: 8300000, guid: 3b2ce50e0a1d5f44dbce4b36c8dbf876, type: 3}
-  - {fileID: 8300000, guid: 08009af4b450e6b449a36193fa2195d5, type: 3}
-  - {fileID: 8300000, guid: 354bd18463f25914e85ab8849dd7aad4, type: 3}
-  audShootVol: 0.57
-  audHurt:
-  - {fileID: 8300000, guid: a3fc65bf1cf36954bb739496e5600169, type: 3}
-  - {fileID: 8300000, guid: f498e07149afa344cb801b42888ba71f, type: 3}
-  - {fileID: 8300000, guid: 87adb794411b8a248a38e2d6a23a544e, type: 3}
-  audHurtVol: 0.47
-  audDeath:
-  - {fileID: 8300000, guid: 3f573bcc32411aa499ab4a71bffe0ce4, type: 3}
-  audDeathVol: 1
   defenseMode: 0
 --- !u!114 &1392016803062834199
 MonoBehaviour:
