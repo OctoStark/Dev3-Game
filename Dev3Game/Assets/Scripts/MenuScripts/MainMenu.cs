@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator Delay(int levelIndex)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.6f);
         SceneManager.LoadScene(levelIndex);
 
     }
