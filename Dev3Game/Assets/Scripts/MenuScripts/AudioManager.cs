@@ -52,8 +52,26 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] theseusHurt;
     public AudioClip[] waveAtk;
 
+    [Header("Traps")]
+    public AudioClip[] audBreak;
+    public AudioClip[] audGone;
+    public AudioClip[] audSpike;
+    public AudioClip[] audDart;
 
+    public static AudioManager Instance;
 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            //DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {

@@ -12,12 +12,6 @@ public class Traps : MonoBehaviour
     [SerializeField] float trapDuration;
     [SerializeField] float trapDelay;
 
-
-    public AudioManager audioManager;
-    [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] audAtk;
-    [Range(0, 1)][SerializeField] float audAtkVol;
-
     float dartTimer;
     float spikeTimer;
     float shootTimer;
@@ -47,7 +41,7 @@ public class Traps : MonoBehaviour
             if (spikeTimer >= waitTime)
             {
                 dmgObj.SetActive(true);
-                aud.PlayOneShot(audAtk[Random.Range(0, audAtk.Length)], audAtkVol);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.audSpike[Random.Range(0, AudioManager.Instance.audSpike.Length)]);
                 if (spikeTimer >= trapDuration)
                 {
                 dmgObj.SetActive(false);
@@ -69,7 +63,7 @@ public class Traps : MonoBehaviour
                     if (shootTimer >= shootRate)
                     {
                         shoot();
-                        aud.PlayOneShot(audAtk[Random.Range(0, audAtk.Length)], audAtkVol);
+                        AudioManager.Instance.PlaySFX(AudioManager.Instance.audDart[Random.Range(0, AudioManager.Instance.audDart.Length)]);
                     }
                 }
             }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5355782687456979231}
   - component: {fileID: 766916830380960217}
   - component: {fileID: 7627511830457521709}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MoveWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1, z: 4}
+  m_Size: {x: 1.3, y: 1, z: 2.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &5355782687456979231
 Animator:
@@ -144,7 +144,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2854467196074477832}
   - component: {fileID: 4685410744933351767}
-  m_Layer: 6
+  - component: {fileID: 5459745181091138261}
+  m_Layer: 0
   m_Name: MoveParent_Forest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,3 +182,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Wall
   wallAnim: {fileID: 5355782687456979231}
   audioManager: {fileID: 0}
+--- !u!208 &5459745181091138261
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5480911446979689186}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

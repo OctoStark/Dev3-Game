@@ -28,7 +28,7 @@ public class bossAI : MonoBehaviour, IDamage
     [SerializeField] bool theseus;
     [SerializeField] bool guard;
 
-    public AudioManager aud;
+    //public AudioManager aud;
 
 
     //Color colorOrig;
@@ -134,14 +134,14 @@ public class bossAI : MonoBehaviour, IDamage
         {
             atkTimer = 0;
             agent.SetDestination(transform.position);
-            aud.PlaySFX(aud.golemAtk[Random.Range(0, aud.golemAtk.Length)]);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.golemAtk[Random.Range(0, AudioManager.Instance.golemAtk.Length)]);
             anim.SetTrigger("Attack");
         }
         else
         {
             atkTimer = 0;
             agent.SetDestination(transform.position);
-            aud.PlaySFX(aud.meleeAtk[Random.Range(0, aud.meleeAtk.Length)]);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.meleeAtk[Random.Range(0, AudioManager.Instance.meleeAtk.Length)]);
             anim.SetTrigger("Attack");
         }
     }
@@ -155,7 +155,7 @@ public class bossAI : MonoBehaviour, IDamage
     {
         slamTimer = 0;
         agent.SetDestination(transform.position);
-        aud.PlaySFX(aud.stompAtk[Random.Range(0, aud.stompAtk.Length)]);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.stompAtk[Random.Range(0, AudioManager.Instance.stompAtk.Length)]);
         anim.SetTrigger("Slam");
     }
     void createSlam()
@@ -169,21 +169,21 @@ public class bossAI : MonoBehaviour, IDamage
         {
             shootTimer = 0;
             agent.SetDestination(transform.position);
-            aud.PlaySFX(aud.golemThrow[Random.Range(0, aud.golemThrow.Length)]);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.golemThrow[Random.Range(0, AudioManager.Instance.golemThrow.Length)]);
             anim.SetTrigger("Shoot");
         }
         if (theseus)
         {
             shootTimer = 0;
             agent.SetDestination(transform.position);
-            aud.PlaySFX(aud.waveAtk[Random.Range(0, aud.waveAtk.Length)]);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.waveAtk[Random.Range(0, AudioManager.Instance.waveAtk.Length)]);
             anim.SetTrigger("Shoot");
         }
         else
         {
             shootTimer = 0;
             agent.SetDestination(transform.position);
-            aud.PlaySFX(aud.meleeAtk[Random.Range(0, aud.meleeAtk.Length)]);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.meleeAtk[Random.Range(0, AudioManager.Instance.meleeAtk.Length)]);
             anim.SetTrigger("Shoot");
         }
 
@@ -205,7 +205,7 @@ public class bossAI : MonoBehaviour, IDamage
             {
                 HP -= amount;
                 //StartCoroutine(flashRed());
-                aud.PlaySFX(aud.golemHurt[Random.Range(0, aud.golemHurt.Length)]);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.golemHurt[Random.Range(0, AudioManager.Instance.golemHurt.Length)]);
                 agent.SetDestination(gameManager.instance.player.transform.position);
                 anim.SetBool("TakeDamage", true);
             }
@@ -213,7 +213,7 @@ public class bossAI : MonoBehaviour, IDamage
             {
                 HP -= amount;
                 //StartCoroutine(flashRed());
-                aud.PlaySFX(aud.theseusHurt[Random.Range(0, aud.theseusHurt.Length)]);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.theseusHurt[Random.Range(0, AudioManager.Instance.theseusHurt.Length)]);
                 agent.SetDestination(gameManager.instance.player.transform.position);
                 anim.SetBool("TakeDamage", true);
             }
@@ -221,14 +221,14 @@ public class bossAI : MonoBehaviour, IDamage
             {
                 HP -= amount;
                 //StartCoroutine(flashRed());
-                aud.PlaySFX(aud.humanHurt[Random.Range(0, aud.humanHurt.Length)]);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.humanHurt[Random.Range(0, AudioManager.Instance.humanHurt.Length)]);
                 agent.SetDestination(gameManager.instance.player.transform.position);
                 anim.SetBool("TakeDamage", true);
             }
 
             if (HP <= 0 && golem)
             {
-                aud.PlaySFX(aud.golemDeath[Random.Range(0, aud.golemDeath.Length)]);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.golemDeath[Random.Range(0, AudioManager.Instance.golemDeath.Length)]);
                 agent.SetDestination(transform.position);
                 anim.SetBool("Death", true);                
                 //if (isBoss)
@@ -238,7 +238,7 @@ public class bossAI : MonoBehaviour, IDamage
             }
             if (HP <= 0 && (theseus || guard))
             {
-                aud.PlaySFX(aud.humanDeath[Random.Range(0, aud.humanDeath.Length)]);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.humanDeath[Random.Range(0, AudioManager.Instance.humanDeath.Length)]);
                 agent.SetDestination(transform.position);
                 anim.SetBool("Death", true);
                 //if (isBoss)
@@ -267,14 +267,14 @@ public class bossAI : MonoBehaviour, IDamage
         if (golem)
         {
             isPlayingStep = true;
-            aud.PlaySFX(aud.golemStep[Random.Range(0, aud.golemStep.Length)]);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.golemStep[Random.Range(0, AudioManager.Instance.golemStep.Length)]);
             yield return new WaitForSeconds(.5f);
             isPlayingStep = false;
         }
         else
         {
             isPlayingStep = true;
-            aud.PlaySFX(aud.humanStep[Random.Range(0, aud.humanStep.Length)]);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.humanStep[Random.Range(0, AudioManager.Instance.humanStep.Length)]);
             yield return new WaitForSeconds(.5f);
             isPlayingStep = false;
         }
