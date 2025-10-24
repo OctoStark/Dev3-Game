@@ -82,31 +82,72 @@ MonoBehaviour:
   pressureOn: {fileID: 8300000, guid: 7bcb61cb542f0894389746e19c9f677d, type: 3}
   correctItem: {fileID: 8300000, guid: 370d1ed98a65329458c022cfe09520f1, type: 3}
   incorrectItem: {fileID: 8300000, guid: d9dc6c99cc3579143981e364af0782c5, type: 3}
-  breakCrate: {fileID: 0}
+  breakCrate: {fileID: 8300000, guid: 5f901a81df21a38418ca478c59391353, type: 3}
   healthDrink: {fileID: 8300000, guid: a7babd9c11f8687429a77875034e92e3, type: 3}
   objectMove: {fileID: 8300000, guid: bceb6bf8ea4244c4c9e2f7410515680d, type: 3}
-  backgroundMenu: {fileID: 0}
-  backgroundGame: {fileID: 0}
-  humanStep: []
-  meleeAtk: []
-  bowAtk: []
-  humanHurt: []
-  humanDeath: []
-  skeleStep: []
-  skeleHurt: []
-  skeleDeath: []
-  golemStep: []
-  golemAtk: []
-  golemThrow: []
-  golemHurt: []
-  golemDeath: []
-  stompAtk: []
-  theseusHurt: []
-  waveAtk: []
-  audBreak: []
-  audGone: []
-  audSpike: []
-  audDart: []
+  backgroundMenu: {fileID: 8300000, guid: bd4c8ba2a6a4454458869d9e20d72d7e, type: 3}
+  backgroundGame: {fileID: 8300000, guid: 86d552e23c3b2a44eb18ad5320a76020, type: 3}
+  humanStep:
+  - {fileID: 8300000, guid: 678fe1f9a3025cc419f2588e0bcb4431, type: 3}
+  - {fileID: 8300000, guid: 7b3251703f0088f4ab7cc5780e9ad041, type: 3}
+  - {fileID: 8300000, guid: 72f8016a3409cc840a3bc5ca8f93e798, type: 3}
+  - {fileID: 8300000, guid: c8f883936352b8140b5ca284df983fcc, type: 3}
+  - {fileID: 8300000, guid: f92d6a5d51f653d4682abc736e292de0, type: 3}
+  - {fileID: 8300000, guid: 2705fb96ae561a54099adef468c7b6a2, type: 3}
+  - {fileID: 8300000, guid: 291eb86864228194e8b05aad47e12e9e, type: 3}
+  - {fileID: 8300000, guid: 7c3eb1f759e0a1348be172397bd02e42, type: 3}
+  - {fileID: 8300000, guid: 4eba966221bd0284d997e1e643335cbd, type: 3}
+  meleeAtk:
+  - {fileID: 8300000, guid: d727828599ab1e74dbf7e3e778c1ffd4, type: 3}
+  - {fileID: 8300000, guid: 90077c061482ab84b9b29ace0a8219ae, type: 3}
+  - {fileID: 8300000, guid: 82720558b45f12942bc7fcbfb21e9a73, type: 3}
+  bowAtk:
+  - {fileID: 8300000, guid: 4f9db8cc6c15c35469e81a6f91a3c564, type: 3}
+  - {fileID: 8300000, guid: 49b2b74eac60bb94f940451379c67c75, type: 3}
+  humanHurt:
+  - {fileID: 8300000, guid: ca5baa4035862ba42a482e972267eb49, type: 3}
+  - {fileID: 8300000, guid: 34a03417bf92e2944b7973a740b4d191, type: 3}
+  - {fileID: 8300000, guid: 3b20b9220db563b4b9eb611af1234d87, type: 3}
+  - {fileID: 8300000, guid: a971cad787c2d7644abd9a1df61fd19e, type: 3}
+  - {fileID: 8300000, guid: 0190bd2b122c92c418509e7d6a385681, type: 3}
+  - {fileID: 8300000, guid: 876681a48f0b39d48beeb1dd1df83264, type: 3}
+  humanDeath:
+  - {fileID: 8300000, guid: 3f573bcc32411aa499ab4a71bffe0ce4, type: 3}
+  skeleStep:
+  - {fileID: 8300000, guid: 1de7f81f05e3bb048b2cb77914ec2be4, type: 3}
+  skeleHurt:
+  - {fileID: 8300000, guid: 77ef021606a293c47bebfac0f537beca, type: 3}
+  skeleDeath:
+  - {fileID: 8300000, guid: f0675cc7a6b8d164ab8a4abb992a81b0, type: 3}
+  golemStep:
+  - {fileID: 8300000, guid: 4f1a4309e1f3ffb498a8c813c4bdd9d8, type: 3}
+  - {fileID: 8300000, guid: 98082e2439aa9fb4380dd5af435bf9ae, type: 3}
+  golemAtk:
+  - {fileID: 8300000, guid: 5104424351649ba49a3563ae9419c0a3, type: 3}
+  - {fileID: 8300000, guid: 15724aa6bb1050541bfcc2a040c77565, type: 3}
+  - {fileID: 8300000, guid: 99f179515b4d84445b262c19d4965a9c, type: 3}
+  golemThrow:
+  - {fileID: 8300000, guid: 990d075a8a17a34489f5d5706191cbf4, type: 3}
+  golemHurt:
+  - {fileID: 8300000, guid: 132c79ba282d56c4f99f00b13758ac1d, type: 3}
+  golemDeath:
+  - {fileID: 8300000, guid: f5fdc076e55a3d94492499bea54ef2bb, type: 3}
+  stompAtk:
+  - {fileID: 8300000, guid: 77ab7b4d78c1e9443bfd42910a970e0a, type: 3}
+  theseusHurt:
+  - {fileID: 8300000, guid: a3fc65bf1cf36954bb739496e5600169, type: 3}
+  - {fileID: 8300000, guid: 87adb794411b8a248a38e2d6a23a544e, type: 3}
+  waveAtk:
+  - {fileID: 8300000, guid: 2565b194b08361e40badfb6d4365d430, type: 3}
+  - {fileID: 8300000, guid: 3b2ce50e0a1d5f44dbce4b36c8dbf876, type: 3}
+  audBreak:
+  - {fileID: 8300000, guid: f4a4a14ac15f8a74d83071e7c1eda524, type: 3}
+  audGone:
+  - {fileID: 8300000, guid: 5f901a81df21a38418ca478c59391353, type: 3}
+  audSpike:
+  - {fileID: 8300000, guid: 2da87b16bb4eb3e42b4cdbbcd7b83142, type: 3}
+  audDart:
+  - {fileID: 8300000, guid: d9766583ce06adb4ab954fd41a6cdddd, type: 3}
 --- !u!1 &1749416576714226414
 GameObject:
   m_ObjectHideFlags: 0
