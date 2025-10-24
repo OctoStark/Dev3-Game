@@ -239,7 +239,7 @@ public class enemyAI : MonoBehaviour, IDamage
             attack = false;
             FOV = 180;
             flee = transform.position - gameManager.instance.player.transform.position;
-            agent.SetDestination(flee.normalized * 20);
+            agent.SetDestination(flee.normalized * 120);
             if (!isPlayingStep)
             {
                 StartCoroutine(playStep());
