@@ -493,6 +493,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3045952289480464814, guid: 7abfdbf02042040469093804ad612468, type: 3}
   m_PrefabInstance: {fileID: 995877680}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &118566791
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3270481043966533539, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
+      propertyPath: m_Name
+      value: Dart Wall-Swamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227387524138168959, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0235b0cc38a956e4fba56ec6f85768a9, type: 2}
+    - target: {fileID: 7414284431736662903, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -43.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414284431736662903, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414284431736662903, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414284431736662903, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414284431736662903, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414284431736662903, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414284431736662903, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414284431736662903, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414284431736662903, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414284431736662903, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c9dca8905b925ec43b2e9f9c6606dcfe, type: 3}
 --- !u!4 &125860642 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3045952289480464814, guid: 7abfdbf02042040469093804ad612468, type: 3}
@@ -10180,3 +10241,4 @@ SceneRoots:
   - {fileID: 343638673}
   - {fileID: 1141125077}
   - {fileID: 13352092}
+  - {fileID: 118566791}
