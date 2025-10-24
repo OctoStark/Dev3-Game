@@ -132,10 +132,13 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
-                if (!isPlayingStep)
+                if (agent.remainingDistance >= agent.stoppingDistance)
                 {
-                    StartCoroutine(playStep());
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+                    if (!isPlayingStep)
+                    {
+                        StartCoroutine(playStep());
+                    }
                 }
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
@@ -159,10 +162,6 @@ public class enemyAI : MonoBehaviour, IDamage
                         }
                     }
                 }
-                //else if (!attack)
-                //{
-                //    anim.SetBool("Attack", false);
-                //}
                 agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
