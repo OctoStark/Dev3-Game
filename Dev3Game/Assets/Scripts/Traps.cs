@@ -50,21 +50,16 @@ public class Traps : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             if (type == trapType.Dart)
             {
-                dartTimer = 0;
-                dartTimer += Time.deltaTime;
-                if (dartTimer <= trapDuration)
+                if (shootTimer >= shootRate)
                 {
-                    if (shootTimer >= shootRate)
-                    {
-                        shoot();
-                        AudioManager.Instance.PlaySFX(AudioManager.Instance.audDart[Random.Range(0, AudioManager.Instance.audDart.Length)]);
-                    }
+                    shoot();
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.audDart[Random.Range(0, AudioManager.Instance.audDart.Length)]);
                 }
             }
         }
