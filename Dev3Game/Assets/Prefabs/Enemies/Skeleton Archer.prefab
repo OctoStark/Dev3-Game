@@ -635,24 +635,8 @@ MonoBehaviour:
   roamPauseTimer: 2
   shootRate: 1
   animTransSpeed: 8
-  audioManager: {fileID: 0}
-  aud: {fileID: 0}
-  audStep:
-  - {fileID: 8300000, guid: f0675cc7a6b8d164ab8a4abb992a81b0, type: 3}
-  - {fileID: 8300000, guid: 77ef021606a293c47bebfac0f537beca, type: 3}
-  - {fileID: 8300000, guid: 132c79ba282d56c4f99f00b13758ac1d, type: 3}
-  - {fileID: 8300000, guid: 1de7f81f05e3bb048b2cb77914ec2be4, type: 3}
-  audStepVol: 0.08
-  audAtk:
-  - {fileID: 8300000, guid: 49b2b74eac60bb94f940451379c67c75, type: 3}
-  - {fileID: 8300000, guid: 4f9db8cc6c15c35469e81a6f91a3c564, type: 3}
-  audAtkVol: 1
-  audHurt:
-  - {fileID: 8300000, guid: f0675cc7a6b8d164ab8a4abb992a81b0, type: 3}
-  audHurtVol: 0.22
-  audDeath:
-  - {fileID: 8300000, guid: 77ef021606a293c47bebfac0f537beca, type: 3}
-  audDeathVol: 0.32
+  isHuman: 0
+  isMelee: 0
   fleeTrigger: {fileID: 7607914530189185251}
   sightTrigger: {fileID: 3928439799941635214}
   atkTrigger: {fileID: 5308721652665995945}
@@ -3146,7 +3130,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 20
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5308721652665995945
 MonoBehaviour:

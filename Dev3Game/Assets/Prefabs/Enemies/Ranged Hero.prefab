@@ -1143,7 +1143,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 20
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8367927438692441086
 MonoBehaviour:
@@ -1800,7 +1800,6 @@ MonoBehaviour:
   animTransSpeed: 8
   isHuman: 1
   isMelee: 0
-  aud: {fileID: 0}
   fleeTrigger: {fileID: 7930648886394021191}
   sightTrigger: {fileID: 2709411758354466019}
   atkTrigger: {fileID: 8367927438692441086}
