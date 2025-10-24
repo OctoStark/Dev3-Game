@@ -40,11 +40,7 @@ public class gameManager : MonoBehaviour
     public GameObject loadLevel;
     public playerController playerScript;
 
-
-
     public Animator transition;
-
-
 
     public bool isPaused;
 
