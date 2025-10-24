@@ -105,7 +105,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         origAttackRate = AttackRate;
         origSpeed = speed;
         origSprintMod = sprintMod;
-        //spawnPlayer();
+        spawnPlayer();
         //StartCoroutine(flashTutScreen());
     }
 
@@ -447,7 +447,9 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
      public void spawnPlayer()
      {
-        controller.transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
 
         HP = HPOrig;
       updatePlayerUI();
