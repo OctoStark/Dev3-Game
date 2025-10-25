@@ -34,15 +34,12 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     [SerializeField] Vector3 shrinkScale;
     [SerializeField] float shrinkDuration;
-   
+
     [SerializeField] float lookSpeed = 2f;
     [SerializeField] bool isFreeLooking = false;
 
     float pitch = 0f;
 
-
-    //[SerializeField] AudioSource aud;
-    //[SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip pickupSFX;
     [SerializeField] AudioClip[] audStep;
     [Range(0, 1)][SerializeField] float audStepVol;
@@ -50,6 +47,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     [Range(0, 1)][SerializeField] float audJumpVol;
     [SerializeField] AudioClip[] audHurt;
     [Range(0, 1)][SerializeField] float audHurtVol;
+    float soundCooldownTimer = 0f;
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -82,7 +80,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     private bool hasPlayedPush = false;
 
     private float _pushPower = 2.0f;
-   
+
 
     //Rage Dash
     [SerializeField] float rageDashSpeed = 25f;
@@ -112,8 +110,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     // Update is called once per frame
     void Update()
     {
-       
-        isFreeLooking = Input.GetButton("FreeLook"); 
+
+        isFreeLooking = Input.GetButton("FreeLook");
 
         float mouseX = Input.GetAxis("Mouse X") * lookSpeed;
         float mouseY = Input.GetAxis("Mouse Y") * lookSpeed;
@@ -138,7 +136,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         }
 
 
-        if (Input.GetButtonDown("Block")) 
+        if (Input.GetButtonDown("Block"))
         {
             StartBlocking();
         }
@@ -153,15 +151,15 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
         if (!gameManager.instance.isPaused)
         {
-        movement();
+            movement();
             Rage();
         }
         sprint();
-        
+
     }
     void movement()
     {
-    
+        soundCooldownTimer += Time.deltaTime;
         hitTimer += Time.deltaTime;
         if (controller.isGrounded)
         {
@@ -177,20 +175,20 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         {
             playerVel.y -= gravity * Time.deltaTime;
         }
-            moveDir = (Input.GetAxis("Horizontal") * transform.right) +
-                      (Input.GetAxis("Vertical") * transform.forward);
+        moveDir = (Input.GetAxis("Horizontal") * transform.right) +
+                  (Input.GetAxis("Vertical") * transform.forward);
 
         controller.Move(moveDir * speed * Time.deltaTime);
 
         jump();
         controller.Move(playerVel * Time.deltaTime);
 
-        if (Input.GetButtonDown("Fire1") && weaponList.Count > 0 )
-        attack();
+        if (Input.GetButtonDown("Fire1") && weaponList.Count > 0)
+            attack();
         selectWeapon();
         setanimLocomotion();
         //reload();
-       
+
     }
     void setanimLocomotion()
     {
@@ -211,7 +209,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     }
     void jump()
     {
-        if (Input.GetButtonDown("Jump") && jumpCount <  jumpMax)
+        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             AudioClip clip = audioManager.audJump[Random.Range(0, audioManager.audJump.Length)];
             audioManager.PlaySFX(clip);
@@ -240,18 +238,23 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         weaponAnim.SetTrigger("Hit");
         string weaponName = weaponList[weaponListPos].weaponModel.name.ToLower();
 
-        if (weaponName.Contains("doubleaxe") && audioManager.axeHit.Length > 0)
+        if (soundCooldownTimer >= AttackRate)
         {
-            AudioClip clip = audioManager.axeHit[Random.Range(0, audioManager.axeHit.Length)];
-            audioManager.PlaySFX(clip);
-        }
-        else if (weaponName.Contains("spear") && audioManager.spearHit.Length > 0)
-        {
-            AudioClip clip = audioManager.spearHit[Random.Range(0, audioManager.spearHit.Length)];
-            audioManager.PlaySFX(clip);
+            if (weaponName.Contains("doubleaxe") && audioManager.axeHit.Length > 0)
+            {
+                AudioClip clip = audioManager.axeHit[Random.Range(0, audioManager.axeHit.Length)];
+                audioManager.PlaySFX(clip);
+            }
+            else if (weaponName.Contains("spear") && audioManager.spearHit.Length > 0)
+            {
+                AudioClip clip = audioManager.spearHit[Random.Range(0, audioManager.spearHit.Length)];
+                audioManager.PlaySFX(clip);
+            }
+
+            soundCooldownTimer = 0;
         }
 
-            Vector3 attackOrigin = transform.position + transform.forward;
+        Vector3 attackOrigin = transform.position + transform.forward;
         Collider[] hits = Physics.OverlapSphere(attackOrigin, attackRange, enemyLayer);
 
         foreach (Collider hit in hits)
@@ -264,7 +267,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 Debug.Log("Hit " + hit.name + "for " + AttackDamage + "damage.");
             }
         }
-    
+
 
     }
 
@@ -447,15 +450,15 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         updatePlayerUI();
     }
 
-     public void spawnPlayer()
-     {
+    public void spawnPlayer()
+    {
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
 
         HP = HPOrig;
-      updatePlayerUI();
-     }
+        updatePlayerUI();
+    }
 
     IEnumerator playStep()
     {
@@ -496,7 +499,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
             return;
         }
 
-        if(pickup.Amount <= 0)
+        if (pickup.Amount <= 0)
         {
             Debug.LogWarning("Invalid pickup amount: {pickup.Amount}");
             return;
@@ -517,7 +520,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     return;
                 }
-                    break;
+                break;
 
             case pickUp.PickupType.Poseidon:
                 if (!poseidonBuffActive)
@@ -532,7 +535,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                 {
                     return;
                 }
-                    break;
+                break;
 
             case pickUp.PickupType.Athena:
                 if (!athenaDebuffActive)
@@ -574,11 +577,11 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         {
             Debug.Log("Rage button Pressed");
         }
-        if(rageAdd == rageMax && Input.GetButtonDown("Rage"))
+        if (rageAdd == rageMax && Input.GetButtonDown("Rage"))
         {
             Debug.Log("Rage Dash Activated");
             StartCoroutine(RageDash());
-  
+
         }
     }
 
@@ -601,7 +604,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
             Collider[] hitEnemies = Physics.OverlapSphere(transform.position + dashDir * rageHitRadius, rageHitRadius, enemyLayer);
 
-            foreach(Collider enemy in hitEnemies)
+            foreach (Collider enemy in hitEnemies)
             {
                 IDamage dmg = enemy.GetComponent<IDamage>();
                 if (dmg != null)
@@ -609,7 +612,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
                     dmg.takeDamage(Mathf.RoundToInt(AttackDamage * rageDamageMod));
 
                     Rigidbody rb = enemy.GetComponent<Rigidbody>();
-                    if(rb != null)
+                    if (rb != null)
                     {
                         rb.AddForce(dashDir * rageKnockbackForce, ForceMode.Impulse);
                     }
@@ -670,7 +673,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     private void PlayPickupSFX(AudioClip clip)
     {
-        if(audioManager != null && clip != null)
+        if (audioManager != null && clip != null)
         {
             audioManager.PlaySFX(clip);
         }
