@@ -41,8 +41,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     float pitch = 0f;
 
 
-    [SerializeField] AudioSource aud;
-    [SerializeField] private AudioSource audioSource;
+    //[SerializeField] AudioSource aud;
+    //[SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip pickupSFX;
     [SerializeField] AudioClip[] audStep;
     [Range(0, 1)][SerializeField] float audStepVol;
@@ -105,7 +105,7 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         origAttackRate = AttackRate;
         origSpeed = speed;
         origSprintMod = sprintMod;
-        //spawnPlayer();
+        spawnPlayer();
         //StartCoroutine(flashTutScreen());
     }
 
@@ -213,7 +213,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     {
         if (Input.GetButtonDown("Jump") && jumpCount <  jumpMax)
         {
-            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+            AudioClip clip = audioManager.audJump[Random.Range(0, audioManager.audJump.Length)];
+            audioManager.PlaySFX(clip);
             jumpCount++;
             playerVel.y = jumpSpeed;
         }
@@ -291,7 +292,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     public void takeDamage(int amount)
     {
-        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+        AudioClip clip = audioManager.audHurt[Random.Range(0, audioManager.audHurt.Length)];
+        audioManager.PlaySFX(clip);
         if (isBlocking)
         {
             return;
@@ -425,6 +427,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
         AttackDamage = weaponList[weaponListPos].AttackDamage;
         attackRange = weaponList[weaponListPos].hitRange;
         AttackRate = weaponList[weaponListPos].AttackRate;
+        origAttackDamage = AttackDamage;
+        origAttackRate = AttackRate;
 
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponList[weaponListPos].weaponModel.GetComponent<MeshFilter>().sharedMesh;
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponList[weaponListPos].weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -445,7 +449,9 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
      public void spawnPlayer()
      {
-        controller.transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
 
         HP = HPOrig;
       updatePlayerUI();
@@ -454,7 +460,8 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
     IEnumerator playStep()
     {
         isPlayingStep = true;
-        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
+        AudioClip clip = audioManager.audStep[Random.Range(0, audioManager.audStep.Length)];
+        audioManager.PlaySFX(clip);
         if (isSprinting)
         {
             yield return new WaitForSeconds(.3f);
@@ -663,10 +670,9 @@ public class playerController : MonoBehaviour, IDamage, iPickUp
 
     private void PlayPickupSFX(AudioClip clip)
     {
-        if(audioSource != null && clip != null)
+        if(audioManager != null && clip != null)
         {
-            audioSource.pitch = Random.Range(.95f, 1.05f);
-            audioSource.PlayOneShot(clip);
+            audioManager.PlaySFX(clip);
         }
         else
         {

@@ -21,17 +21,11 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int roamPauseTimer;
     [SerializeField] float shootRate;
     [SerializeField] int animTransSpeed;
+    [SerializeField] bool isHuman;
+    [SerializeField] bool isMelee;
 
+    //public AudioManager aud;
 
-    [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] audStep;
-    [Range(0, 1)][SerializeField] float audStepVol;
-    [SerializeField] AudioClip[] audAtk;
-    [Range(0, 1)][SerializeField] float audAtkVol;
-    [SerializeField] AudioClip[] audHurt;
-    [Range(0, 1)][SerializeField] float audHurtVol;
-    [SerializeField] AudioClip[] audDeath;
-    [Range(0, 1)][SerializeField] float audDeathVol;
 
     public enemyTrigger fleeTrigger;
     public enemyTrigger sightTrigger;
@@ -138,10 +132,13 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
-                if (!isPlayingStep)
+                if (agent.remainingDistance >= agent.stoppingDistance)
                 {
-                    StartCoroutine(playStep());
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+                    if (!isPlayingStep)
+                    {
+                        StartCoroutine(playStep());
+                    }
                 }
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
@@ -150,16 +147,20 @@ public class enemyAI : MonoBehaviour, IDamage
                 }
                 if (attack)
                 {
-                    anim.SetBool("Attack", true);
+                    anim.SetTrigger("Attack");
                     if (shootTimer >= shootRate)
                     {
-                        aud.PlayOneShot(audAtk[Random.Range(0, audAtk.Length)], audAtkVol);
-                        shoot();
+                        if (isMelee)
+                        {
+                            AudioManager.Instance.PlaySFX(AudioManager.Instance.meleeAtk[Random.Range(0, AudioManager.Instance.meleeAtk.Length)]);
+                            shoot();
+                        }
+                        else
+                        {
+                            AudioManager.Instance.PlaySFX(AudioManager.Instance.bowAtk[Random.Range(0, AudioManager.Instance.bowAtk.Length)]);
+                            shoot();
+                        }
                     }
-                }
-                else if (!attack)
-                {
-                    anim.SetBool("Attack", false);
                 }
                 agent.stoppingDistance = stoppingDistOrig;
                 return true;
@@ -206,7 +207,7 @@ public class enemyAI : MonoBehaviour, IDamage
     private void atkEnter(Collider other)
     {
         //attack animation
-        if (other.CompareTag("Player") && playerInTrigger)
+        if (other.CompareTag("Player"))
         {
             attack = true;
         }
@@ -222,10 +223,10 @@ public class enemyAI : MonoBehaviour, IDamage
             //faceTarget();
             FOV = FOVOrig;
             agent.SetDestination(gameManager.instance.player.transform.position);
-            if (!isPlayingStep)
-            {
-                StartCoroutine(playStep());
-            }
+            //if (!isPlayingStep)
+            //{
+            //    StartCoroutine(playStep());
+            //}
         }
     }
 
@@ -248,6 +249,7 @@ public class enemyAI : MonoBehaviour, IDamage
     void shoot()
     {
         shootTimer = 0;
+
         //anim.SetTrigger("Attack");
     }
 
@@ -257,11 +259,23 @@ public class enemyAI : MonoBehaviour, IDamage
     }
     public void takeDamage(int amount)
     {
-        if (HP > 0)
+        if (HP > 0 && isHuman)
         {
             HP -= amount;
             //StartCoroutine(flashRed());
-            aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.humanHurt[Random.Range(0, AudioManager.Instance.humanHurt.Length)]);
+            anim.SetBool("TakeDamage", true);
+            agent.SetDestination(gameManager.instance.player.transform.position);
+            if (!isPlayingStep)
+            {
+                StartCoroutine(playStep());
+            }
+        }
+        if (HP > 0 && !isHuman)
+        {
+            HP -= amount;
+            //StartCoroutine(flashRed());
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.skeleHurt[Random.Range(0, AudioManager.Instance.skeleHurt.Length)]);
             anim.SetBool("TakeDamage", true);
             agent.SetDestination(gameManager.instance.player.transform.position);
             if (!isPlayingStep)
@@ -270,12 +284,18 @@ public class enemyAI : MonoBehaviour, IDamage
             }
         }
 
-        if (HP <= 0)
+        if (HP <= 0 && isHuman)
         {
-            aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.humanDeath[Random.Range(0, AudioManager.Instance.humanDeath.Length)]);
             agent.SetDestination(transform.position);
             anim.SetBool("Death", true);
-         }
+        }
+        if (HP <= 0 && !isHuman)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.skeleDeath[Random.Range(0, AudioManager.Instance.skeleDeath.Length)]);
+            agent.SetDestination(transform.position);
+            anim.SetBool("Death", true);
+        }
     }
     void hit()
     {
@@ -289,10 +309,20 @@ public class enemyAI : MonoBehaviour, IDamage
     }
     IEnumerator playStep()
     {
-        isPlayingStep = true;
-        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
-        yield return new WaitForSeconds(.5f);
-        isPlayingStep = false;
+        if (isHuman)
+        {
+            isPlayingStep = true;
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.humanStep[Random.Range(0, AudioManager.Instance.humanStep.Length)]);
+            yield return new WaitForSeconds(.5f);
+            isPlayingStep = false;
+        }
+        else
+        {
+            isPlayingStep = true;
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.skeleStep[Random.Range(0, AudioManager.Instance.skeleStep.Length)]);
+            yield return new WaitForSeconds(.5f);
+            isPlayingStep = false;
+        }
     }
     //IEnumerator flashRed()
     //{

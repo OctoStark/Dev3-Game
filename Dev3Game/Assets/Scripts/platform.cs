@@ -26,14 +26,16 @@ public class platform : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.audBreak[Random.Range(0, AudioManager.Instance.audBreak.Length)]);
             isBreaking = true;
         }
     }
     IEnumerator Breaking()
     {
 
-            model.material.color = Color.red;
-            yield return new WaitForSeconds(duration);
-            Destroy(gameObject);
+        model.material.color = Color.red;
+        yield return new WaitForSeconds(duration);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.audGone[Random.Range(0, AudioManager.Instance.audGone.Length)]);
+        Destroy(gameObject);
     }
 }

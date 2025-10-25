@@ -40,11 +40,7 @@ public class gameManager : MonoBehaviour
     public GameObject loadLevel;
     public playerController playerScript;
 
-
-
     public Animator transition;
-
-
 
     public bool isPaused;
 
@@ -60,6 +56,7 @@ public class gameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+        playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
 
         if (RagebarImage == null)
         {
