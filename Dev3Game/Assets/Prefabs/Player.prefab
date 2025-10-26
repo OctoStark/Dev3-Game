@@ -3103,7 +3103,7 @@ MonoBehaviour:
   shrinkDuration: 5
   lookSpeed: 2
   isFreeLooking: 0
-  pickupSFX: {fileID: 8300000, guid: 1f9d8ec2103a4c34095fe0a30569c44a, type: 3}
+  pickupSFX: {fileID: 8300000, guid: 48593740dcbcaab41a6f2121505f0453, type: 3}
   audStep: []
   audStepVol: 0.1
   audJump:
