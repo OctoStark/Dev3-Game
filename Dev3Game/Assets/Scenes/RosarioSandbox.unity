@@ -520,6 +520,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8396228191972576406, guid: 62e656f7f6163814aaf7c8b38e4c0323, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8616205266352412217, guid: 62e656f7f6163814aaf7c8b38e4c0323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -1674,7 +1678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1520378898177538445, guid: 4a30ca5cf973eff458da6fd1676d1d17, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8
+      value: 0.79999995
       objectReference: {fileID: 0}
     - target: {fileID: 1520378898177538445, guid: 4a30ca5cf973eff458da6fd1676d1d17, type: 3}
       propertyPath: m_LocalPosition.z
