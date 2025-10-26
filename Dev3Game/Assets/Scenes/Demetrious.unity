@@ -9326,18 +9326,6 @@ PrefabInstance:
       value: Way Marker (secondary) (3)
       objectReference: {fileID: 0}
     - target: {fileID: 3201901791407460396, guid: 5528e8a7a508249428839aa75d6e9919, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3201901791407460396, guid: 5528e8a7a508249428839aa75d6e9919, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3201901791407460396, guid: 5528e8a7a508249428839aa75d6e9919, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3201901791407460396, guid: 5528e8a7a508249428839aa75d6e9919, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.3
       objectReference: {fileID: 0}
@@ -13536,8 +13524,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 851221965}
     - target: {fileID: 3043723773562705010, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043723773562705010, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
       propertyPath: m_LocalScale.z
-      value: 70
+      value: 62.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043723773562705010, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 280
       objectReference: {fileID: 0}
     - target: {fileID: 3043723773562705010, guid: 85baf9138832cf94ca714097ac075d61, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14969,6 +14965,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1457254485362991124, guid: 6b130e8cd3beeb641a2637d6a45980d2, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2090200652194151959, guid: 6b130e8cd3beeb641a2637d6a45980d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 172.67714
