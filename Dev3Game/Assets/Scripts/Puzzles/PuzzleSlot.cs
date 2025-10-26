@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class PuzzleSlot : MonoBehaviour
@@ -11,6 +12,7 @@ public class PuzzleSlot : MonoBehaviour
 
     public GameObject gemKey;
     public GameObject promptUI;
+    public GameObject keyPromptUI;
 
     void Update()
     {
@@ -31,6 +33,9 @@ public class PuzzleSlot : MonoBehaviour
 
                 if (promptUI)
                     promptUI.SetActive(false);
+                if (keyPromptUI)
+                    keyPromptUI.SetActive(false);
+
                 return;
             }
 
@@ -48,6 +53,8 @@ public class PuzzleSlot : MonoBehaviour
 
                 if (promptUI)
                     promptUI.SetActive(false);
+                if (keyPromptUI)
+                    keyPromptUI.SetActive(false);
             }
             else if (!isIn)
             {
@@ -61,8 +68,24 @@ public class PuzzleSlot : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNearby = true;
+
+            if (isIn)
+            {
+                if (promptUI)
+                    promptUI.SetActive(false);
+                if (keyPromptUI)
+                    keyPromptUI.SetActive(false);
+                return;
+            }
+
+            if (SlotManager.instance.heldKey == requiredItem) { 
             if (promptUI)
                 promptUI.SetActive(true);
+            } else
+            {
+                if (keyPromptUI)
+                    keyPromptUI.SetActive(true);
+            }
         }
     }
 
@@ -73,6 +96,9 @@ public class PuzzleSlot : MonoBehaviour
             playerNearby = false;
             if (promptUI)
                 promptUI.SetActive(false);
+
+            if (keyPromptUI)
+                keyPromptUI.SetActive(false);
         }
     }
 
