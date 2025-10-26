@@ -24,8 +24,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] bool isHuman;
     [SerializeField] bool isMelee;
 
-    //public AudioManager aud;
-
 
     public enemyTrigger fleeTrigger;
     public enemyTrigger sightTrigger;
@@ -151,13 +149,13 @@ public class enemyAI : MonoBehaviour, IDamage
                     if (shootTimer >= shootRate)
                     {
                         if (isMelee)
-                        {
-                            AudioManager.Instance.PlaySFX(AudioManager.Instance.meleeAtk[Random.Range(0, AudioManager.Instance.meleeAtk.Length)]);
+                        {                            
+                            AudioSource.PlayClipAtPoint(AudioManager.Instance.meleeAtk[Random.Range(0, AudioManager.Instance.meleeAtk.Length)], transform.position);
                             shoot();
                         }
                         else
                         {
-                            AudioManager.Instance.PlaySFX(AudioManager.Instance.bowAtk[Random.Range(0, AudioManager.Instance.bowAtk.Length)]);
+                            AudioSource.PlayClipAtPoint(AudioManager.Instance.bowAtk[Random.Range(0, AudioManager.Instance.bowAtk.Length)], transform.position);
                             shoot();
                         }
                     }
@@ -237,8 +235,10 @@ public class enemyAI : MonoBehaviour, IDamage
             playerInTrigger = false;
             attack = false;
             FOV = 180;
+            NavMeshHit hit;
             flee = transform.position - gameManager.instance.player.transform.position;
-            agent.SetDestination(flee.normalized * 120);
+            //agent.SetDestination(flee.normalized * 20);
+            NavMesh.SamplePosition(flee, out hit, 120, 1);
             if (!isPlayingStep)
             {
                 StartCoroutine(playStep());
@@ -263,7 +263,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             HP -= amount;
             //StartCoroutine(flashRed());
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.humanHurt[Random.Range(0, AudioManager.Instance.humanHurt.Length)]);
+            AudioSource.PlayClipAtPoint(AudioManager.Instance.humanHurt[Random.Range(0, AudioManager.Instance.humanHurt.Length)], transform.position);
             anim.SetBool("TakeDamage", true);
             agent.SetDestination(gameManager.instance.player.transform.position);
             if (!isPlayingStep)
@@ -275,7 +275,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             HP -= amount;
             //StartCoroutine(flashRed());
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.skeleHurt[Random.Range(0, AudioManager.Instance.skeleHurt.Length)]);
+            AudioSource.PlayClipAtPoint(AudioManager.Instance.skeleHurt[Random.Range(0, AudioManager.Instance.skeleHurt.Length)], transform.position);
             anim.SetBool("TakeDamage", true);
             agent.SetDestination(gameManager.instance.player.transform.position);
             if (!isPlayingStep)
@@ -286,13 +286,13 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0 && isHuman)
         {
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.humanDeath[Random.Range(0, AudioManager.Instance.humanDeath.Length)]);
+            AudioSource.PlayClipAtPoint(AudioManager.Instance.humanDeath[Random.Range(0, AudioManager.Instance.humanDeath.Length)], transform.position);
             agent.SetDestination(transform.position);
             anim.SetBool("Death", true);
         }
         if (HP <= 0 && !isHuman)
         {
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.skeleDeath[Random.Range(0, AudioManager.Instance.skeleDeath.Length)]);
+            AudioSource.PlayClipAtPoint(AudioManager.Instance.skeleDeath[Random.Range(0, AudioManager.Instance.skeleDeath.Length)], transform.position);
             agent.SetDestination(transform.position);
             anim.SetBool("Death", true);
         }
@@ -312,14 +312,14 @@ public class enemyAI : MonoBehaviour, IDamage
         if (isHuman)
         {
             isPlayingStep = true;
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.humanStep[Random.Range(0, AudioManager.Instance.humanStep.Length)]);
+            AudioSource.PlayClipAtPoint(AudioManager.Instance.humanStep[Random.Range(0, AudioManager.Instance.humanStep.Length)], transform.position);
             yield return new WaitForSeconds(.5f);
             isPlayingStep = false;
         }
         else
         {
             isPlayingStep = true;
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.skeleStep[Random.Range(0, AudioManager.Instance.skeleStep.Length)]);
+            AudioSource.PlayClipAtPoint(AudioManager.Instance.skeleStep[Random.Range(0, AudioManager.Instance.skeleStep.Length)], transform.position);
             yield return new WaitForSeconds(.5f);
             isPlayingStep = false;
         }
