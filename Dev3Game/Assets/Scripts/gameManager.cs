@@ -118,6 +118,11 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        if(playerScript)
+        {
+            playerScript.enabled = false;
+        }
     }
     public void stateUnpause()
     {
@@ -127,6 +132,11 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
+
+        if (playerScript)
+        {
+            playerScript.enabled = true;
+        }
     }
 
     //public void updateGameGoal(int amount)
