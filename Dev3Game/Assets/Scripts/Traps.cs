@@ -41,7 +41,7 @@ public class Traps : MonoBehaviour
             if (spikeTimer >= waitTime)
             {
                 dmgObj.SetActive(true);
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.audSpike[Random.Range(0, AudioManager.Instance.audSpike.Length)]);
+                //AudioSource.PlayClipAtPoint(AudioManager.Instance.audSpike[Random.Range(0, AudioManager.Instance.audSpike.Length)], transform.position);
                 if (spikeTimer >= trapDuration)
                 {
                 dmgObj.SetActive(false);
